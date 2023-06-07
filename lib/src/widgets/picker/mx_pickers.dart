@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mx_widget/src/widgets/datePicker/date_picker_model.dart';
+import 'package:mx_widget/src/widgets/datePicker/model/date_picker_model.dart';
 import 'package:mx_widget/src/widgets/datePicker/mx_date_picker.dart';
+import 'package:mx_widget/src/widgets/optionsPicker/model/options_picker_model.dart';
+import 'package:mx_widget/src/widgets/optionsPicker/mx_options_picker.dart';
 
 import '../../export.dart';
 
@@ -60,5 +62,24 @@ class MXPickers {
             datePickerModel: datePickerModel,
           );
         });
+  }
+
+  showOptionsPicker(BuildContext context,
+      OptionsPickerParams optionsPickerParams, MXOptionsQuery mxOptionsQuery) {
+    OptionsPickerModel optionsPickerModel = OptionsPickerModel(
+      options: mxOptionsQuery.options,
+      initialValue: mxOptionsQuery.initialValue,
+      optionProperty: mxOptionsQuery.optionProperty,
+    );
+
+    return showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        builder: (BuildContext context) {
+          return MXOptionsPicker(
+              optionsPickerParams: optionsPickerParams,
+              optionsPickerModel: optionsPickerModel);
+        },
+        backgroundColor: Colors.transparent);
   }
 }

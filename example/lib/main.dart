@@ -208,7 +208,7 @@ class _MyHomePageState extends State<MyHomePage>
               ),
 
               MXButton(
-                text: 'text',
+                text: '时间选择器',
                 icon: Icons.ac_unit,
                 disabled: disabled,
                 themeEnum: themeEnum,
@@ -219,6 +219,46 @@ class _MyHomePageState extends State<MyHomePage>
                     DatePickerParams(
                         useSaftArea: true,
                         datePickerFormatType: DatePickerFormatType.MM_DD),
+                  );
+                },
+                typeEnum: MXButtonTypeEnum.fill,
+                shape: MXButtonShapeEnum.round,
+                sizeEnum: MXButtonSizeEnum.medium,
+              ),
+              SizedBox(
+                height: MXTheme.of(context).space12,
+              ),
+
+              MXButton(
+                text: 'options选择器',
+                icon: Icons.ac_unit,
+                disabled: disabled,
+                themeEnum: themeEnum,
+                afterClickButtonCallback: () {
+                  MXPickers().showOptionsPicker(
+                    context,
+                    OptionsPickerParams(
+                      onConfirm: (p0) {
+                        print(p0);
+                      },
+                    ),
+                    MXOptionsQuery(
+                      options: [
+                        [
+                          {"label": '选项一', "value": '1'},
+                          {"label": '选项二', "value": '2'},
+                          {"label": '选项三', "value": '3'},
+                          {"label": '选项四', "value": '4'}
+                        ],
+                        [
+                          {"label": '列1', "value": '1'},
+                          {"label": '列2', "value": '2'},
+                          {"label": '列3', "value": '3'},
+                          {"label": '列4', "value": '4'}
+                        ]
+                      ],
+                      initialValue: ['2', '4'],
+                    ),
                   );
                 },
                 typeEnum: MXButtonTypeEnum.fill,

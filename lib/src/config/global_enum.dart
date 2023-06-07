@@ -247,3 +247,11 @@ typedef MXDatePickerScrollContollers
 
 /// datepicker组件的点击事件类型
 typedef DatePickerCallback = void Function(DateTime);
+
+/// optionsPicker组件的点击事件类型
+typedef OptionsPickerCallback = void Function(List<dynamic>);
+
+enum OptionsPropertyEnum {
+  label,
+  value,
+}
