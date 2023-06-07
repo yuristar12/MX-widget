@@ -77,3 +77,10 @@ export '../src/widgets/tag/mx_select_tag.dart';
 
 /// bottomNavBar组件
 export '../src/widgets/bottomNavBar/mx_bottom_nav_bar_export.dart';
+
+/// picker组件
+export 'widgets/picker/mx_pickers.dart';
+
+/// datepicker组件
+export '../src/widgets/datePicker/date_picker_params.dart';
+export '../src/widgets/datePicker/date_picker_query.dart';

@@ -221,3 +221,29 @@ enum MXBottomNavBarItemTypeEnum {
 
 /// bottomNavBar组件的点击事件类型
 typedef MXBottomNavOnChange = void Function(int index);
+
+enum DatePickerListUnitEnum {
+  year,
+  month,
+  day,
+  week,
+  hour,
+  minute,
+  second,
+}
+
+enum DatePickerFormatType {
+  MM_DD,
+  YYYY_MM,
+  YYYY_MM_DD,
+  YYYY_MM_DD_WW,
+  YYYY_MM_DD_HH_mm_ss,
+}
+
+typedef MXDatePickerListType = Map<DatePickerListUnitEnum, List<int>>;
+
+typedef MXDatePickerScrollContollers
+    = Map<DatePickerListUnitEnum, FixedExtentScrollController>;
+
+/// datepicker组件的点击事件类型
+typedef DatePickerCallback = void Function(DateTime);

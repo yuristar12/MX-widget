@@ -170,50 +170,11 @@ class _MyHomePageState extends State<MyHomePage>
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              // SizedBox(
-              //     height: 300,
-              //     child: Swiper(
-              //         loop: true,
-              //         autoplay: true,
-              //         pagination: MXSwiperControllBar(
-              //             builder: MXSwiperPointControllerBar()),
-              //         itemBuilder: (BuildContext context, index) {
-              //           return const MXImage(
-              //               height: 300,
-              //               netUrl:
-              //                   "https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg");
-              //         },
-              //         itemCount: 5)),
-              // SizedBox(
-              //   height: MXTheme.of(context).space12,
-              // ),
-              // SizedBox(
-              //     height: 300,
-              //     child: Swiper(
-              //         viewportFraction: 0.88,
-              //         loop: true,
-              //         autoplay: true,
-              //         transformer: MXPagetransform.transTomargin(margin: 6),
-              //         pagination: MXSwiperControllBar(
-              //             builder: MXSwiperPointControllerBar()),
-              //         itemBuilder: (BuildContext context, index) {
-              //           return const MXImage(
-              //               height: 300,
-              //               netUrl:
-              //                   "https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg");
-              //         },
-              //         itemCount: 5)),
-              // SizedBox(
-              //   height: MXTheme.of(context).space12,
-              // ),
-
               SizedBox(
                   height: 300,
                   child: Swiper(
-                      viewportFraction: 0.70,
                       loop: true,
                       autoplay: true,
-                      transformer: MXPagetransform.transToScaleAndFade(),
                       pagination: MXSwiperControllBar(
                           builder: MXSwiperPointControllerBar()),
                       itemBuilder: (BuildContext context, index) {
@@ -222,13 +183,44 @@ class _MyHomePageState extends State<MyHomePage>
                             netUrl:
                                 "https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg");
                       },
-                      itemCount: 2)),
+                      itemCount: 5)),
+              SizedBox(
+                height: MXTheme.of(context).space12,
+              ),
+              SizedBox(
+                  height: 300,
+                  child: Swiper(
+                      viewportFraction: 0.88,
+                      loop: true,
+                      autoplay: true,
+                      transformer: MXPagetransform.transToMargin(margin: 6),
+                      pagination: MXSwiperControllBar(
+                          builder: MXSwiperPointControllerBar()),
+                      itemBuilder: (BuildContext context, index) {
+                        return const MXImage(
+                            height: 300,
+                            netUrl:
+                                "https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg");
+                      },
+                      itemCount: 5)),
+              SizedBox(
+                height: MXTheme.of(context).space12,
+              ),
+
               MXButton(
                 text: 'text',
                 icon: Icons.ac_unit,
                 disabled: disabled,
                 themeEnum: themeEnum,
-                afterClickButtonCallback: () {},
+                afterClickButtonCallback: () {
+                  MXPickers().showDatePicker(
+                    context,
+                    DatePickerQuery(),
+                    DatePickerParams(
+                        useSaftArea: true,
+                        datePickerFormatType: DatePickerFormatType.MM_DD),
+                  );
+                },
                 typeEnum: MXButtonTypeEnum.fill,
                 shape: MXButtonShapeEnum.round,
                 sizeEnum: MXButtonSizeEnum.medium,
@@ -1002,28 +994,28 @@ class _MyHomePageState extends State<MyHomePage>
               SizedBox(
                 height: MXTheme.of(context).space32,
               ),
-              const MXAvatar(
-                avatarNetUrl:
-                    "https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp",
-                sizeEnum: MXAvatarSizeEnum.lager,
-                shapeEnum: MXAvatarShapeEnum.square,
-                modeEnum: MXAvatarModeEnum.img,
-              ),
+              // const MXAvatar(
+              //   avatarNetUrl:
+              //       "https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp",
+              //   sizeEnum: MXAvatarSizeEnum.lager,
+              //   shapeEnum: MXAvatarShapeEnum.square,
+              //   modeEnum: MXAvatarModeEnum.img,
+              // ),
               SizedBox(
                 height: MXTheme.of(context).space32,
               ),
-              MXAvatar(
-                avatarNetUrlList: const [
-                  'https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp',
-                  'https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp',
-                  'https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp'
-                ],
-                avatarAppendixText: "+5",
-                avatarAppendixCallback: () {},
-                sizeEnum: MXAvatarSizeEnum.medium,
-                shapeEnum: MXAvatarShapeEnum.circle,
-                modeEnum: MXAvatarModeEnum.imgList,
-              ),
+              // MXAvatar(
+              //   avatarNetUrlList: const [
+              //     'https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp',
+              //     'https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp',
+              //     'https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp'
+              //   ],
+              //   avatarAppendixText: "+5",
+              //   avatarAppendixCallback: () {},
+              //   sizeEnum: MXAvatarSizeEnum.medium,
+              //   shapeEnum: MXAvatarShapeEnum.circle,
+              //   modeEnum: MXAvatarModeEnum.imgList,
+              // ),
               SizedBox(
                 height: MXTheme.of(context).space32,
               ),
