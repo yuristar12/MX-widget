@@ -1,4 +1,4 @@
-import '../../config/global_enum.dart';
+import '../../../config/global_enum.dart';
 
 class MXOptionsQuery {
   MXOptionsQuery(

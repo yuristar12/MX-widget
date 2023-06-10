@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:mx_widget/src/export.dart';
 import 'package:mx_widget/src/widgets/picker/mx_picker_select_item.dart';
-import 'package:mx_widget/src/widgets/optionsPicker/model/options_picker_model.dart';
+import 'package:mx_widget/src/widgets/picker/optionsPicker/model/options_picker_model.dart';
 
 const double titleHeight = 57;
 

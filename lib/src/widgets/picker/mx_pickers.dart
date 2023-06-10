@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mx_widget/src/widgets/datePicker/model/date_picker_model.dart';
-import 'package:mx_widget/src/widgets/datePicker/mx_date_picker.dart';
-import 'package:mx_widget/src/widgets/optionsPicker/model/options_picker_model.dart';
-import 'package:mx_widget/src/widgets/optionsPicker/mx_options_picker.dart';
+import 'package:mx_widget/src/widgets/picker/datePicker/model/date_picker_model.dart';
+import 'package:mx_widget/src/widgets/picker/datePicker/mx_date_picker.dart';
+import 'package:mx_widget/src/widgets/picker/multipleOptionsPicker/model/multiple_options_model.dart';
+import 'package:mx_widget/src/widgets/picker/multipleOptionsPicker/mx_multiple_options_picker.dart';
+import 'package:mx_widget/src/widgets/picker/optionsPicker/model/options_picker_model.dart';
+import 'package:mx_widget/src/widgets/picker/optionsPicker/mx_options_picker.dart';
 
 import '../../export.dart';
 
@@ -79,6 +81,28 @@ class MXPickers {
           return MXOptionsPicker(
               optionsPickerParams: optionsPickerParams,
               optionsPickerModel: optionsPickerModel);
+        },
+        backgroundColor: Colors.transparent);
+  }
+
+  showMultipleOptionsPicker(
+      BuildContext context,
+      MultipleOptionsQuery multipleOptionsQuery,
+      MultiplePickerParams multiplePickerParams) {
+    MultipleOptionsModel multipleOptionsModel = MultipleOptionsModel(
+      options: multipleOptionsQuery.options,
+      initialValue: multipleOptionsQuery.initialValue,
+      optionProperty: multipleOptionsQuery.optionProperty,
+    );
+
+    return showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        builder: (BuildContext context) {
+          return MXMultipleOptionsPicker(
+            multipleOptionsModel: multipleOptionsModel,
+            multiplePickerParams: multiplePickerParams,
+          );
         },
         backgroundColor: Colors.transparent);
   }

@@ -255,3 +255,9 @@ enum OptionsPropertyEnum {
   label,
   value,
 }
+
+enum MultipleOptionsPropertyEnum {
+  label,
+  value,
+  children,
+}

@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:example/test.dart';
 import 'package:flutter/material.dart';
 import 'package:mx_widget/mx_widget.dart';
 // ignore: implementation_imports
@@ -103,11 +104,10 @@ class _MyHomePageState extends State<MyHomePage>
     _tabController = TabController(length: 4, vsync: this);
   }
 
-  void Test() {}
-
   @override
   Widget build(BuildContext context) {
     MXCheckBoxSeriesController controller = MXCheckBoxSeriesController();
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -190,10 +190,10 @@ class _MyHomePageState extends State<MyHomePage>
               SizedBox(
                   height: 300,
                   child: Swiper(
-                      viewportFraction: 0.88,
+                      viewportFraction: 0.65,
                       loop: true,
                       autoplay: true,
-                      transformer: MXPagetransform.transToMargin(margin: 6),
+                      transformer: MXPagetransform.transToMargin(margin: 12),
                       pagination: MXSwiperControllBar(
                           builder: MXSwiperPointControllerBar()),
                       itemBuilder: (BuildContext context, index) {
@@ -265,6 +265,29 @@ class _MyHomePageState extends State<MyHomePage>
                 shape: MXButtonShapeEnum.round,
                 sizeEnum: MXButtonSizeEnum.medium,
               ),
+
+              SizedBox(
+                height: MXTheme.of(context).space12,
+              ),
+
+              MXButton(
+                text: '多级联动选择器',
+                icon: Icons.ac_unit,
+                disabled: disabled,
+                themeEnum: themeEnum,
+
+                //  MultipleOptionsModel(options: Test().data);
+                afterClickButtonCallback: () {
+                  MXPickers().showMultipleOptionsPicker(
+                      context,
+                      MultipleOptionsQuery(options: Test().data),
+                      MultiplePickerParams());
+                },
+                typeEnum: MXButtonTypeEnum.fill,
+                shape: MXButtonShapeEnum.round,
+                sizeEnum: MXButtonSizeEnum.medium,
+              ),
+
               MXTabBar(
                   controller: _tabController,
                   showIndicator: true,

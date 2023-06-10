@@ -207,36 +207,39 @@ class _ImageWidgetState extends State<ImageWidget> {
 
     // 监听图片的加载状态
 
-    var resolve = _image.image.resolve(const ImageConfiguration());
     // 监听图片的加载状态
-    resolve.addListener(ImageStreamListener(
-      (image, synchronousCall) {
-        if (mounted) {
-          setState(() {
-            isError = false;
-            isLoading = false;
-          });
-        }
-      },
-      onChunk: (event) {
-        if (!isLoading) {
+
+    if (!isError) {
+      var resolve = _image.image.resolve(const ImageConfiguration());
+      resolve.addListener(ImageStreamListener(
+        (image, synchronousCall) {
           if (mounted) {
             setState(() {
               isError = false;
-              isLoading = true;
+              isLoading = false;
             });
           }
-        }
-      },
-      onError: (exception, stackTrace) {
-        if (!isError) {
-          setState(() {
-            isError = true;
-            isLoading = false;
-          });
-        }
-      },
-    ));
+        },
+        onChunk: (event) {
+          if (!isLoading) {
+            if (mounted) {
+              setState(() {
+                isError = false;
+                isLoading = true;
+              });
+            }
+          }
+        },
+        onError: (exception, stackTrace) {
+          if (!isError) {
+            setState(() {
+              isError = true;
+              isLoading = false;
+            });
+          }
+        },
+      ));
+    }
   }
 
   @override
