@@ -2,7 +2,6 @@ import 'dart:ffi';
 
 import 'package:example/test.dart';
 import 'package:flutter/material.dart';
-import 'package:mx_widget/mx_widget.dart';
 // ignore: implementation_imports
 import 'package:mx_widget/src/export.dart';
 
@@ -91,8 +90,6 @@ class _MyHomePageState extends State<MyHomePage>
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
 
-      _counter = Calculator().addOne(_counter);
-
       disabled = !disabled;
     });
   }
@@ -170,6 +167,66 @@ class _MyHomePageState extends State<MyHomePage>
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              MXButton(
+                text: '成功toast',
+                icon: Icons.ac_unit,
+                disabled: disabled,
+                themeEnum: themeEnum,
+                afterClickButtonCallback: () {
+                  MXToast().toastBySuccess(context, '成功文案',
+                      directionEnum: MXToastDirectionEnum.vertical);
+                },
+                typeEnum: MXButtonTypeEnum.fill,
+                shape: MXButtonShapeEnum.round,
+                sizeEnum: MXButtonSizeEnum.medium,
+              ),
+              MXButton(
+                text: '错误toast',
+                icon: Icons.ac_unit,
+                disabled: disabled,
+                themeEnum: themeEnum,
+                afterClickButtonCallback: () {
+                  MXToast().toastByError(context, '错误文案',
+                      directionEnum: MXToastDirectionEnum.vertical);
+                },
+                typeEnum: MXButtonTypeEnum.fill,
+                shape: MXButtonShapeEnum.round,
+                sizeEnum: MXButtonSizeEnum.medium,
+              ),
+              MXButton(
+                text: 'loadingToast',
+                icon: Icons.ac_unit,
+                disabled: disabled,
+                themeEnum: themeEnum,
+                afterClickButtonCallback: () {
+                  MXToast()
+                      .toastByLoading(context,
+                          directionEnum: MXToastDirectionEnum.vertical)
+                      .startDown(const Duration(milliseconds: 5000));
+                },
+                typeEnum: MXButtonTypeEnum.fill,
+                shape: MXButtonShapeEnum.round,
+                sizeEnum: MXButtonSizeEnum.medium,
+              ),
+
+              MXButton(
+                text: '文字toast',
+                icon: Icons.ac_unit,
+                disabled: disabled,
+                themeEnum: themeEnum,
+                afterClickButtonCallback: () {
+                  MXToast().toastByText(context, '文字内容',
+                      directionEnum: MXToastDirectionEnum.vertical);
+                },
+                typeEnum: MXButtonTypeEnum.fill,
+                shape: MXButtonShapeEnum.round,
+                sizeEnum: MXButtonSizeEnum.medium,
+              ),
+
+              const MXCircleLoading(),
+              SizedBox(
+                height: MXTheme.of(context).space12,
+              ),
               SizedBox(
                   height: 300,
                   child: Swiper(

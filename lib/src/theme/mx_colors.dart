@@ -268,4 +268,10 @@ extension MXColors on MXThemeConfig {
 
   /// #FFFFFF
   Color get whiteColor => colorsMap['whiteColor'] ?? const Color(0xFFFFFFFF);
+
+  /// #a500030e
+  Color get mask1 => colorsMap['mask1'] ?? const Color(0xa500030e);
+
+  /// #d900030e
+  Color get mask2 => colorsMap['mask2'] ?? const Color(0xd900030e);
 }

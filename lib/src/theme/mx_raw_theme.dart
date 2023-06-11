@@ -78,7 +78,10 @@ class MXRawTHeme {
             "fontUsePrimaryColor": "#262626",
             "fontUseSecondColors": "#595959",
             "fontUseIconColor": "#8c8c8c",
-            "fontUseDisabledColor": "#BFBFBF"
+            "fontUseDisabledColor": "#BFBFBF",
+            "mask1": "#a500030e",
+            "mask2": "#d900030e"
+
         },
         "fonts": {
             "fontTitleLarge": {

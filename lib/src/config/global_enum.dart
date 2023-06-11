@@ -261,3 +261,8 @@ enum MultipleOptionsPropertyEnum {
   value,
   children,
 }
+
+enum MXToastDirectionEnum {
+  vertical,
+  horizontal,
+}
