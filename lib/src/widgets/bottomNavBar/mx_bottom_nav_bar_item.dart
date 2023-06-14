@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mx_widget/src/export.dart';
 
+// ignore: must_be_immutable
 ///----------------------------------------------------------底部导航的每个Item组件
 
+// ignore: must_be_immutable
 class MXBottomNavBarItem extends StatelessWidget {
   MXBottomNavBarItem({
     super.key,
@@ -104,7 +106,7 @@ class MXBottomNavBarItem extends StatelessWidget {
   Widget _buildIcon(BuildContext context) {
     Widget widget;
 
-    var type;
+    MXBottomNavBarIconTextConfig? type;
 
     switch (navBarTypeEnum) {
       case MXBottomNavBarTypeEnum.icon:
@@ -113,11 +115,14 @@ class MXBottomNavBarItem extends StatelessWidget {
       case MXBottomNavBarTypeEnum.iconText:
         type = navBarItemConfig.mxBottomNavBarIconTextConfig;
         break;
+      case MXBottomNavBarTypeEnum.text:
+        type = navBarItemConfig.mxBottomNavBarIconTextConfig;
+        break;
     }
 
     if (type != null) {
       if (isSelect) {
-        widget = type!.selectIcon ??
+        widget = type.selectIcon ??
             MXIcon(
               useDefaultPadding: false,
               icon: Icons.apps_rounded,
@@ -125,7 +130,7 @@ class MXBottomNavBarItem extends StatelessWidget {
               iconColor: MXTheme.of(context).brandColor8,
             );
       } else {
-        widget = type!.unSelectIcon ??
+        widget = type.unSelectIcon ??
             MXIcon(
               useDefaultPadding: false,
               icon: Icons.apps_rounded,

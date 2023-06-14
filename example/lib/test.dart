@@ -1,5 +1,5 @@
 class Test {
-  List<Map> _data = [
+  final List<Map> _data = [
     {
       "value": "120000",
       "label": "天津市",

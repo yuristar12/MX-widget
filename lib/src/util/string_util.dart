@@ -1,7 +1,5 @@
 import 'dart:ui';
 
-import 'package:matcher/matcher.dart';
-
 Color strintToColor(String colorStr, {double alpha = 1}) {
   var hexColor = colorStr.toUpperCase().replaceAll('#', '');
   if (hexColor.length == 6) {

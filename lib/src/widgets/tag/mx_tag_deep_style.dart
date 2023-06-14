@@ -1,5 +1,6 @@
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:mx_widget/src/export.dart';
+// ignore: implementation_imports
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:mx_widget/src/widgets/tag/mx_tag_base_style.dart';
 
 class MXTagDeepStyle extends MXTagBaseStyle {

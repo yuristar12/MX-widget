@@ -169,6 +169,7 @@ class MXCheckBoxBaseSeriesState extends State<MXCheckBoxBaseSeries> {
   /// 反选
   void reverseAll() {
     checkedIds.forEach((key, value) {
+      // ignore: no_leading_underscores_for_local_identifiers
       bool _value = !value;
       toggleBySingle(key, _value, useChange: false, notify: false);
     });
@@ -240,6 +241,7 @@ class MXCheckBoxBaseSeriesState extends State<MXCheckBoxBaseSeries> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: no_leading_underscores_for_local_identifiers
     Widget _child;
 
     if (widget.child != null) {

@@ -65,7 +65,6 @@ class _MXSwitchState extends State<MXSwitch> {
 
   @override
   void didUpdateWidget(covariant MXSwitch oldWidget) {
-    // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.isOn != widget.isOn) {

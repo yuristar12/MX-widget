@@ -73,7 +73,9 @@ class MXSwitchContainer extends StatefulWidget {
     this.thumbColor,
     this.dragStartBehavior = DragStartBehavior.start,
     this.thumbChild,
+    // ignore: unnecessary_null_comparison
   })  : assert(value != null),
+        // ignore: unnecessary_null_comparison
         assert(dragStartBehavior != null);
 
   /// Whether this switch is on or off.
@@ -379,6 +381,9 @@ class _CupertinoSwitchRenderObjectWidget extends SingleChildRenderObjectWidget {
   final ValueChanged<bool>? onChanged;
   final _MXSwitchContainerState state;
   final TextDirection textDirection;
+
+  @override
+  // ignore: overridden_fields
   final Widget? child;
 
   @override
@@ -435,8 +440,11 @@ class _RenderCupertinoSwitch extends RenderConstrainedBox {
     ValueChanged<bool>? onChanged,
     required TextDirection textDirection,
     required _MXSwitchContainerState state,
+    // ignore: unnecessary_null_comparison
   })  : assert(value != null),
+        // ignore: unnecessary_null_comparison
         assert(activeColor != null),
+        // ignore: unnecessary_null_comparison
         assert(state != null),
         _value = value,
         _activeColor = activeColor,
@@ -457,6 +465,7 @@ class _RenderCupertinoSwitch extends RenderConstrainedBox {
   bool get value => _value;
   bool _value;
   set value(bool value) {
+    // ignore: unnecessary_null_comparison
     assert(value != null);
     if (value == _value) {
       return;
@@ -468,6 +477,7 @@ class _RenderCupertinoSwitch extends RenderConstrainedBox {
   Color get activeColor => _activeColor;
   Color _activeColor;
   set activeColor(Color value) {
+    // ignore: unnecessary_null_comparison
     assert(value != null);
     if (value == _activeColor) {
       return;
@@ -479,6 +489,7 @@ class _RenderCupertinoSwitch extends RenderConstrainedBox {
   Color get trackColor => _trackColor;
   Color _trackColor;
   set trackColor(Color value) {
+    // ignore: unnecessary_null_comparison
     assert(value != null);
     if (value == _trackColor) {
       return;
@@ -490,6 +501,7 @@ class _RenderCupertinoSwitch extends RenderConstrainedBox {
   Color get thumbColor => _thumbPainter.color;
   CupertinoThumbPainter _thumbPainter;
   set thumbColor(Color value) {
+    // ignore: unnecessary_null_comparison
     assert(value != null);
     if (value == thumbColor) {
       return;
@@ -515,6 +527,7 @@ class _RenderCupertinoSwitch extends RenderConstrainedBox {
   TextDirection get textDirection => _textDirection;
   TextDirection _textDirection;
   set textDirection(TextDirection value) {
+    // ignore: unnecessary_null_comparison
     assert(value != null);
     if (_textDirection == value) {
       return;

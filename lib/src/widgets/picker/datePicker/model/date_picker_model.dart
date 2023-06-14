@@ -90,9 +90,10 @@ class DatePickerModel {
 
 // 初始化value值
   void initialValue() {
+    // ignore: no_leading_underscores_for_local_identifiers
     var _startDate = DateTime(startDate[dateIndexOfYear],
         startDate[dateIndexOfMonth], startDate[dateIndexOfDay], 0, 0, 0);
-
+    // ignore: no_leading_underscores_for_local_identifiers
     var _endDate = DateTime(endDate[dateIndexOfYear], endDate[dateIndexOfMonth],
         endDate[dateIndexOfDay], 0, 0, 0);
 // 如果初始化有传入初始时间则进行初始化处理

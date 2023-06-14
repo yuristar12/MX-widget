@@ -162,6 +162,7 @@ class _MXOptionsPickerState extends State<MXOptionsPicker> {
   }
 
   Widget _buildListContainer(BuildContext context, double width) {
+    // ignore: unused_local_variable
     OptionsPickerModel optionsPickerModel = widget.optionsPickerModel;
 
     return Container(

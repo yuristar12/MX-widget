@@ -155,6 +155,7 @@ class MXAvatar extends StatelessWidget {
   }
 
   double _getRadius(BuildContext context) {
+    // ignore: no_leading_underscores_for_local_identifiers
     double _radius;
 
     switch (shapeEnum) {

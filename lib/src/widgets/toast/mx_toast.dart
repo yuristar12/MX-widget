@@ -1,10 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:mx_widget/src/config/global_enum.dart';
 import 'package:mx_widget/src/export.dart';
-import 'package:mx_widget/src/widgets/toast/mx_toast_body.dart';
 
 class MXToast {
   static Timer? _timer;
@@ -16,9 +13,8 @@ class MXToast {
   static bool show = false;
 
 // 默认的显示的时长
-  static Duration _defaultDuration = Duration(milliseconds: 3000);
-
-  static Duration _defaultInfiniteDuration = Duration(minutes: 99999999);
+  // ignore: prefer_final_fields
+  static Duration _defaultDuration = const Duration(milliseconds: 3000);
 
   void _initOverLayState(BuildContext context) {
     if (show) {

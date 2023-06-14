@@ -284,6 +284,14 @@ class _MXDatePickerState extends State<MXDatePicker> {
                         datePickerModel.refresWeekOnControllerChange();
                       }
                       break;
+                    case DatePickerListUnitEnum.week:
+                      break;
+                    case DatePickerListUnitEnum.hour:
+                      break;
+                    case DatePickerListUnitEnum.minute:
+                      break;
+                    case DatePickerListUnitEnum.second:
+                      break;
                   }
 
                   pickerHeight =

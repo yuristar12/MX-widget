@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mx_widget/src/export.dart';
 
@@ -62,6 +61,7 @@ class MXTagMixins {
         iconFontSize: getFontSize(context, sizeEnum),
       );
     }
+    return null;
   }
 
   EdgeInsets getPadding(BuildContext context, MXTagSizeEnum sizeEnum) {
@@ -98,6 +98,7 @@ class MXTagMixins {
     List<Widget> list = [];
 
     if (icon != null || iconWidget != null) {
+      // ignore: no_leading_underscores_for_local_identifiers
       var _icon =
           getIcon(context, sizeEnum, icon: icon, iconWidget: iconWidget);
       if (icon != null) {
@@ -115,6 +116,7 @@ class MXTagMixins {
     }
 
     if (needCloseIcon == true) {
+      // ignore: no_leading_underscores_for_local_identifiers
       var _closeIcon = getIcon(context, sizeEnum,
           icon: Icons.close_rounded, iconWidget: null);
       if (list.isNotEmpty) {

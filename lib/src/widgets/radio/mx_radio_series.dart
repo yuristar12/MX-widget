@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mx_widget/src/widgets/checkBox/mx_check_base_series.dart';
-import 'package:mx_widget/src/widgets/radio/mx_radio.dart';
 
-import '../../config/global_enum.dart';
 import '../../export.dart';
 
 class MXRadioSeries extends MXCheckBoxBaseSeries {

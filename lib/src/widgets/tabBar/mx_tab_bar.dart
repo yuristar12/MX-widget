@@ -174,14 +174,14 @@ class _MXTabBarState extends State<MXTabBar> {
   TextStyle _getUnSelectLabelStyle(BuildContext context) {
     return TextStyle(
         fontWeight: FontWeight.w400,
-        fontSize: MXTheme.of(context).fontBodySmall!.size ?? 14,
+        fontSize: MXTheme.of(context).fontBodySmall!.size,
         color: MXTheme.of(context).fontUseSecondColors);
   }
 
   TextStyle _getLabelStyle(BuildContext context) {
     return TextStyle(
         fontWeight: FontWeight.w600,
-        fontSize: MXTheme.of(context).fontBodySmall!.size ?? 14,
+        fontSize: MXTheme.of(context).fontBodySmall!.size,
         color: MXTheme.of(context).fontUseIconColor);
   }
 

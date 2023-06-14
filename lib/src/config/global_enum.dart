@@ -233,10 +233,15 @@ enum DatePickerListUnitEnum {
 }
 
 enum DatePickerFormatType {
+  // ignore: constant_identifier_names
   MM_DD,
+  // ignore: constant_identifier_names
   YYYY_MM,
+  // ignore: constant_identifier_names
   YYYY_MM_DD,
+  // ignore: constant_identifier_names
   YYYY_MM_DD_WW,
+  // ignore: constant_identifier_names
   YYYY_MM_DD_HH_mm_ss,
 }
 

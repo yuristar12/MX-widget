@@ -1,8 +1,5 @@
-import 'dart:ffi';
-
 import 'package:example/test.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 // ignore: implementation_imports
 import 'package:mx_widget/src/export.dart';
 
@@ -76,28 +73,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
-  int _counter = 0;
-
   MXButtonThemeEnum themeEnum = MXButtonThemeEnum.primary;
   TabController? _tabController;
 
   bool disabled = false;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-
-      disabled = !disabled;
-    });
-  }
-
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
   }
@@ -312,9 +294,7 @@ class _MyHomePageState extends State<MyHomePage>
                   MXPickers().showOptionsPicker(
                     context,
                     OptionsPickerParams(
-                      onConfirm: (p0) {
-                        print(p0);
-                      },
+                      onConfirm: (p0) {},
                     ),
                     MXOptionsQuery(
                       options: [
@@ -387,11 +367,12 @@ class _MyHomePageState extends State<MyHomePage>
                 height: MXTheme.of(context).space32,
               ),
 
+              // ignore: avoid_unnecessary_containers
               Container(
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -407,7 +388,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -425,7 +406,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -443,7 +424,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -461,7 +442,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -509,11 +490,12 @@ class _MyHomePageState extends State<MyHomePage>
                 ),
               ),
 
+              // ignore: avoid_unnecessary_containers
               Container(
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -531,7 +513,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -551,7 +533,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -571,7 +553,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -591,7 +573,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -640,11 +622,12 @@ class _MyHomePageState extends State<MyHomePage>
                   ],
                 ),
               ),
+              // ignore: avoid_unnecessary_containers
               Container(
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -662,7 +645,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -682,7 +665,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -702,7 +685,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -722,7 +705,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -771,11 +754,12 @@ class _MyHomePageState extends State<MyHomePage>
                   ],
                 ),
               ),
+              // ignore: avoid_unnecessary_containers
               Container(
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -793,7 +777,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -813,7 +797,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -833,7 +817,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -853,7 +837,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -875,11 +859,12 @@ class _MyHomePageState extends State<MyHomePage>
                   ],
                 ),
               ),
+              // ignore: avoid_unnecessary_containers
               Container(
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -897,7 +882,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -917,7 +902,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -937,7 +922,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -957,7 +942,7 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           MXTag(
@@ -1014,9 +999,7 @@ class _MyHomePageState extends State<MyHomePage>
                 height: MXTheme.of(context).space32,
               ),
               MXNavBar(
-                onHandleBack: () {
-                  print('object');
-                },
+                onHandleBack: () {},
                 backgroundColor: MXTheme.of(context).brandPrimaryColor,
                 titleColor: MXTheme.of(context).whiteColor,
                 titleWeight: FontWeight.bold,
@@ -1164,23 +1147,19 @@ class _MyHomePageState extends State<MyHomePage>
                       "选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择框选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择选择框",
                   modeEnum: MXCheckBoxModeEnum.card,
                   directionEnum: MXCheckBoxDirectionEnum.left,
-                  onCheckBoxValueChange: (isChecked) {
-                    print(isChecked);
-                  },
+                  onCheckBoxValueChange: (isChecked) {},
                 ),
               ),
               SizedBox(
                 height: MXTheme.of(context).space32,
               ),
               MXCheckBoxSeries(
-                  checkIds: ["1"],
+                  checkIds: const ["1"],
                   useIndeterminate: true,
                   checkBoxSeriesController: controller,
                   modeEnum: MXCheckBoxModeEnum.card,
                   direction: Axis.vertical,
-                  onCheckBoxSeriesValueChange: (value) {
-                    print(value);
-                  },
+                  onCheckBoxSeriesValueChange: (value) {},
                   checkBoxs: [
                     MXCheckBox(
                       id: "1",
@@ -1237,7 +1216,7 @@ class _MyHomePageState extends State<MyHomePage>
               ),
 
               MXRadioSeries(
-                  checkIds: ["3"],
+                  checkIds: const ["3"],
                   direction: Axis.vertical,
                   checkRadios: [
                     MXRadio(

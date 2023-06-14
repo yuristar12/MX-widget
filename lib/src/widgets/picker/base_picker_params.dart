@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../export.dart';
-
 class BasePickerParams {
   BasePickerParams({
     this.onConfirm,

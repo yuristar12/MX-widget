@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mx_widget/src/widgets/tag/mx_tag_base_style.dart';
-import 'package:mx_widget/src/widgets/tag/mx_tag_deep_style.dart';
-import 'package:mx_widget/src/widgets/tag/mx_tag_outline_plain.dart';
-import 'package:mx_widget/src/widgets/tag/mx_tag_outline_style.dart';
-import 'package:mx_widget/src/widgets/tag/mx_tag_plain_style.dart';
 
 import '../../config/global_enum.dart';
 

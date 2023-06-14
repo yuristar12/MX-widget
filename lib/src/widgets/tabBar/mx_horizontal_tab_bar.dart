@@ -47,12 +47,12 @@ class _TabStyle extends AnimatedWidget {
     // the same value of inherit. Force that to be inherit=true here.
     final defaultStyle = (labelStyle ??
             tabBarTheme.labelStyle ??
-            themeData.primaryTextTheme.bodyText1!)
+            themeData.primaryTextTheme.bodyLarge!)
         .copyWith(inherit: true);
     final defaultUnselectedStyle = (unselectedLabelStyle ??
             tabBarTheme.unselectedLabelStyle ??
             labelStyle ??
-            themeData.primaryTextTheme.bodyText1!)
+            themeData.primaryTextTheme.bodyLarge!)
         .copyWith(inherit: true);
     final textStyle = selected
         ? TextStyle.lerp(defaultStyle, defaultUnselectedStyle, animation.value)!
@@ -61,7 +61,7 @@ class _TabStyle extends AnimatedWidget {
 
     final selectedColor = labelColor ??
         tabBarTheme.labelColor ??
-        themeData.primaryTextTheme.bodyText1!.color!;
+        themeData.primaryTextTheme.bodyLarge!.color!;
     final unselectedColor = unselectedLabelColor ??
         tabBarTheme.unselectedLabelColor ??
         selectedColor.withAlpha(0xB2); // 70% alpha
@@ -550,11 +550,10 @@ class _MXHorizontalTabBarState extends State<MXHorizontalTabBar> {
     // The material's color might be null (if it's a transparency). In that case
     // there's no good way for us to find out what the color is so we don't.
     //
-    // TODO(xu-baolin): Remove automatic adjustment to white color indicator
     // with a better long-term solution.
     // https://github.com/flutter/flutter/pull/68171#pullrequestreview-517753917
     if (widget.automaticIndicatorColorAdjustment &&
-        color.value == Material.of(context)?.color?.value) {
+        color.value == Material.of(context).color?.value) {
       color = Colors.white;
     }
 
@@ -574,6 +573,7 @@ class _MXHorizontalTabBarState extends State<MXHorizontalTabBar> {
   void _updateTabController() {
     final newController = widget.controller ?? DefaultTabController.of(context);
     assert(() {
+      // ignore: unnecessary_null_comparison
       if (newController == null) {
         throw FlutterError(
           'No TabController for ${widget.runtimeType}.\n'
@@ -955,6 +955,7 @@ class _MXHorizontalTabBarState extends State<MXHorizontalTabBar> {
       }
     }
 
+    // ignore: non_constant_identifier_names
     Widget MXHorizontalTabBar = CustomPaint(
       painter: _indicatorPainter,
       child: _TabStyle(
@@ -1253,6 +1254,7 @@ class _MXHorizontalTabBarViewState extends State<MXHorizontalTabBarView> {
   void _updateTabController() {
     final newController = widget.controller ?? DefaultTabController.of(context);
     assert(() {
+      // ignore: unnecessary_null_comparison
       if (newController == null) {
         throw FlutterError(
           'No TabController for ${widget.runtimeType}.\n'
@@ -1571,6 +1573,7 @@ class TabPageSelector extends StatelessWidget {
     final tabController = controller ?? DefaultTabController.of(context);
     final localizations = MaterialLocalizations.of(context);
     assert(() {
+      // ignore: unnecessary_null_comparison
       if (tabController == null) {
         throw FlutterError(
           'No TabController for $runtimeType.\n'
@@ -1583,7 +1586,7 @@ class TabPageSelector extends StatelessWidget {
       return true;
     }());
     final Animation<double> animation = CurvedAnimation(
-      parent: tabController!.animation!,
+      parent: tabController.animation!,
       curve: Curves.fastOutSlowIn,
     );
     return AnimatedBuilder(

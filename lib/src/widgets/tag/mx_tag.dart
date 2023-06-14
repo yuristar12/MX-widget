@@ -21,23 +21,25 @@ class MXTag extends StatelessWidget with MXTagMixins implements MXTagBase {
     this.themeEnum = MXTagThemeEnum.primary,
   });
 
+  @override
   String text;
+  @override
   Color? backgroundColor;
-
+  @override
   IconData? icon;
-
+  @override
   Widget? iconWidget;
-
+  @override
   MXTagModeEnum modeEnum;
-
+  @override
   EdgeInsets? padding;
-
+  @override
   MXTagshapeEnum shapeEnum;
-
+  @override
   MXTagSizeEnum sizeEnum;
-
+  @override
   Widget? textWidget;
-
+  @override
   MXTagThemeEnum themeEnum;
 
   bool? isAdd;

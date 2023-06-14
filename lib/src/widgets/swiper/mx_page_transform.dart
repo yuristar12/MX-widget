@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// ignore: implementation_imports
 import 'package:flutter_swiper_null_safety/src/transformer_page_view/transformer_page_view.dart';
 
 ///-----------------------------------------------------------------轮播图特殊样式

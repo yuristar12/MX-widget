@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:mx_widget/src/export.dart';
-import 'package:mx_widget/src/theme/mx_theme.dart';
 
 import 'mx_picker_select_style.dart';
 

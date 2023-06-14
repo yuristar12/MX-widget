@@ -87,6 +87,7 @@ class _MXBadgeState extends State<MXBadge> {
     }
   }
 
+  // ignore: unused_element
   double _getBadgeRadius() {
     switch (widget.radiusEnum) {
       case MXBadgeRadiusEnum.large:

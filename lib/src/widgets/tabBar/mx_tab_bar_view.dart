@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class MXTabBarView extends TabBarView {
   /// 子widget列表
   @override
+  // ignore: overridden_fields
   final List<Widget> children;
 
   /// 控制器
   @override
+  // ignore: overridden_fields
   final TabController? controller;
 
   /// 是否可以滑动切换
@@ -28,6 +30,7 @@ class MXTabBarView extends TabBarView {
 
   Widget build(BuildContext context) {
     return TabBarView(
+      // ignore: sort_child_properties_last
       children: children,
       controller: controller,
     );

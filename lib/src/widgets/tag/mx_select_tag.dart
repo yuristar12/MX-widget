@@ -1,16 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/icon_data.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:mx_widget/src/config/global_enum.dart';
-import 'package:flutter/src/painting/edge_insets.dart';
-import 'package:mx_widget/src/theme/mx_theme.dart';
 import 'package:mx_widget/src/widgets/tag/mx_tag_base.dart';
-import 'package:mx_widget/src/widgets/tag/mx_tag_base_style.dart';
 import 'package:mx_widget/src/widgets/tag/mx_tag_mixins.dart';
 
+// ignore: must_be_immutable
 class MXSelectTag extends StatefulWidget implements MXTagBase {
   MXSelectTag(
       {super.key,

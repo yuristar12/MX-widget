@@ -9,9 +9,14 @@ class MXBottomNavBarIconConfig extends MXBottomNavBarIconTextConfig {
             unSelectIcon: unSelectIcon,
             selectIcon: selectIcon);
 
+  @override
+  // ignore: overridden_fields
   Widget? selectIcon;
 
+  @override
+  // ignore: overridden_fields
   Widget? unSelectIcon;
-
+  @override
+  // ignore: overridden_fields
   Widget? defaultIcon;
 }

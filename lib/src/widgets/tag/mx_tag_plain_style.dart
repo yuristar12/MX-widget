@@ -1,4 +1,4 @@
-import 'package:mx_widget/src/config/global_enum.dart';
+// ignore: implementation_imports
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:mx_widget/src/export.dart';
 import 'package:mx_widget/src/widgets/tag/mx_tag_base_style.dart';

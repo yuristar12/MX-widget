@@ -47,7 +47,6 @@ class _MXCircleLoadingState extends State<MXCircleLoading>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _animationController.dispose();
     super.dispose();
   }
