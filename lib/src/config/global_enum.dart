@@ -262,7 +262,23 @@ enum MultipleOptionsPropertyEnum {
   children,
 }
 
+// toast排列的方向
 enum MXToastDirectionEnum {
   vertical,
   horizontal,
+}
+
+// input组件的大小
+enum MXInputSizeEnum { small, lager }
+
+// input类型
+enum MXInputTypeEnum {
+  norma,
+  twoLine,
+}
+
+// input的输入类型
+enum MXInputFormatEnum {
+  norma,
+  number,
 }

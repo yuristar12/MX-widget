@@ -173,7 +173,7 @@ class MXAvatar extends StatelessWidget {
   Widget _buildBaseAvatarBody(BuildContext context, Widget child) {
     return GestureDetector(
       onTap: () {
-        avatarAppendixCallback!.call();
+        avatarAppendixCallback?.call();
       },
       child: Container(
         width: _getSize(),

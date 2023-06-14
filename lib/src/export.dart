@@ -99,3 +99,6 @@ export 'widgets/circleLoading/mx_circle_loading.dart';
 /// toast全局组件
 export 'widgets/toast/mx_toast.dart';
 export 'widgets/toast/mx_toast_body.dart';
+
+/// input组件
+export 'widgets/input/mx_input.dart';

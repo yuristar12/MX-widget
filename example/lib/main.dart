@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:example/test.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 // ignore: implementation_imports
 import 'package:mx_widget/src/export.dart';
 
@@ -167,6 +168,22 @@ class _MyHomePageState extends State<MyHomePage>
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              MXInput(
+                typeEnum: MXInputTypeEnum.norma,
+                iconData: Icons.ac_unit,
+                useRequire: true,
+                description: '描述文字描述文字描述文字',
+                placeholder: '请输入文字',
+                labelText: '标签文字标签文字标签',
+                rightWidget: const MXAvatar(
+                  avatarNetUrl:
+                      "https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp",
+                  sizeEnum: MXAvatarSizeEnum.small,
+                  shapeEnum: MXAvatarShapeEnum.circle,
+                  modeEnum: MXAvatarModeEnum.img,
+                ),
+              ),
+
               MXButton(
                 text: '成功toast',
                 icon: Icons.ac_unit,
