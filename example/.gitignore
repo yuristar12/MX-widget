@@ -9,6 +9,8 @@
 .history
 .svn/
 migrate_working_dir/
+LICENSE.md
+LICENSE
 
 # IntelliJ related
 *.iml

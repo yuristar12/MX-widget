@@ -238,7 +238,7 @@ class _MXButtonState extends State<MXButton> {
       return widget.customIconWidget!;
     } else if (widget.icon != null) {
       return Icon(
-        Icons.access_time_filled_rounded,
+        widget.icon,
         color: buttonStyle.textColor,
         size: _fontStyle(context).fontSize,
       );
