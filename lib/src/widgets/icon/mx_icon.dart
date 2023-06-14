@@ -93,16 +93,13 @@ class MXIcon extends StatelessWidget {
 
   Widget toBuildIconBody(BuildContext context) {
     if (action != null) {
-      return IconButton(
-        padding: const EdgeInsets.all(0),
-        alignment: Alignment.center,
-        iconSize: _getIconSize(),
-        hoverColor: Colors.transparent,
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-        onPressed: disabled ? null : action,
-        icon: toBuildIcon(context),
-        disabledColor: MXTheme.of(context).fontUseDisabledColor,
+      return GestureDetector(
+        onTap: () {
+          if (disabled) return;
+          action?.call();
+        },
+        child: Container(
+            padding: _getPadding(context), child: toBuildIcon(context)),
       );
     } else {
       return Container(

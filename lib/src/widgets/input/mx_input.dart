@@ -320,8 +320,20 @@ class MXInput extends StatelessWidget {
       list.add(_buildInputRight(context));
     }
 
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center;
+
+    if (description != null) {
+      crossAxisAlignment = CrossAxisAlignment.start;
+    }
+
+    if (labelText != null) {
+      if (labelText!.length > 5) {
+        crossAxisAlignment = CrossAxisAlignment.start;
+      }
+    }
+
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: crossAxisAlignment,
       mainAxisAlignment: MainAxisAlignment.start,
       children: list,
     );
