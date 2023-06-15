@@ -28,6 +28,7 @@ class MXButton extends StatefulWidget {
     this.shape = MXButtonShapeEnum.rect,
     this.typeEnum = MXButtonTypeEnum.fill,
     this.sizeEnum = MXButtonSizeEnum.medium,
+    this.customMargin,
   });
 
   /// 按钮文字内容
@@ -62,6 +63,10 @@ class MXButton extends StatefulWidget {
 
   /// 自定义的icon组件
   final Widget? customIconWidget;
+
+  /// 自定义按钮的margin距离
+
+  final EdgeInsets? customMargin;
 
   @override
   State<MXButton> createState() => _MXButtonState();
@@ -229,7 +234,7 @@ class _MXButtonState extends State<MXButton> {
   }
 
   EdgeInsets _margin(BuildContext context) {
-    return EdgeInsets.all(MXTheme.of(context).space16);
+    return widget.customMargin ?? EdgeInsets.all(MXTheme.of(context).space16);
   }
 
   /// 按钮的icon图标
