@@ -59,7 +59,7 @@ class MXThemeConfig extends ThemeExtension<MXThemeConfig> {
   late Map<String, double> radiusMap;
 
   /// 文字的样式
-  late Map<String, FontStyle> fontsMap;
+  late Map<String, MXFontStyle> fontsMap;
 
   /// 文字的字体
   late Map<String, FontFamily> fontFamilyMap;
@@ -106,8 +106,8 @@ class MXThemeConfig extends ThemeExtension<MXThemeConfig> {
           });
           break;
         case "fonts":
-          Map<String, FontStyle> customFontsMap = customThemeConfig['fonts'];
-          Map<String, FontStyle> fontsMap = cacheThemeConfig.fontsMap;
+          Map<String, MXFontStyle> customFontsMap = customThemeConfig['fonts'];
+          Map<String, MXFontStyle> fontsMap = cacheThemeConfig.fontsMap;
           fontsMap.addAll(customFontsMap);
           break;
         case "fontFamily":
@@ -158,7 +158,7 @@ class MXThemeConfig extends ThemeExtension<MXThemeConfig> {
       // 循环赋值
       fontsMap?.forEach((key, value) {
         theme.fontsMap[key] =
-            FontStyle(size: value['size'], lineHeight: value['lineHeight']);
+            MXFontStyle(size: value['size'], lineHeight: value['lineHeight']);
       });
       // 设置文字字体
       Map<String, dynamic>? fontFamilyMap = currentTheme['fontFamily'];
@@ -202,7 +202,7 @@ class MXThemeConfig extends ThemeExtension<MXThemeConfig> {
     Map<String, Color>? colorsMap,
     Map<String, double>? radiusMap,
     Map<String, double>? spacesMap,
-    Map<String, FontStyle>? fontsMap,
+    Map<String, MXFontStyle>? fontsMap,
     Map<String, List<BoxShadow>>? showdowsMap,
     Map<String, FontFamily>? fontFamilyMap,
   }) {
@@ -211,7 +211,7 @@ class MXThemeConfig extends ThemeExtension<MXThemeConfig> {
         colorsMap: _copyConfigItem<Color>(this.colorsMap, colorsMap),
         radiusMap: _copyConfigItem<double>(this.radiusMap, radiusMap),
         spacesMap: _copyConfigItem<double>(this.spacesMap, spacesMap),
-        fontsMap: _copyConfigItem<FontStyle>(this.fontsMap, fontsMap),
+        fontsMap: _copyConfigItem<MXFontStyle>(this.fontsMap, fontsMap),
         showdowsMap:
             _copyConfigItem<List<BoxShadow>?>(this.showdowsMap, showdowsMap),
         fontFamilyMap:

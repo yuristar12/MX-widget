@@ -106,7 +106,7 @@ class _MXBadgeState extends State<MXBadge> {
     }
   }
 
-  FontStyle? _getFontStyle(BuildContext context) {
+  MXFontStyle? _getFontStyle(BuildContext context) {
     switch (widget.sizeEnum) {
       case MXBadgeSizeEnum.large:
         return MXTheme.of(context).fontInfoLarge;

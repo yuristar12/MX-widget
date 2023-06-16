@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mx_widget/src/export.dart';
+import 'package:mx_widget/src/widgets/text/mx_text.dart';
 
 import 'mx_tag_base_style.dart';
 import 'mx_tag_deep_style.dart';
@@ -29,8 +30,8 @@ class MXTagMixins {
     style.setStyle(context, themeEnum, shapeEnum, disabled: disabled);
   }
 
-  double getFontSize(BuildContext context, MXTagSizeEnum sizeEnum) {
-    FontStyle fontStyle;
+  MXFontStyle getFontSize(BuildContext context, MXTagSizeEnum sizeEnum) {
+    MXFontStyle fontStyle;
     switch (sizeEnum) {
       case MXTagSizeEnum.lager:
         fontStyle = MXTheme.of(context).fontBodySmall!;
@@ -45,7 +46,7 @@ class MXTagMixins {
         fontStyle = MXTheme.of(context).fontInfoSmall!;
         break;
     }
-    return fontStyle.size;
+    return fontStyle;
   }
 
   Widget? getIcon(BuildContext context, MXTagSizeEnum sizeEnum,
@@ -58,7 +59,7 @@ class MXTagMixins {
       return MXIcon(
         icon: icon,
         iconColor: style.textColor,
-        iconFontSize: getFontSize(context, sizeEnum),
+        iconFontSize: getFontSize(context, sizeEnum).size,
       );
     }
     return null;
@@ -89,10 +90,11 @@ class MXTagMixins {
     bool? needCloseIcon,
   }) {
     Widget child = textWidget ??
-        Text(
-          text,
-          style: TextStyle(
-              fontSize: getFontSize(context, sizeEnum), color: style.textColor),
+        MXText(
+          forceVerticalCenter: true,
+          data: text,
+          font: getFontSize(context, sizeEnum),
+          style: TextStyle(color: style.textColor),
         );
 
     List<Widget> list = [];

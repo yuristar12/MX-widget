@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mx_widget/src/export.dart';
 import 'package:mx_widget/src/widgets/button/mx_button_style.dart';
+import 'package:mx_widget/src/widgets/text/mx_text.dart';
 
 ///------------------------------------------------------------------按钮组件
 /// [text] 文字内容
@@ -175,6 +176,7 @@ class _MXButtonState extends State<MXButton> {
     }
 
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: childrenList,
@@ -242,10 +244,11 @@ class _MXButtonState extends State<MXButton> {
     if (widget.customIconWidget != null) {
       return widget.customIconWidget!;
     } else if (widget.icon != null) {
-      return Icon(
-        widget.icon,
-        color: buttonStyle.textColor,
-        size: _fontStyle(context).fontSize,
+      return MXIcon(
+        useDefaultPadding: false,
+        icon: widget.icon!,
+        iconColor: buttonStyle.textColor,
+        iconFontSize: _fontStyle(context).fontSize,
       );
     }
     return null;
@@ -257,9 +260,11 @@ class _MXButtonState extends State<MXButton> {
   }
 
   /// 按钮的文字
-  Text _font(BuildContext context) {
-    return Text(
-      widget.text,
+  Widget _font(BuildContext context) {
+    return MXText(
+      forceVerticalCenter: true,
+      data: widget.text,
+      font: _fontSize(context),
       style: _fontStyle(context),
     );
   }
@@ -268,20 +273,19 @@ class _MXButtonState extends State<MXButton> {
   TextStyle _fontStyle(BuildContext context) {
     // 需要判断是否文字内容为数字
 
-    return TextStyle(
-        fontSize: _fontSize(context), color: buttonStyle.textColor);
+    return TextStyle(color: buttonStyle.textColor);
   }
 
-  double _fontSize(BuildContext context) {
+  MXFontStyle _fontSize(BuildContext context) {
     var sizeEnum = widget.sizeEnum;
     switch (sizeEnum) {
       case MXButtonSizeEnum.large:
       case MXButtonSizeEnum.medium:
-        return MXTheme.of(context).fontBodyLarge!.size;
+        return MXTheme.of(context).fontBodyLarge!;
       case MXButtonSizeEnum.small:
-        return MXTheme.of(context).fontBodySmall!.size;
+        return MXTheme.of(context).fontBodySmall!;
       case MXButtonSizeEnum.mini:
-        return MXTheme.of(context).fontInfoLarge!.size;
+        return MXTheme.of(context).fontInfoLarge!;
     }
   }
 

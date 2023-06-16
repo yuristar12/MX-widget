@@ -102,3 +102,6 @@ export 'widgets/toast/mx_toast_body.dart';
 
 /// input组件
 export 'widgets/input/mx_input.dart';
+
+/// 文字组件
+export 'widgets/text/mx_text.dart';

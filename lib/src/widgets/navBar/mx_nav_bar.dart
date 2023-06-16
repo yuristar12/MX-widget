@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mx_widget/src/export.dart';
+import 'package:mx_widget/src/widgets/text/mx_text.dart';
 
 /// -------------------------------------------------------------------navBar组件
 /// [barLeftItems] navBar 左侧的iconlist
@@ -79,17 +80,18 @@ class _MXNavBarState extends State<MXNavBar> {
     return widget.titleColor ?? MXTheme.getThemeConfig().fontUsePrimaryColor;
   }
 
-  double _getFontSize(BuildContext context) {
-    return MXTheme.of(context).fontBodyLarge!.size;
+  MXFontStyle _getFontSize(BuildContext context) {
+    return MXTheme.of(context).fontBodyLarge!;
   }
 
   Widget _getFont(BuildContext context) {
     return widget.titleWidget ??
-        Text(
-          widget.titleContent!,
+        MXText(
+          font: _getFontSize(context),
+          forceVerticalCenter: true,
+          data: widget.titleContent!,
           style: TextStyle(
               color: _getFontColor(),
-              fontSize: _getFontSize(context),
               fontWeight: widget.titleWeight,
               overflow: TextOverflow.ellipsis,
               decoration: TextDecoration.none),
@@ -115,8 +117,9 @@ class _MXNavBarState extends State<MXNavBar> {
   Widget _backIcon() {
     return MXIcon(
       iconFontSize: 30,
+      useDefaultPadding: false,
       iconColor: _getFontColor(),
-      icon: Icons.chevron_left_outlined,
+      icon: Icons.keyboard_arrow_left_rounded,
       iconSizeEnum: MXIconSizeEnum.large,
       action: () {
         widget.onHandleBack?.call();

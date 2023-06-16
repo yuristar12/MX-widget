@@ -168,7 +168,7 @@ class _MXCheckBoxState extends State<MXCheckBox> {
 
   Widget _buildSubTitle(BuildContext context) {
     if (widget.desSub != null) {
-      FontStyle? fontStyle = widget.sizeEnum == MXCheckBoxSizeEnum.lager
+      MXFontStyle? fontStyle = widget.sizeEnum == MXCheckBoxSizeEnum.lager
           ? MXTheme.of(context).fontBodySmall
           : MXTheme.of(context).fontInfoLarge;
 
@@ -379,7 +379,7 @@ class _MXCheckBoxState extends State<MXCheckBox> {
 // 默认的内容
     if (current == null) {
       if (widget.title != null) {
-        FontStyle? font = widget.sizeEnum == MXCheckBoxSizeEnum.lager
+        MXFontStyle? font = widget.sizeEnum == MXCheckBoxSizeEnum.lager
             ? MXTheme.of(context).fontBodyMedium
             : MXTheme.of(context).fontBodySmall;
 

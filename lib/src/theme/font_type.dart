@@ -1,14 +1,20 @@
-class FontStyle {
+import 'package:flutter/cupertino.dart';
+
+class MXFontStyle {
   late double size;
   late double lineHeight;
+  late FontWeight fontWeight;
 
-  FontStyle({required int size, required int lineHeight}) {
+  MXFontStyle(
+      {required int size,
+      required int lineHeight,
+      this.fontWeight = FontWeight.w400}) {
     this.size = size.toDouble();
-    this.lineHeight = size.toDouble();
+    this.lineHeight = lineHeight.toDouble();
   }
 
-  factory FontStyle.fromJson(Map<String, dynamic> map) {
-    return FontStyle(size: map['size'], lineHeight: map['lineHeight']);
+  factory MXFontStyle.fromJson(Map<String, dynamic> map) {
+    return MXFontStyle(size: map['size'], lineHeight: map['lineHeight']);
   }
 
   double get heightRate {
