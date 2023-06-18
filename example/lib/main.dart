@@ -88,6 +88,10 @@ class _MyHomePageState extends State<MyHomePage>
   Widget build(BuildContext context) {
     MXCheckBoxSeriesController controller = MXCheckBoxSeriesController();
 
+    MXAuthCodeController mxAuthCodeController = MXAuthCodeController(
+      onConfirm: (p0) {},
+    );
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -150,12 +154,28 @@ class _MyHomePageState extends State<MyHomePage>
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              MXAuthCode(mxAuthCodeController: mxAuthCodeController),
+              MXButton(
+                text: '设置code为错误状态',
+                icon: Icons.ac_unit,
+                disabled: disabled,
+                themeEnum: themeEnum,
+                afterClickButtonCallback: () {
+                  mxAuthCodeController.setError(true);
+                },
+              ),
+              MXInput(
+                dividerColor: MXTheme.of(context).errorPrimaryColor,
+                useBottomDividerLine: true,
+                typeEnum: MXInputTypeEnum.norma,
+                placeholder: '请输入文字',
+              ),
               MXInput(
                   typeEnum: MXInputTypeEnum.norma,
                   iconData: Icons.ac_unit,
                   useRequire: true,
                   placeholder: '请输入文字',
-                  labelText: '标签文字',
+                  labelText: '标签文字字',
                   rightWidget: MXIcon(
                       action: () {},
                       iconFontSize: 20,
@@ -168,7 +188,7 @@ class _MyHomePageState extends State<MyHomePage>
                 themeEnum: themeEnum,
                 afterClickButtonCallback: () {
                   MXToast().toastBySuccess(context, '成功文案',
-                      directionEnum: MXToastDirectionEnum.vertical);
+                      directionEnum: MXToastDirectionEnum.horizontal);
                 },
                 typeEnum: MXButtonTypeEnum.fill,
                 shape: MXButtonShapeEnum.round,

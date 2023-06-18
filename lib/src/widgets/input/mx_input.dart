@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mx_widget/src/theme/mx_colors.dart';
-import 'package:mx_widget/src/theme/mx_fonts.dart';
-import 'package:mx_widget/src/theme/mx_spaces.dart';
-import 'package:mx_widget/src/theme/mx_theme.dart';
-import 'package:mx_widget/src/widgets/icon/mx_icon.dart';
+import 'package:mx_widget/mx_widget.dart';
 import 'package:mx_widget/src/widgets/input/mx_input_body.dart';
-
-import '../../config/global_enum.dart';
 
 const double verticalPadding = 8;
 const double horizontalPadding = 14;
@@ -43,7 +37,7 @@ const double horizontalPadding = 14;
 /// FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
 //   LengthLimitingTextInputFormatter(6),
 // ],
-
+// ignore: must_be_immutable
 class MXInput extends StatelessWidget {
   final MXInputSizeEnum sizeEnum;
 
@@ -91,6 +85,10 @@ class MXInput extends StatelessWidget {
 
   final MXInputFormatEnum formatEnum;
 
+  bool useBottomDividerLine;
+
+  Color? dividerColor;
+
   MXInput({
     super.key,
     this.formatEnum = MXInputFormatEnum.norma,
@@ -121,6 +119,8 @@ class MXInput extends StatelessWidget {
     this.inputFormatters,
     this.iconData,
     this.maxLength,
+    this.useBottomDividerLine = false,
+    this.dividerColor,
   }) : assert(() {
           if (labelText != null && labelText.length > 10) {
             throw FlutterError('使用input组件如果lableText存在字符数必须小于等于10');
@@ -140,9 +140,19 @@ class MXInput extends StatelessWidget {
     if (iconData != null) {
       labelLeftWidth += 24;
 
-      children.add(MXIcon(
-        icon: iconData!,
-        iconSizeEnum: MXIconSizeEnum.medium,
+      children.add(Row(
+        children: [
+          MXIcon(
+            icon: iconData!,
+            iconFontSize: 22,
+            useDefaultPadding: false,
+          ),
+          Visibility(
+              visible: labelText != null,
+              child: const SizedBox(
+                width: 8,
+              ))
+        ],
       ));
     }
 
@@ -159,13 +169,14 @@ class MXInput extends StatelessWidget {
 
       label = SizedBox(
         width: fontWidth,
-        child: Text(
-          labelText!,
+        child: MXText(
+          data: labelText!,
           maxLines: 2,
+          font: MXTheme.of(context).fontBodyMedium!,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-              color: MXTheme.of(context).fontUsePrimaryColor,
-              fontSize: MXTheme.of(context).fontBodyMedium!.size),
+            color: MXTheme.of(context).fontUsePrimaryColor,
+          ),
         ),
       );
 
@@ -296,6 +307,13 @@ class MXInput extends StatelessWidget {
       ));
     }
 
+    if (useBottomDividerLine) {
+      children.add(MXDivideLine(
+        height: 1,
+        color: dividerColor ?? MXTheme.of(context).infoPrimaryColor,
+      ));
+    }
+
     return Expanded(
         flex: 1,
         child: Container(
@@ -312,6 +330,10 @@ class MXInput extends StatelessWidget {
 
     if (labelText != null || iconData != null || useRequire != null) {
       list.add(_buildInputLeft(context));
+    } else {
+      list.add(Container(
+        padding: const EdgeInsets.only(right: horizontalPadding),
+      ));
     }
 
     list.add(_buildInputCenter(context));

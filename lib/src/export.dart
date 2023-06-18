@@ -105,3 +105,7 @@ export 'widgets/input/mx_input.dart';
 
 /// 文字组件
 export 'widgets/text/mx_text.dart';
+
+/// 短信验证码组件
+export 'widgets/authCode/mx_auth_code.dart';
+export 'widgets/authCode/mx_auth_code_controller.dart';

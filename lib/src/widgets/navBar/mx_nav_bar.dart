@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mx_widget/src/export.dart';
-import 'package:mx_widget/src/widgets/text/mx_text.dart';
 
 /// -------------------------------------------------------------------navBar组件
 /// [barLeftItems] navBar 左侧的iconlist

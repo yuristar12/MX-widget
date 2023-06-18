@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mx_widget/src/export.dart';
 import 'package:mx_widget/src/widgets/button/mx_button_style.dart';
-import 'package:mx_widget/src/widgets/text/mx_text.dart';
 
 ///------------------------------------------------------------------按钮组件
 /// [text] 文字内容

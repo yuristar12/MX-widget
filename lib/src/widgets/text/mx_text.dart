@@ -6,9 +6,10 @@ import 'dart:ui' as ui show TextHeightBehavior;
 
 import '../../util/platform_util.dart';
 
+// ignore: must_be_immutable
 ///----------------------------------------------------------------------文字组件
 ///使用该组件能让中文在android机中强制居中
-
+//ignore: must_be_immutable
 class MXText extends StatelessWidget {
   MXText({
     super.key,
@@ -211,7 +212,7 @@ class TextPaddingConfig {
   /// 获取padding
   EdgeInsetsGeometry getPadding(String data, double fontSize, double height) {
     var paddingFont = fontSize * paddingRate;
-    var paddingLeading;
+    num paddingLeading;
     if (height < heightRate) {
       paddingLeading = 0;
     } else {

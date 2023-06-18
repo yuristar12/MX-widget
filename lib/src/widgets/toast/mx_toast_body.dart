@@ -30,12 +30,13 @@ class MXToastBody extends StatelessWidget {
       }
     }
 
-    list.add(Text(
-      text,
+    list.add(MXText(
+      data: text,
+      font: MXTheme.of(context).fontBodySmall,
       style: TextStyle(
-          decoration: TextDecoration.none,
-          color: MXTheme.of(context).whiteColor,
-          fontSize: MXTheme.of(context).fontBodyLarge!.size),
+        decoration: TextDecoration.none,
+        color: MXTheme.of(context).whiteColor,
+      ),
     ));
 
     return list;

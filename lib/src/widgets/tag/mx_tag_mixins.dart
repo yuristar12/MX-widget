@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mx_widget/src/export.dart';
-import 'package:mx_widget/src/widgets/text/mx_text.dart';
 
 import 'mx_tag_base_style.dart';
 import 'mx_tag_deep_style.dart';

@@ -287,3 +287,6 @@ enum MXInputFormatEnum {
   norma,
   number,
 }
+
+/// authCode 验证码回调方法
+typedef MXAuthCodeConfirmCallback = void Function(List<int>);

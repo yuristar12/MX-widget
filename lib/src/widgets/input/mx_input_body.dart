@@ -28,28 +28,29 @@ import 'package:mx_widget/src/theme/mx_theme.dart';
 // ],
 
 class MXInputBody extends StatelessWidget {
-  const MXInputBody(
-      {super.key,
-      this.controller,
-      this.focusNode,
-      this.obscureText = false,
-      this.disabled = false,
-      this.maxLength,
-      this.onChange,
-      this.autofocus = false,
-      this.textAlign = TextAlign.start,
-      this.textStyle,
-      this.inputFormatters,
-      this.onEditingComplete,
-      this.onSubmitted,
-      this.cursorColor,
-      this.decoration,
-      this.placeholder,
-      this.maxLines = 1,
-      this.placeholderStyle,
-      this.inputBackgroundColor,
-      this.contentPadding = EdgeInsetsDirectional.zero,
-      this.keyboardType});
+  const MXInputBody({
+    super.key,
+    this.controller,
+    this.focusNode,
+    this.obscureText = false,
+    this.disabled = false,
+    this.maxLength,
+    this.onChange,
+    this.autofocus = false,
+    this.textAlign = TextAlign.start,
+    this.textStyle,
+    this.inputFormatters,
+    this.onEditingComplete,
+    this.onSubmitted,
+    this.cursorColor,
+    this.decoration,
+    this.placeholder,
+    this.maxLines = 1,
+    this.placeholderStyle,
+    this.inputBackgroundColor,
+    this.contentPadding = EdgeInsetsDirectional.zero,
+    this.keyboardType,
+  });
 
   final bool disabled;
   final bool obscureText;
