@@ -10,8 +10,8 @@ class MXAuthCodeController {
   bool disabled = false;
   bool isError = false;
   int activityInputIndex = 0;
-  late MXAuthCodeState mxAuthCodeState;
   MXAuthCodeConfirmCallback onConfirm;
+  MXAuthCodeState? state;
   FocusNode keyListenNode = FocusNode();
   late List<FocusNode> focusNodes = [];
   late List<TextEditingController> textControllers = [];
@@ -28,10 +28,6 @@ class MXAuthCodeController {
     }
   }
 
-  void setState(MXAuthCodeState state) {
-    mxAuthCodeState = state;
-  }
-
   void setDisabled(bool value) {
     disabled = value;
   }
@@ -39,18 +35,16 @@ class MXAuthCodeController {
   void setError(bool value) {
     isError = value;
     // ignore: invalid_use_of_protected_member
-    mxAuthCodeState.setState(() {});
+    state?.setState(() {});
   }
 
-  void onInputContentChange(String value, int index, BuildContext context) {
+  void onInputContentChange(
+      String value, int index, BuildContext context, MXAuthCodeState state) {
     if (value.isNotEmpty) {
       if (index != codeNum - 1) {
         // 聚焦下一个input
         activityInputIndex += 1;
-        // ignore: invalid_use_of_protected_member
-        mxAuthCodeState.setState(() {
-          FocusScope.of(context).requestFocus(focusNodes[activityInputIndex]);
-        });
+        FocusScope.of(context).requestFocus(focusNodes[activityInputIndex]);
       } else if (index == codeNum - 1) {
         if (!disabled) {
           onConfirm(getInputValue());

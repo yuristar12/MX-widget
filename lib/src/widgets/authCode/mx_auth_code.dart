@@ -8,10 +8,13 @@ class MXAuthCode extends StatefulWidget {
   MXAuthCode({
     super.key,
     this.backgroundColor,
+    this.textStyle,
     required this.mxAuthCodeController,
   });
 
   Color? backgroundColor;
+
+  TextStyle? textStyle;
 
   MXAuthCodeController mxAuthCodeController;
 
@@ -26,8 +29,8 @@ class MXAuthCodeState extends State<MXAuthCode> {
 
   @override
   void initState() {
+    widget.mxAuthCodeController.state = this;
     super.initState();
-    widget.mxAuthCodeController.setState(this);
   }
 
   Widget _buildBody(BuildContext context) {
@@ -40,11 +43,15 @@ class MXAuthCodeState extends State<MXAuthCode> {
             padding: EdgeInsets.only(
                 right: i == widget.mxAuthCodeController.codeNum - 1 ? 0 : 8),
             child: MXInput(
-              disabled: i != widget.mxAuthCodeController.activityInputIndex,
+              autofocus: i == 0,
               keyboardType: TextInputType.number,
               textAlign: TextAlign.center,
               maxLength: 1,
-              autofocus: true,
+              textStyle: widget.textStyle ??
+                  TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: MXTheme.of(context).fontTitleLarge!.size,
+                      color: MXTheme.of(context).fontUsePrimaryColor),
               useBottomDividerLine: true,
               focusNode: widget.mxAuthCodeController.focusNodes[i],
               onChange: (value) {
@@ -71,7 +78,8 @@ class MXAuthCodeState extends State<MXAuthCode> {
   }
 
   void _onInputContentChange(String value, int index) {
-    widget.mxAuthCodeController.onInputContentChange(value, index, context);
+    widget.mxAuthCodeController
+        .onInputContentChange(value, index, context, this);
   }
 
   void _onKeyByDelete() {
@@ -89,10 +97,9 @@ class MXAuthCodeState extends State<MXAuthCode> {
       // 聚焦上一个input
       widget.mxAuthCodeController.activityInputIndex -= 1;
       onDeleteBeforeValueIsEmpty = false;
-      setState(() {
-        FocusScope.of(context).requestFocus(widget.mxAuthCodeController
-            .focusNodes[widget.mxAuthCodeController.activityInputIndex]);
-      });
+
+      FocusScope.of(context).requestFocus(widget.mxAuthCodeController
+          .focusNodes[widget.mxAuthCodeController.activityInputIndex]);
     }
   }
 

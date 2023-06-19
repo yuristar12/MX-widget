@@ -78,6 +78,13 @@ class _MyHomePageState extends State<MyHomePage>
 
   bool disabled = false;
 
+  MXCheckBoxSeriesController controller = MXCheckBoxSeriesController();
+
+  MXAuthCodeController mxAuthCodeController = MXAuthCodeController(
+    codeNum: 6,
+    onConfirm: (p0) {},
+  );
+
   @override
   void initState() {
     super.initState();
@@ -86,12 +93,6 @@ class _MyHomePageState extends State<MyHomePage>
 
   @override
   Widget build(BuildContext context) {
-    MXCheckBoxSeriesController controller = MXCheckBoxSeriesController();
-
-    MXAuthCodeController mxAuthCodeController = MXAuthCodeController(
-      onConfirm: (p0) {},
-    );
-
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //

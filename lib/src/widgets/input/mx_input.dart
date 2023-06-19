@@ -228,7 +228,7 @@ class MXInput extends StatelessWidget {
   }
 
   Color _getCursorColor(BuildContext context) {
-    return cursorColor ?? MXTheme.of(context).brandColor8;
+    return cursorColor ?? MXTheme.of(context).brandPrimaryColor;
   }
 
   Color _getBackgroundColor(BuildContext context) {

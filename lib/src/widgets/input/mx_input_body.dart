@@ -90,7 +90,7 @@ class MXInputBody extends StatelessWidget {
       textAlign: textAlign,
       onEditingComplete: onEditingComplete,
       onSubmitted: onSubmitted,
-      cursorColor: cursorColor ?? MXTheme.of(context).brandColor8,
+      cursorColor: cursorColor ?? MXTheme.of(context).brandPrimaryColor,
       decoration: decoration ?? _getDecoration(context),
     );
   }
