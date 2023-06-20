@@ -1,6 +1,6 @@
 name: mx_widget
 description: 包含一些基本的flutter组件.
-version: 0.0.7
+version: 0.0.8
 homepage: https://github.com/yuristar12/MX-widget
 
 environment:

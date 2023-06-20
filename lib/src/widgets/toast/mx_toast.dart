@@ -46,7 +46,7 @@ class MXToast {
   }
 
   void hidden() {
-    _timer!.cancel();
+    _timer?.cancel();
     _timer = null;
     _overlayEntry?.remove();
     _overlayEntry = null;

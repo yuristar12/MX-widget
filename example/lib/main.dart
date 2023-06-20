@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:example/test.dart';
 import 'package:flutter/material.dart';
 // ignore: implementation_imports
@@ -155,6 +157,79 @@ class _MyHomePageState extends State<MyHomePage>
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              MXButton(
+                text: 'popUpTop',
+                icon: Icons.ac_unit,
+                disabled: disabled,
+                themeEnum: themeEnum,
+                afterClickButtonCallback: () {
+                  MXPopUp.MXpopUpByOther(context, (BuildContext content) {
+                    return Container(
+                      height: 280,
+                      color: MXTheme.of(content).whiteColor,
+                    );
+                  }, MXPopUpShowTypeEnum.toTop);
+                },
+              ),
+              MXButton(
+                text: 'popUpRight',
+                icon: Icons.ac_unit,
+                disabled: disabled,
+                themeEnum: themeEnum,
+                afterClickButtonCallback: () {
+                  MXPopUp.MXpopUpByOther(context, (BuildContext content) {
+                    return Container(
+                      width: 280,
+                      color: MXTheme.of(content).whiteColor,
+                    );
+                  }, MXPopUpShowTypeEnum.toRight);
+                },
+              ),
+              MXButton(
+                text: 'popUpLeft',
+                icon: Icons.ac_unit,
+                disabled: disabled,
+                themeEnum: themeEnum,
+                afterClickButtonCallback: () {
+                  MXPopUp.MXpopUpByOther(context, (BuildContext content) {
+                    return Container(
+                      width: 280,
+                      color: MXTheme.of(content).whiteColor,
+                    );
+                  }, MXPopUpShowTypeEnum.toLeft);
+                },
+              ),
+              MXButton(
+                text: 'popUpCenter',
+                icon: Icons.ac_unit,
+                disabled: disabled,
+                themeEnum: themeEnum,
+                afterClickButtonCallback: () {
+                  MXPopUp.MXpopUpByOther(context, (BuildContext content) {
+                    return Container(
+                      width: 280,
+                      height: 200,
+                      color: MXTheme.of(content).whiteColor,
+                    );
+                  }, MXPopUpShowTypeEnum.toCenter);
+                },
+              ),
+              MXButton(
+                text: 'popUpBottom',
+                icon: Icons.ac_unit,
+                disabled: disabled,
+                themeEnum: themeEnum,
+                afterClickButtonCallback: () {
+                  MXPopUp.MXpopUpByBottom(context,
+                      leftText: '取消',
+                      rightText: '确定',
+                      title: "这是title",
+                      child: Container(
+                        height: 200,
+                      ));
+                },
+              ),
+
               MXAuthCode(mxAuthCodeController: mxAuthCodeController),
               MXButton(
                 text: '设置code为错误状态',
@@ -214,10 +289,12 @@ class _MyHomePageState extends State<MyHomePage>
                 disabled: disabled,
                 themeEnum: themeEnum,
                 afterClickButtonCallback: () {
-                  MXToast()
-                      .toastByLoading(context,
-                          directionEnum: MXToastDirectionEnum.vertical)
-                      .startDown(const Duration(milliseconds: 5000));
+                  var toast = MXToast().toastByLoading(context,
+                      directionEnum: MXToastDirectionEnum.vertical);
+
+                  Timer(const Duration(milliseconds: 1000), () {
+                    toast.hidden();
+                  });
                 },
                 typeEnum: MXButtonTypeEnum.fill,
                 shape: MXButtonShapeEnum.round,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// 按钮的类型枚举
-enum MXButtonTypeEnum { fill, text, outline }
+enum MXButtonTypeEnum { fill, text, outline, plainText }
 
 /// 按钮的风格枚举
 enum MXButtonThemeEnum { primary, error, success, warn }
@@ -290,3 +290,12 @@ enum MXInputFormatEnum {
 
 /// authCode 验证码回调方法
 typedef MXAuthCodeConfirmCallback = void Function(List<int>);
+
+/// popup 的出现方式类型
+enum MXPopUpShowTypeEnum {
+  toLeft,
+  toRight,
+  toBottom,
+  toTop,
+  toCenter,
+}

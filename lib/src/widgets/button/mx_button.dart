@@ -192,7 +192,10 @@ class _MXButtonState extends State<MXButton> {
             context, widget.themeEnum, statusEnum);
       case MXButtonTypeEnum.text:
         return MXButtonStyle.getTextStyleByTheme(
-            context, widget.themeEnum, statusEnum);
+            context, widget.themeEnum, statusEnum, widget.typeEnum);
+      case MXButtonTypeEnum.plainText:
+        return MXButtonStyle.getTextStyleByTheme(
+            context, widget.themeEnum, statusEnum, widget.typeEnum);
     }
   }
 

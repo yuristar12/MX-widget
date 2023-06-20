@@ -29,9 +29,15 @@
 - TODO:
   修复 authcode 在安卓机中的异常
 
-
 ## 0.0.7
 
 - TODO:
-  新增popscope组件，用来二次确认返回。
-  调整AuthCode组件文字样式，支持自定义文字样式。
+  新增 popscope 组件，用来二次确认返回。
+  调整 AuthCode 组件文字样式，支持自定义文字样式。
+
+## 0.0.8
+
+- TODO:
+  新增 popup 组件。
+  button 组件新增一个type类型为plainText。
+  修复toast状态为loading，调用hidden（）报错。

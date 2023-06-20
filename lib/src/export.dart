@@ -109,3 +109,6 @@ export 'widgets/text/mx_text.dart';
 /// 短信验证码组件
 export 'widgets/authCode/mx_auth_code.dart';
 export 'widgets/authCode/mx_auth_code_controller.dart';
+
+// popUp组件
+export 'widgets/popUp/mx_pop_up.dart';

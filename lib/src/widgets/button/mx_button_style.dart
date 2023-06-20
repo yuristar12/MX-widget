@@ -51,6 +51,7 @@ class MXButtonStyle {
     BuildContext context,
     MXButtonThemeEnum theme,
     MXButtonStatusEnum statusEnum,
+    MXButtonTypeEnum typeEnum,
   ) {
     switch (theme) {
       case MXButtonThemeEnum.primary:
@@ -65,6 +66,10 @@ class MXButtonStyle {
       case MXButtonThemeEnum.warn:
         textColor = _getColorByWarn(context, statusEnum);
         break;
+    }
+
+    if (typeEnum == MXButtonTypeEnum.plainText) {
+      textColor = MXTheme.of(context).fontUsePrimaryColor;
     }
 
     /// 统一设置文字按钮的背景色
