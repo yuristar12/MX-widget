@@ -112,3 +112,5 @@ export 'widgets/authCode/mx_auth_code_controller.dart';
 
 // popUp组件
 export 'widgets/popUp/mx_pop_up.dart';
+
+export 'widgets/dialog/mx_dialog.dart';

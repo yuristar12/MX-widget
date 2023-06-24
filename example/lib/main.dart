@@ -158,6 +158,77 @@ class _MyHomePageState extends State<MyHomePage>
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               MXButton(
+                  text: '确认类型的对话框携带自定义部件上',
+                  icon: Icons.ac_unit,
+                  disabled: disabled,
+                  themeEnum: themeEnum,
+                  afterClickButtonCallback: () {
+                    MXDialog.dialogByConfigAndCustomWidget(
+                        context: context,
+                        title: '对话框标题',
+                        confirmText: '知道了',
+                        cancelText: '取消',
+                        customWidget: const MXImage(
+                            customRadius: BorderRadius.only(
+                                topLeft: Radius.circular(4),
+                                topRight: Radius.circular(4)),
+                            modeEnum: MXImageModeEnum.roundSquare,
+                            height: 160,
+                            netUrl:
+                                "https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg"),
+                        dialogCustomWidgetDirectionEnum:
+                            MXDialogCustomWidgetDirectionEnum.top,
+                        content: '反馈内容，反馈内容，反馈内容');
+                  }),
+              MXButton(
+                  text: '确认类型的对话框携带自定义部件中',
+                  icon: Icons.ac_unit,
+                  disabled: disabled,
+                  themeEnum: themeEnum,
+                  afterClickButtonCallback: () {
+                    MXDialog.dialogByConfigAndCustomWidget(
+                        context: context,
+                        title: '对话框标题',
+                        confirmText: '知道了',
+                        cancelText: '取消',
+                        customWidget: const MXImage(
+                            height: 160,
+                            customRadius: BorderRadius.all(Radius.circular(0)),
+                            netUrl:
+                                "https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg"),
+                        dialogCustomWidgetDirectionEnum:
+                            MXDialogCustomWidgetDirectionEnum.center,
+                        content: '反馈内容，反馈内容，反馈内容');
+                  }),
+              MXButton(
+                  text: '确认类型的对话框',
+                  icon: Icons.ac_unit,
+                  disabled: disabled,
+                  themeEnum: themeEnum,
+                  afterClickButtonCallback: () {
+                    MXDialog.dialogByConfirm(
+                        context: context,
+                        title: '对话框标题',
+                        confirmText: '知道了',
+                        cancelText: '取消',
+                        dialogFooterDirectionEnum:
+                            MXDialogFooterDirectionEnum.horizontal,
+                        content:
+                            '反馈内容，反馈内容，反馈内容,反馈内容，反馈内容，反馈内容,反馈内容，反馈内容，反馈内容,反馈内容，反馈内容，反馈内容,反馈内容，反馈内容，反馈内容,反馈内容，反馈内容，反馈内容,反馈内容，反馈内容，反馈内容');
+                  }),
+              MXButton(
+                  text: '反馈内容的对话框',
+                  icon: Icons.ac_unit,
+                  disabled: disabled,
+                  themeEnum: themeEnum,
+                  afterClickButtonCallback: () {
+                    MXDialog.dialogByFeedback(
+                        context: context,
+                        title: '对话框标题',
+                        confirmText: '知道了',
+                        content: '反馈内容，反馈内容，反馈内容');
+                  }),
+              MXButton(
                 text: 'popUpTop',
                 icon: Icons.ac_unit,
                 disabled: disabled,
@@ -354,6 +425,43 @@ class _MyHomePageState extends State<MyHomePage>
                       itemCount: 5)),
               SizedBox(
                 height: MXTheme.of(context).space12,
+              ),
+
+              MXButton(
+                text: 'plainPrimary',
+                icon: Icons.ac_unit,
+                themeEnum: MXButtonThemeEnum.primary,
+                afterClickButtonCallback: () {},
+                typeEnum: MXButtonTypeEnum.plain,
+                shape: MXButtonShapeEnum.round,
+                sizeEnum: MXButtonSizeEnum.medium,
+              ),
+              MXButton(
+                text: 'plainSuccess',
+                icon: Icons.ac_unit,
+                themeEnum: MXButtonThemeEnum.success,
+                afterClickButtonCallback: () {},
+                typeEnum: MXButtonTypeEnum.plain,
+                shape: MXButtonShapeEnum.round,
+                sizeEnum: MXButtonSizeEnum.medium,
+              ),
+              MXButton(
+                text: 'plainError',
+                icon: Icons.ac_unit,
+                themeEnum: MXButtonThemeEnum.error,
+                afterClickButtonCallback: () {},
+                typeEnum: MXButtonTypeEnum.plain,
+                shape: MXButtonShapeEnum.round,
+                sizeEnum: MXButtonSizeEnum.medium,
+              ),
+              MXButton(
+                text: 'plainWarn',
+                icon: Icons.ac_unit,
+                themeEnum: MXButtonThemeEnum.warn,
+                afterClickButtonCallback: () {},
+                typeEnum: MXButtonTypeEnum.plain,
+                shape: MXButtonShapeEnum.round,
+                sizeEnum: MXButtonSizeEnum.medium,
               ),
 
               MXButton(

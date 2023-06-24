@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 /// 按钮的类型枚举
-enum MXButtonTypeEnum { fill, text, outline, plainText }
+enum MXButtonTypeEnum { fill, text, outline, plain, plainText }
 
 /// 按钮的风格枚举
-enum MXButtonThemeEnum { primary, error, success, warn }
+enum MXButtonThemeEnum { primary, error, success, warn, info }
 
 /// 按钮的尺寸大小的枚举
 enum MXButtonSizeEnum {
@@ -299,3 +299,8 @@ enum MXPopUpShowTypeEnum {
   toTop,
   toCenter,
 }
+
+/// dialog 按钮的排列方式
+enum MXDialogFooterDirectionEnum { horizontal, vertical }
+
+enum MXDialogCustomWidgetDirectionEnum { top, center }

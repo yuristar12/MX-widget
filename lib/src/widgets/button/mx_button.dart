@@ -29,6 +29,7 @@ class MXButton extends StatefulWidget {
     this.typeEnum = MXButtonTypeEnum.fill,
     this.sizeEnum = MXButtonSizeEnum.medium,
     this.customMargin,
+    this.textStyle,
   });
 
   /// 按钮文字内容
@@ -36,6 +37,8 @@ class MXButton extends StatefulWidget {
 
   /// 按钮插槽。
   final Widget? slot;
+
+  final TextStyle? textStyle;
 
   /// 按钮类型
   final MXButtonTypeEnum typeEnum;
@@ -103,9 +106,6 @@ class _MXButtonState extends State<MXButton> {
         statusEnum = MXButtonStatusEnum.normal;
       }
     });
-    // cacheClickStyle = cacheClickStyle;
-    // cacheNormalStyle = cacheNormalStyle;
-    // cacheDisabledStyle = cacheDisabledStyle;
   }
 
   @override
@@ -187,12 +187,16 @@ class _MXButtonState extends State<MXButton> {
       case MXButtonTypeEnum.fill:
         return MXButtonStyle.getFillStyleByTheme(
             context, widget.themeEnum, statusEnum);
+      case MXButtonTypeEnum.plain:
+        return MXButtonStyle.getPlainStyleByTheme(
+            context, widget.themeEnum, statusEnum);
       case MXButtonTypeEnum.outline:
         return MXButtonStyle.getOutlineStyleByTheme(
             context, widget.themeEnum, statusEnum);
       case MXButtonTypeEnum.text:
         return MXButtonStyle.getTextStyleByTheme(
             context, widget.themeEnum, statusEnum, widget.typeEnum);
+
       case MXButtonTypeEnum.plainText:
         return MXButtonStyle.getTextStyleByTheme(
             context, widget.themeEnum, statusEnum, widget.typeEnum);
@@ -275,13 +279,14 @@ class _MXButtonState extends State<MXButton> {
   TextStyle _fontStyle(BuildContext context) {
     // 需要判断是否文字内容为数字
 
-    return TextStyle(color: buttonStyle.textColor);
+    return widget.textStyle ?? TextStyle(color: buttonStyle.textColor);
   }
 
   MXFontStyle _fontSize(BuildContext context) {
     var sizeEnum = widget.sizeEnum;
     switch (sizeEnum) {
       case MXButtonSizeEnum.large:
+        return MXTheme.of(context).fontTitleSmall!;
       case MXButtonSizeEnum.medium:
         return MXTheme.of(context).fontBodyLarge!;
       case MXButtonSizeEnum.small:

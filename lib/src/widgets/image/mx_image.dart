@@ -12,6 +12,7 @@ import 'package:mx_widget/src/widgets/image/image_widget.dart';
 /// [assetsUrl] 本地图片地址
 /// [errorWidget] 图片加载错误的组件
 /// [loadingWidget] 图片加载中的组件默认存在骨架屏
+/// [customRadius] 图片自定义圆角只在roundSquare生效
 /// [modeEnum] 图片展示的模式cut（裁切模式，图片大小超出容器大小只展示容器大小部分）/
 /// cover（调整图片内容的大小以覆盖其容器）/circle（圆形图片fit依然是cover）
 /// fitWidth（根据图片宽度自适应高度）
@@ -44,7 +45,8 @@ class MXImage extends StatefulWidget {
       this.filterQuality = FilterQuality.none,
       this.cacheWidth,
       this.cacheHeight,
-      this.modeEnum = MXImageModeEnum.roundSquare});
+      this.modeEnum = MXImageModeEnum.roundSquare,
+      this.customRadius});
 
   final MXImageModeEnum modeEnum;
 
@@ -57,6 +59,8 @@ class MXImage extends StatefulWidget {
 
   final Widget? errorWidget;
   final Widget? loadingWidget;
+
+  final BorderRadiusGeometry? customRadius;
 
   /// 以下是fluuter原生的img组件需要的参数
   final ImageProvider? image;
@@ -187,13 +191,14 @@ class _MXImageState extends State<MXImage> {
       height: widget.height,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(
-              Radius.circular(MXTheme.of(context).radiusDefault))),
+          borderRadius: widget.customRadius ??
+              BorderRadius.all(
+                  Radius.circular(MXTheme.of(context).radiusDefault))),
       child: child,
     );
   }
 
-  /// 构建圆角图片
+  /// 构建正圆图片
   Widget buildCircleImg(BuildContext context) {
     Widget child;
     if (widget.assetsUrl != null) {

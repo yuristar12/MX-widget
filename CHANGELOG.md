@@ -39,5 +39,11 @@
 
 - TODO:
   新增 popup 组件。
-  button 组件新增一个type类型为plainText。
-  修复toast状态为loading，调用hidden（）报错。
+  button 组件新增一个 type 类型为 plainText。
+  修复 toast 状态为 loading，调用 hidden（）报错。
+
+## 0.0.9
+
+- TODO:
+  新增 dialog 组件。
+  button 组件新增一个 type 类型为 plain。

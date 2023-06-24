@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mx_widget/mx_widget.dart';
 
-const Duration popUpToLiveDuration = Duration(milliseconds: 250);
+const Duration popUpToLiveDuration = Duration(milliseconds: 100);
 
 class MXPopUpRoute extends PopupRoute {
   MXPopUpRoute(
@@ -36,16 +36,28 @@ class MXPopUpRoute extends PopupRoute {
   @override
   Widget buildTransitions(BuildContext context, Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
-    return AnimatedBuilder(
-        animation: animation,
-        builder: (BuildContext context, child) {
-          return CustomSingleChildLayout(
+    if (showTypeEnum == MXPopUpShowTypeEnum.toCenter) {
+      return AnimatedScale(
+          curve: Curves.ease,
+          scale: animation.value,
+          duration: popUpToLiveDuration,
+          child: CustomSingleChildLayout(
             delegate: MXSingleChildLayoutDelegate(
                 accelerateEasing.transform(animation.value), showTypeEnum),
             child: child,
-          );
-        },
-        child: child);
+          ));
+    } else {
+      return AnimatedBuilder(
+          animation: animation,
+          builder: (BuildContext context, child) {
+            return CustomSingleChildLayout(
+              delegate: MXSingleChildLayoutDelegate(
+                  accelerateEasing.transform(animation.value), showTypeEnum),
+              child: child,
+            );
+          },
+          child: child);
+    }
   }
 
   @override
