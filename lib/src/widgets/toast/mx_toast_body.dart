@@ -23,21 +23,44 @@ class MXToastBody extends StatelessWidget {
       } else {
         list.add(MXIcon(
           icon: iconData!,
-          iconFontSize: 24,
+          iconFontSize: 32,
+          useDefaultPadding: false,
           iconSizeEnum: MXIconSizeEnum.medium,
           iconColor: MXTheme.of(context).whiteColor,
         ));
       }
     }
 
-    list.add(MXText(
-      data: text,
-      font: MXTheme.of(context).fontBodySmall,
-      style: TextStyle(
+    MXFontStyle fontStyle = MXTheme.of(context).fontBodySmall!;
+
+    TextStyle textStyle = TextStyle(
         decoration: TextDecoration.none,
         color: MXTheme.of(context).whiteColor,
-      ),
-    ));
+        fontSize: fontStyle.size,
+        fontWeight: FontWeight.w400);
+
+    Widget textWidget;
+
+    if (mxToastDirectionEnum == MXToastDirectionEnum.horizontal) {
+      textWidget = Container(
+          margin: const EdgeInsets.only(left: 8),
+          child: MXText(
+            data: text,
+            font: fontStyle,
+            style: textStyle,
+          ));
+    } else {
+      textWidget = Container(
+          margin: const EdgeInsets.only(top: 8),
+          child: Text(
+            text,
+            maxLines: 4,
+            style: textStyle,
+            overflow: TextOverflow.ellipsis,
+          ));
+    }
+
+    list.add(textWidget);
 
     return list;
   }
@@ -67,24 +90,23 @@ class MXToastBody extends StatelessWidget {
             ));
 
       case MXToastDirectionEnum.vertical:
-        return ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 134, maxHeight: 134),
-            child: Center(
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
-                decoration: BoxDecoration(
-                    color: MXTheme.of(context).mask2,
-                    borderRadius: BorderRadius.circular(
-                        MXTheme.of(context).radiusDefault)),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: _buildToastChildren(context),
-                ),
-              ),
-            ));
+        return Center(
+            child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 182, maxHeight: 182),
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+            decoration: BoxDecoration(
+                color: MXTheme.of(context).mask2,
+                borderRadius:
+                    BorderRadius.circular(MXTheme.of(context).radiusMedium)),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: _buildToastChildren(context),
+            ),
+          ),
+        ));
     }
   }
 

@@ -106,7 +106,7 @@ class _MXDatePickerState extends State<MXDatePicker> {
     children.add(GestureDetector(
       onTap: () {
         DateTime time = _getConfirmDate();
-        widget.datePickerParams.onCancel!.call(time);
+        widget.datePickerParams.onCancel?.call(time);
         Navigator.of(context).pop();
       },
       child: Text(

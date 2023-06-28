@@ -304,3 +304,12 @@ enum MXPopUpShowTypeEnum {
 enum MXDialogFooterDirectionEnum { horizontal, vertical }
 
 enum MXDialogCustomWidgetDirectionEnum { top, center }
+
+/// loading状态的回调方法
+typedef MXDialogLoadingCallback = Future<bool> Function();
+
+enum MXStepperSizeEnum { mini, small, medium }
+
+enum MXStepperThemeEnum { fill, plain, bord }
+
+typedef MXStepperOnChangeCallback = void Function(int value);

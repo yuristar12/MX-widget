@@ -219,11 +219,11 @@ extension MXColors on MXThemeConfig {
 
   /// #F5F5F5
   Color get infoPrimaryColor =>
-      colorsMap['infoPrimaryColor'] ?? const Color(0xFFF5F5F5);
+      colorsMap['infoPrimaryColor'] ?? const Color(0xFFF0F0F0);
 
   /// #E5E5E5
   Color get infoDisabledColor =>
-      colorsMap['infoDisabledColor'] ?? const Color(0xFFE5E5E5);
+      colorsMap['infoDisabledColor'] ?? const Color(0xFFF5F5F5);
 
   // --------------------------------------------------------------------字体颜色
   /// #F5F5F5

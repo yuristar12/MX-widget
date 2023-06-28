@@ -82,6 +82,8 @@ class _MyHomePageState extends State<MyHomePage>
 
   MXCheckBoxSeriesController controller = MXCheckBoxSeriesController();
 
+  TextEditingController textEditingController = TextEditingController();
+
   MXAuthCodeController mxAuthCodeController = MXAuthCodeController(
     codeNum: 6,
     onConfirm: (p0) {},
@@ -157,7 +159,15 @@ class _MyHomePageState extends State<MyHomePage>
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              MXStepper(
+                disabled: false,
+                max: 10,
+                controller: textEditingController,
+                stepperSizeEnum: MXStepperSizeEnum.medium,
+              ),
+
               MXButton(
+                  loading: true,
                   text: '确认类型的对话框携带自定义部件上',
                   icon: Icons.ac_unit,
                   disabled: disabled,
@@ -184,7 +194,7 @@ class _MyHomePageState extends State<MyHomePage>
                   text: '确认类型的对话框携带自定义部件中',
                   icon: Icons.ac_unit,
                   disabled: disabled,
-                  themeEnum: themeEnum,
+                  themeEnum: MXButtonThemeEnum.info,
                   afterClickButtonCallback: () {
                     MXDialog.dialogByConfigAndCustomWidget(
                         context: context,
@@ -199,6 +209,31 @@ class _MyHomePageState extends State<MyHomePage>
                         dialogCustomWidgetDirectionEnum:
                             MXDialogCustomWidgetDirectionEnum.center,
                         content: '反馈内容，反馈内容，反馈内容');
+                  }),
+              MXButton(
+                  text: '确认类型的对话框loading',
+                  icon: Icons.ac_unit,
+                  disabled: disabled,
+                  themeEnum: themeEnum,
+                  afterClickButtonCallback: () {
+                    MXDialog.dialogByConfirm(
+                        context: context,
+                        title: '对话框标题',
+                        confirmText: '确认了',
+                        cancelText: '取消',
+                        mxDialogLoadingCallback: () async {
+                          bool res = await Future.delayed(
+                              const Duration(seconds: 5), () {
+                            // 返回true 会直接关闭dialog
+                            return true;
+                          });
+
+                          return res;
+                        },
+                        dialogFooterDirectionEnum:
+                            MXDialogFooterDirectionEnum.horizontal,
+                        content:
+                            '反馈内容，反馈内容，反馈内容,反馈内容，反馈内容，反馈内容,反馈内容，反馈内容，反馈内容,反馈内容，反馈内容，反馈内容,反馈内容，反馈内容，反馈内容,反馈内容，反馈内容，反馈内容,反馈内容，反馈内容，反馈内容');
                   }),
               MXButton(
                   text: '确认类型的对话框',
@@ -347,7 +382,8 @@ class _MyHomePageState extends State<MyHomePage>
                 disabled: disabled,
                 themeEnum: themeEnum,
                 afterClickButtonCallback: () {
-                  MXToast().toastByError(context, '错误文案',
+                  MXToast().toastByError(context,
+                      '错误文案,错误文案错误文案,错误文案,错误文案,错误文案,错误文案,错误文案,错误文案误文案,错误文案,错误文案,错误文案,错误文案,误文案,错误文案,错误文案,错误文案,错误文案,误文案,错误文案,错误文案,错误文案,错误文案,,错误文案,错误文案',
                       directionEnum: MXToastDirectionEnum.vertical);
                 },
                 typeEnum: MXButtonTypeEnum.fill,

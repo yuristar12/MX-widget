@@ -47,3 +47,12 @@
 - TODO:
   新增 dialog 组件。
   button 组件新增一个 type 类型为 plain。
+
+
+## 0.1.0
+
+- TODO:
+  新增 stepper 步骤器组件。
+  调整button按钮组件样式
+  dialog confirm类型新增loading回调方法
+  input新增onTapOutCallback回调方法

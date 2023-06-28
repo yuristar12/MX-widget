@@ -50,6 +50,7 @@ class MXInputBody extends StatelessWidget {
     this.inputBackgroundColor,
     this.contentPadding = EdgeInsetsDirectional.zero,
     this.keyboardType,
+    this.onTapOutCallback,
   });
 
   final bool disabled;
@@ -71,6 +72,7 @@ class MXInputBody extends StatelessWidget {
   final TextEditingController? controller;
   final ValueChanged<String>? onSubmitted;
   final EdgeInsetsGeometry contentPadding;
+  final VoidCallback? onTapOutCallback;
 
   final List<TextInputFormatter>? inputFormatters;
 
@@ -82,6 +84,10 @@ class MXInputBody extends StatelessWidget {
       maxLength: maxLength,
       onChanged: onChange,
       style: textStyle,
+      onTapOutside: (event) {
+        FocusManager.instance.primaryFocus?.unfocus();
+        onTapOutCallback?.call();
+      },
       maxLines: maxLines,
       keyboardType: keyboardType,
       autofocus: autofocus,

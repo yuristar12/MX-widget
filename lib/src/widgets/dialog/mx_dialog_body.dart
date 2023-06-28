@@ -20,7 +20,7 @@ final double space = MXTheme.getThemeConfig().space24;
 /// [dialogFooterDirectionEnum] 弹窗底部按钮的排列方式 horizontal与vertical
 /// [dialogCustomWidgetDirectionEnum] 弹窗自定义扩展部件的位置
 
-class MXDialogBody extends StatelessWidget {
+class MXDialogBody extends StatefulWidget {
   const MXDialogBody({
     super.key,
     this.title,
@@ -39,6 +39,7 @@ class MXDialogBody extends StatelessWidget {
     this.dialogFooterDirectionEnum = MXDialogFooterDirectionEnum.horizontal,
     this.dialogCustomWidgetDirectionEnum =
         MXDialogCustomWidgetDirectionEnum.center,
+    this.mxDialogLoadingCallback,
   });
 
   final String? title;
@@ -64,11 +65,20 @@ class MXDialogBody extends StatelessWidget {
 
   final MXDialogCustomWidgetDirectionEnum dialogCustomWidgetDirectionEnum;
 
+  final MXDialogLoadingCallback? mxDialogLoadingCallback;
+
   final Widget? customWidget;
 
+  @override
+  State<MXDialogBody> createState() => _MXDialogBodyState();
+}
+
+class _MXDialogBodyState extends State<MXDialogBody> {
+  bool loading = false;
+
   Widget _buildTitle(BuildContext context) {
-    bool hasCustomWidgetByTop = customWidget != null &&
-        dialogCustomWidgetDirectionEnum ==
+    bool hasCustomWidgetByTop = widget.customWidget != null &&
+        widget.dialogCustomWidgetDirectionEnum ==
             MXDialogCustomWidgetDirectionEnum.top;
 
     return Container(
@@ -77,7 +87,7 @@ class MXDialogBody extends StatelessWidget {
         child: Column(
           children: [
             MXText(
-              data: title,
+              data: widget.title,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               font: MXTheme.of(context).fontBodyLarge,
@@ -94,14 +104,14 @@ class MXDialogBody extends StatelessWidget {
 
   Widget _buildDialogContent(BuildContext context) {
     double contentLimitHeight = 466;
-    bool hasCustomByCenter = customWidget != null &&
-        dialogCustomWidgetDirectionEnum ==
+    bool hasCustomByCenter = widget.customWidget != null &&
+        widget.dialogCustomWidgetDirectionEnum ==
             MXDialogCustomWidgetDirectionEnum.center;
 
 //  如果存在顶上的自定义插入的widget 需要减去自定义的限制高度;
 
-    if (customWidget != null &&
-        dialogCustomWidgetDirectionEnum ==
+    if (widget.customWidget != null &&
+        widget.dialogCustomWidgetDirectionEnum ==
             MXDialogCustomWidgetDirectionEnum.top) {
       contentLimitHeight -= (limitCustomWidgetHeight + space);
     }
@@ -109,9 +119,9 @@ class MXDialogBody extends StatelessWidget {
     Widget child = Container(
         padding: EdgeInsets.symmetric(horizontal: space),
         child: Text(
-          content!,
+          widget.content!,
           textAlign: TextAlign.center,
-          style: contentStyle ??
+          style: widget.contentStyle ??
               TextStyle(
                 height: MXTheme.of(context).fontBodyMedium!.heightRate * 1.2,
                 fontWeight: FontWeight.w400,
@@ -129,7 +139,7 @@ class MXDialogBody extends StatelessWidget {
         ],
       );
     } else {
-      child = contentWidget ?? child;
+      child = widget.contentWidget ?? child;
     }
 
     return ConstrainedBox(
@@ -142,7 +152,7 @@ class MXDialogBody extends StatelessWidget {
   Widget _buildCustomWidget() {
     EdgeInsets margin = const EdgeInsets.all(0);
 
-    if (dialogCustomWidgetDirectionEnum ==
+    if (widget.dialogCustomWidgetDirectionEnum ==
         MXDialogCustomWidgetDirectionEnum.top) {
       margin = EdgeInsets.only(bottom: space);
     } else {
@@ -154,24 +164,25 @@ class MXDialogBody extends StatelessWidget {
         child: ConstrainedBox(
           constraints: const BoxConstraints(
               minWidth: double.infinity, maxHeight: limitCustomWidgetHeight),
-          child: customWidget,
+          child: widget.customWidget,
         ));
   }
 
   Widget _buildFooter(BuildContext context) {
     Widget footer;
 
-    if (extendButtons != null ||
-        dialogFooterDirectionEnum == MXDialogFooterDirectionEnum.vertical) {
+    if (widget.extendButtons != null ||
+        widget.dialogFooterDirectionEnum ==
+            MXDialogFooterDirectionEnum.vertical) {
       List<MXButton> children = [];
       children.add(_buildConfirmButton(context));
 
-      if (cancelText != null || cancelWidget != null) {
+      if (widget.cancelText != null || widget.cancelWidget != null) {
         children.add(_buttonCancelButton(context));
       }
 
-      if (extendButtons != null) {
-        children.addAll(extendButtons!);
+      if (widget.extendButtons != null) {
+        children.addAll(widget.extendButtons!);
       }
 
       footer = Column(
@@ -182,7 +193,7 @@ class MXDialogBody extends StatelessWidget {
       );
     } else {
       List<Widget> children = [];
-      if (cancelText != null || cancelWidget != null) {
+      if (widget.cancelText != null || widget.cancelWidget != null) {
         children.add(Flexible(flex: 1, child: _buttonCancelButton(context)));
         children.add(SizedBox(
           width: space / 2,
@@ -208,16 +219,17 @@ class MXDialogBody extends StatelessWidget {
   }
 
   MXButton _buildConfirmButton(BuildContext context) {
-    return confirmWidget ?? _buildDefaultButton(context, true);
+    return widget.confirmWidget ?? _buildDefaultButton(context, true);
   }
 
   MXButton _buttonCancelButton(BuildContext context) {
-    return cancelWidget ?? _buildDefaultButton(context, false);
+    return widget.cancelWidget ?? _buildDefaultButton(context, false);
   }
 
   MXButton _buildDefaultButton(BuildContext context, bool isConfirm) {
     return MXButton(
-      text: isConfirm ? confirmText : cancelText!,
+      loading: loading,
+      text: isConfirm ? widget.confirmText : widget.cancelText!,
       textStyle: TextStyle(
           fontSize: MXTheme.of(context).fontBodyMedium!.size,
           color: isConfirm
@@ -231,28 +243,52 @@ class MXDialogBody extends StatelessWidget {
       themeEnum: MXButtonThemeEnum.primary,
       afterClickButtonCallback: () {
         if (isConfirm) {
-          confirmCallback != null
-              ? confirmCallback?.call()
-              : Navigator.pop(context);
+          _onCallConfirmCallback();
         } else {
-          cancelCallback != null
-              ? cancelCallback?.call()
+          widget.cancelCallback != null
+              ? widget.cancelCallback?.call()
               : Navigator.pop(context);
         }
       },
     );
   }
 
+// 只有当类型为confirm类型时的确认按钮出发方法
+  void _onCallConfirmCallback() async {
+    if (widget.mxDialogLoadingCallback != null) {
+      setState(() {
+        loading = true;
+      });
+
+      widget.mxDialogLoadingCallback!.call().then((value) => {
+            if (value)
+              {
+                {Navigator.pop(context)}
+              }
+            else
+              {
+                setState(() {
+                  loading = false;
+                })
+              }
+          });
+    } else {
+      widget.confirmCallback != null
+          ? widget.confirmCallback?.call()
+          : Navigator.pop(context);
+    }
+  }
+
   Widget _buildContent(BuildContext context) {
     List<Widget> children = [];
 
-    if (customWidget != null &&
-        dialogCustomWidgetDirectionEnum ==
+    if (widget.customWidget != null &&
+        widget.dialogCustomWidgetDirectionEnum ==
             MXDialogCustomWidgetDirectionEnum.top) {
       children.add(_buildCustomWidget());
     }
 
-    if (title != null) {
+    if (widget.title != null) {
       children.add(_buildTitle(context));
     }
 
@@ -288,13 +324,13 @@ class MXDialogBody extends StatelessWidget {
             top: space / 2,
             right: space / 2,
             child: Visibility(
-                visible: cancelCallback != null,
+                visible: widget.cancelCallback != null,
                 child: MXIcon(
                   iconFontSize: 24,
                   icon: Icons.close,
                   action: () {
-                    closeCallback != null
-                        ? closeCallback?.call()
+                    widget.closeCallback != null
+                        ? widget.closeCallback?.call()
                         : Navigator.pop(context);
                   },
                 ))),

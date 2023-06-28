@@ -113,4 +113,8 @@ export 'widgets/authCode/mx_auth_code_controller.dart';
 // popUp组件
 export 'widgets/popUp/mx_pop_up.dart';
 
+// 对话弹窗组件
 export 'widgets/dialog/mx_dialog.dart';
+
+// stepper组件
+export 'widgets/stepper/mx_stepper.dart';

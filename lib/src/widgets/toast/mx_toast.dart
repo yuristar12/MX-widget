@@ -16,24 +16,39 @@ class MXToast {
   // ignore: prefer_final_fields
   static Duration _defaultDuration = const Duration(milliseconds: 3000);
 
-  void _initOverLayState(BuildContext context) {
+  void _initOverLayState(BuildContext? context, OverlayState? state) {
+    if (context == null && state == null) {
+      return;
+    }
+
     if (show) {
       hidden();
     }
 
-    _overlayState = Overlay.of(context);
-    show = true;
+    if (context != null) {
+      _overlayState = Overlay.of(context);
+      show = true;
+      return;
+    }
+
+    if (state != null) {
+      _overlayState = state;
+      show = true;
+      return;
+    }
   }
 
   void _insertOverlay(Widget child) {
-    if (_overlayEntry == null) {
+    if (_overlayEntry == null && _overlayState != null) {
       _overlayEntry = OverlayEntry(builder: (BuildContext context) {
         return AnimatedOpacity(
             opacity: show ? 1.0 : 0.0,
             duration: const Duration(milliseconds: 300),
             child: child);
       });
-      _overlayState?.insert(_overlayEntry!);
+      if (_overlayState != null) {
+        _overlayState?.insert(_overlayEntry!);
+      }
     }
   }
 
@@ -48,15 +63,19 @@ class MXToast {
   void hidden() {
     _timer?.cancel();
     _timer = null;
-    _overlayEntry?.remove();
+    if (_overlayEntry != null) {
+      _overlayEntry?.remove();
+    }
+
     _overlayEntry = null;
     show = false;
   }
 
-  void toastByText(BuildContext context, String text,
+  void toastByText(BuildContext? context, String text,
       {Duration? duration,
+      OverlayState? state,
       MXToastDirectionEnum directionEnum = MXToastDirectionEnum.horizontal}) {
-    _initOverLayState(context);
+    _initOverLayState(context, state);
 
     _insertOverlay(
       MXToastBody(
@@ -68,10 +87,11 @@ class MXToast {
     startDown(duration);
   }
 
-  void toastBySuccess(BuildContext context, String text,
+  void toastBySuccess(BuildContext? context, String text,
       {Duration? duration,
+      OverlayState? state,
       MXToastDirectionEnum directionEnum = MXToastDirectionEnum.horizontal}) {
-    _initOverLayState(context);
+    _initOverLayState(context, state);
 
     _insertOverlay(
       MXToastBody(
@@ -83,10 +103,11 @@ class MXToast {
     startDown(duration);
   }
 
-  void toastByError(BuildContext context, String text,
+  void toastByError(BuildContext? context, String text,
       {Duration? duration,
+      OverlayState? state,
       MXToastDirectionEnum directionEnum = MXToastDirectionEnum.horizontal}) {
-    _initOverLayState(context);
+    _initOverLayState(context, state);
 
     _insertOverlay(
       MXToastBody(
@@ -98,10 +119,11 @@ class MXToast {
     startDown(duration);
   }
 
-  MXToast toastByLoading(BuildContext context,
-      {String text = '正在加载中',
+  MXToast toastByLoading(BuildContext? context,
+      {String text = '正在加载中。。。',
+      OverlayState? state,
       MXToastDirectionEnum directionEnum = MXToastDirectionEnum.vertical}) {
-    _initOverLayState(context);
+    _initOverLayState(context, state);
 
     _insertOverlay(
       MXToastBody(
@@ -115,7 +137,7 @@ class MXToast {
   }
 }
 
-_buildLoadingWidget(BuildContext context, MXToastDirectionEnum directionEnum) {
+_buildLoadingWidget(BuildContext? context, MXToastDirectionEnum directionEnum) {
   if (directionEnum == MXToastDirectionEnum.horizontal) {
     return Row(
       children: [

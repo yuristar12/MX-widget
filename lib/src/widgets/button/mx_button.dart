@@ -14,23 +14,26 @@ import 'package:mx_widget/src/widgets/button/mx_button_style.dart';
 /// [typeEnum] 按钮的类型 填充/文字/外框线
 /// [shape] 椭圆/矩形带圆角/圆形
 /// [sizeEnum] 按钮的尺寸 大/中/小/迷你
+/// [loading] 按钮的loading状态
 class MXButton extends StatefulWidget {
-  const MXButton({
-    super.key,
-    required this.text,
-    required this.themeEnum,
-    this.slot,
-    this.icon,
-    this.disabled = false,
-    this.customIconWidget,
-    this.afterClickButtonCallback,
-    this.afterOnLonePressButtonCallback,
-    this.shape = MXButtonShapeEnum.rect,
-    this.typeEnum = MXButtonTypeEnum.fill,
-    this.sizeEnum = MXButtonSizeEnum.medium,
-    this.customMargin,
-    this.textStyle,
-  });
+  const MXButton(
+      {super.key,
+      required this.text,
+      required this.themeEnum,
+      this.slot,
+      this.icon,
+      this.disabled = false,
+      this.customIconWidget,
+      this.afterClickButtonCallback,
+      this.afterOnLonePressButtonCallback,
+      this.shape = MXButtonShapeEnum.rect,
+      this.typeEnum = MXButtonTypeEnum.fill,
+      this.sizeEnum = MXButtonSizeEnum.medium,
+      this.loading = false,
+      this.customMargin,
+      this.textStyle,
+      this.customHeight,
+      this.isLine = false});
 
   /// 按钮文字内容
   final String text;
@@ -68,8 +71,16 @@ class MXButton extends StatefulWidget {
   final Widget? customIconWidget;
 
   /// 自定义按钮的margin距离
-
   final EdgeInsets? customMargin;
+
+  /// loading状态
+  final bool loading;
+
+  /// 自定义高度
+  final double? customHeight;
+
+  /// 是否独占一行
+  final bool isLine;
 
   @override
   State<MXButton> createState() => _MXButtonState();
@@ -91,7 +102,7 @@ class _MXButtonState extends State<MXButton> {
   /// 初始化的时候需要判断按钮是否是处于禁用状态
   void initState() {
     super.initState();
-    if (widget.disabled) {
+    if (widget.disabled || widget.loading) {
       statusEnum = MXButtonStatusEnum.disabled;
     }
   }
@@ -100,7 +111,7 @@ class _MXButtonState extends State<MXButton> {
   void didUpdateWidget(covariant MXButton oldWidget) {
     super.didUpdateWidget(oldWidget);
     setState(() {
-      if (widget.disabled) {
+      if (widget.disabled || widget.loading) {
         statusEnum = MXButtonStatusEnum.disabled;
       } else {
         statusEnum = MXButtonStatusEnum.normal;
@@ -127,7 +138,7 @@ class _MXButtonState extends State<MXButton> {
       child: buildButtonChild(context),
     );
 
-    if (widget.disabled) {
+    if (widget.disabled || widget.loading) {
       return buttonWrap;
     }
 
@@ -136,19 +147,19 @@ class _MXButtonState extends State<MXButton> {
       onLongPress: widget.afterOnLonePressButtonCallback,
       child: buttonWrap,
       onTapDown: (details) {
-        if (widget.disabled) return;
+        if (widget.disabled || widget.loading) return;
         setState(() {
           statusEnum = MXButtonStatusEnum.click;
         });
       },
       onTapUp: (details) {
-        if (widget.disabled) return;
+        if (widget.disabled || widget.loading) return;
         setState(() {
           statusEnum = MXButtonStatusEnum.normal;
         });
       },
       onTapCancel: () {
-        if (widget.disabled) return;
+        if (widget.disabled || widget.loading) return;
         setState(() {
           statusEnum = MXButtonStatusEnum.normal;
         });
@@ -215,25 +226,25 @@ class _MXButtonState extends State<MXButton> {
     switch (widget.sizeEnum) {
       case MXButtonSizeEnum.large:
         baseNum = MXTheme.of(context).space16;
-        horizontal = isCenter ? baseNum : baseNum + 4;
-        vertical = baseNum;
+        horizontal = isCenter ? baseNum - 4 : baseNum + 4;
+        vertical = baseNum - 4;
         break;
       case MXButtonSizeEnum.medium:
-        baseNum = MXTheme.of(context).space16 - 2;
-        horizontal = isCenter ? baseNum : baseNum + 4;
-        vertical = baseNum;
+        baseNum = MXTheme.of(context).space16;
+        horizontal = isCenter ? baseNum / 2 : baseNum;
+        vertical = baseNum / 2;
 
         break;
       case MXButtonSizeEnum.small:
-        baseNum = MXTheme.of(context).space12 - 2;
-        horizontal = isCenter ? baseNum : baseNum + 2;
-        vertical = baseNum;
+        baseNum = MXTheme.of(context).space12;
+        horizontal = isCenter ? 5 : baseNum;
+        vertical = 5;
 
         break;
       case MXButtonSizeEnum.mini:
-        baseNum = MXTheme.of(context).space8 - 2;
-        horizontal = isCenter ? baseNum : baseNum + 2;
-        vertical = baseNum;
+        baseNum = MXTheme.of(context).space8;
+        horizontal = isCenter ? 3 : baseNum;
+        vertical = 3;
         break;
     }
 
@@ -249,12 +260,21 @@ class _MXButtonState extends State<MXButton> {
   Widget? _getIcon() {
     if (widget.customIconWidget != null) {
       return widget.customIconWidget!;
-    } else if (widget.icon != null) {
+    } else if (widget.icon != null || widget.loading) {
+      // 如果loading状态与icon同时存在优先loading生效
+      double size = _fontSize(context).size;
+      if (widget.loading) {
+        return MXCircleLoading(
+          size: size,
+          circleColor: MXTheme.of(context).whiteColor,
+        );
+      }
+
       return MXIcon(
         useDefaultPadding: false,
         icon: widget.icon!,
         iconColor: buttonStyle.textColor,
-        iconFontSize: _fontStyle(context).fontSize,
+        iconFontSize: size,
       );
     }
     return null;
@@ -279,28 +299,30 @@ class _MXButtonState extends State<MXButton> {
   TextStyle _fontStyle(BuildContext context) {
     // 需要判断是否文字内容为数字
 
-    return widget.textStyle ?? TextStyle(color: buttonStyle.textColor);
+    return widget.textStyle ??
+        TextStyle(color: buttonStyle.textColor, fontWeight: FontWeight.bold);
   }
 
   MXFontStyle _fontSize(BuildContext context) {
     var sizeEnum = widget.sizeEnum;
     switch (sizeEnum) {
       case MXButtonSizeEnum.large:
-        return MXTheme.of(context).fontTitleSmall!;
+        return MXTheme.of(context).fontBodyMedium!;
       case MXButtonSizeEnum.medium:
-        return MXTheme.of(context).fontBodyLarge!;
+        return MXTheme.of(context).fontBodyMedium!;
       case MXButtonSizeEnum.small:
         return MXTheme.of(context).fontBodySmall!;
       case MXButtonSizeEnum.mini:
-        return MXTheme.of(context).fontInfoLarge!;
+        return MXTheme.of(context).fontBodySmall!;
     }
   }
 
   double? _width() {
     var sizeEnum = widget.sizeEnum;
 
-    if (widget.shape == MXButtonShapeEnum.circ ||
-        widget.shape == MXButtonShapeEnum.square) {
+    if (!widget.isLine &&
+        (widget.shape == MXButtonShapeEnum.circ ||
+            widget.shape == MXButtonShapeEnum.square)) {
       switch (sizeEnum) {
         case MXButtonSizeEnum.large:
           return 50;
@@ -335,21 +357,21 @@ class _MXButtonState extends State<MXButton> {
   }
 
   double? _height() {
-    var sizeEnum = widget.sizeEnum;
-    if (widget.shape == MXButtonShapeEnum.circ ||
-        widget.shape == MXButtonShapeEnum.circ) {
-      switch (sizeEnum) {
-        case MXButtonSizeEnum.large:
-          return 50;
-        case MXButtonSizeEnum.medium:
-          return 44;
-        case MXButtonSizeEnum.small:
-          return 32;
-        case MXButtonSizeEnum.mini:
-          return 24;
-      }
+    if (widget.customHeight != null) {
+      return widget.customHeight;
     }
-    return null;
+    var sizeEnum = widget.sizeEnum;
+
+    switch (sizeEnum) {
+      case MXButtonSizeEnum.large:
+        return 48;
+      case MXButtonSizeEnum.medium:
+        return 40;
+      case MXButtonSizeEnum.small:
+        return 34;
+      case MXButtonSizeEnum.mini:
+        return 32;
+    }
   }
 
   /// 设置按钮的主题样式

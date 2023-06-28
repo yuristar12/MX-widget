@@ -109,6 +109,7 @@ class MXDialog {
       VoidCallback? confirmCallback,
       VoidCallback? closeCallback,
       VoidCallback? cancelCallback,
+      MXDialogLoadingCallback? mxDialogLoadingCallback,
       MXButton? confirmWidget,
       MXButton? cancelWidget,
       Widget? contentWidget,
@@ -127,6 +128,7 @@ class MXDialog {
       contentWidget: contentWidget,
       contentStyle: contentStyle,
       confirmText: confirmText,
+      mxDialogLoadingCallback: mxDialogLoadingCallback,
       dialogFooterDirectionEnum: dialogFooterDirectionEnum,
       confirmCallback: confirmCallback,
     );
