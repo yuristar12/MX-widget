@@ -39,7 +39,7 @@ class MXPopScope extends StatelessWidget {
     }
     onPopTime = DateTime.now();
     MXToast()
-        .toastByText(context, customText ?? "再按一次推出App", duration: duration);
+        .toastByText(context, customText ?? "再按一次退出App", duration: duration);
   }
 
   @override

@@ -56,3 +56,12 @@
   调整button按钮组件样式
   dialog confirm类型新增loading回调方法
   input新增onTapOutCallback回调方法
+
+
+## 0.1.1
+
+- TODO:
+  新增 collapse 折叠面板组件。
+  新增 grid 宫格组件。
+  新增 searchBar 搜索组件
+  新增 dropDownMenu 下拉菜单组件

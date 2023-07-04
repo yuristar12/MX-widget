@@ -159,6 +159,262 @@ class _MyHomePageState extends State<MyHomePage>
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              const SizedBox(
+                height: 20,
+              ),
+
+              MXCollapse(
+                  controller:
+                      MXCollapsePannerController(isOnlyOne: false, initValue: [
+                '2'
+              ], collapseItemList: [
+                MXCollapsePannerModel(
+                    id: '1',
+                    mxCollapsePlacementEnum: MXCollapsePlacementEnum.top,
+                    title: "折叠面板标题上面",
+                    collapseNotice: '关闭',
+                    noCollapseNotice: '展开',
+                    child: Container(
+                      height: 300,
+                      color: MXTheme.of(context).infoColor1,
+                    )),
+                MXCollapsePannerModel(
+                    id: '2',
+                    title: "折叠面板标题2",
+                    child: Container(
+                      height: 300,
+                      color: MXTheme.of(context).infoColor1,
+                    )),
+                MXCollapsePannerModel(
+                    id: '3',
+                    title: "折叠面板标题3",
+                    child: Container(
+                      height: 300,
+                      color: MXTheme.of(context).infoColor1,
+                    )),
+                MXCollapsePannerModel(
+                    id: '4',
+                    title: "折叠面板标题4",
+                    child: Container(
+                      height: 300,
+                      color: MXTheme.of(context).infoColor1,
+                    )),
+              ])),
+
+              const SizedBox(
+                height: 20,
+              ),
+
+              MXSearchBar(
+                searchBarRightIconList: [
+                  MXIcon(
+                      useDefaultPadding: false,
+                      action: () {},
+                      icon: Icons.chair)
+                ],
+                controller: textEditingController,
+                inputRightIcon: Icons.chat_bubble_outline_rounded,
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+              MXGrid(
+                  space: 0,
+                  size: MXGirdSizeEnum.large,
+                  column: 2,
+                  theme: MXGirdThemeEnum.card,
+                  gridItemAxis: Axis.horizontal,
+                  itemList: [
+                    MXGridItemModel(
+                      title: '标题文字',
+                      des: '描述文字',
+                      netUrl:
+                          'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                    ),
+                    MXGridItemModel(
+                      title: '标题文字',
+                      des: '描述文字',
+                      netUrl:
+                          'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                    ),
+                  ]),
+              const SizedBox(
+                height: 20,
+              ),
+
+              MXGrid(
+                  space: 0,
+                  useBorder: true,
+                  size: MXGirdSizeEnum.large,
+                  column: 2,
+                  gridItemAxis: Axis.horizontal,
+                  itemList: [
+                    MXGridItemModel(
+                      title: '标题文字',
+                      des: '描述文字',
+                      netUrl:
+                          'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                    ),
+                    MXGridItemModel(
+                      title: '标题文字',
+                      des: '描述文字',
+                      netUrl:
+                          'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                    ),
+                  ]),
+              const SizedBox(
+                height: 20,
+              ),
+              MXGrid(
+                space: 0,
+                useBorder: false,
+                size: MXGirdSizeEnum.large,
+                column: 4,
+                gridItemAxis: Axis.vertical,
+                itemList: [
+                  MXGridItemModel(
+                    title: '标题文字',
+                    netUrl:
+                        'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                  ),
+                  MXGridItemModel(
+                    title: '标题文字',
+                    netUrl:
+                        'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                  ),
+                  MXGridItemModel(
+                    title: '标题文字',
+                    netUrl:
+                        'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                  ),
+                  MXGridItemModel(
+                    title: '标题文字',
+                    netUrl:
+                        'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                  ),
+                ],
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+              MXGrid(
+                space: 0,
+                useBorder: false,
+                size: MXGirdSizeEnum.large,
+                column: 0,
+                gridItemAxis: Axis.vertical,
+                itemList: [
+                  MXGridItemModel(
+                    title: '标题文字',
+                    netUrl:
+                        'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                  ),
+                  MXGridItemModel(
+                    title: '标题文字',
+                    netUrl:
+                        'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                  ),
+                  MXGridItemModel(
+                    title: '标题文字',
+                    netUrl:
+                        'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                  ),
+                  MXGridItemModel(
+                    title: '标题文字',
+                    netUrl:
+                        'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                  ),
+                  MXGridItemModel(
+                    title: '标题文字',
+                    netUrl:
+                        'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                  ),
+                  MXGridItemModel(
+                    title: '标题文字',
+                    netUrl:
+                        'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                  ),
+                  MXGridItemModel(
+                    title: '标题文字',
+                    netUrl:
+                        'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                  ),
+                  MXGridItemModel(
+                    title: '标题文字',
+                    netUrl:
+                        'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                  ),
+                ],
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+              MXGrid(
+                space: 0,
+                useBorder: true,
+                size: MXGirdSizeEnum.large,
+                column: 4,
+                gridItemAxis: Axis.vertical,
+                itemList: [
+                  MXGridItemModel(
+                    title: '标题文字',
+                    netUrl:
+                        'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                  ),
+                  MXGridItemModel(
+                    title: '标题文字',
+                    netUrl:
+                        'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                  ),
+                  MXGridItemModel(
+                    title: '标题文字',
+                    netUrl:
+                        'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                  ),
+                  MXGridItemModel(
+                    title: '标题文字',
+                    netUrl:
+                        'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                  ),
+                  MXGridItemModel(
+                    title: '标题文字',
+                    netUrl:
+                        'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                  ),
+                ],
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+
+              MXSwiperCell(
+                title: '右滑操作',
+                note: '副标题',
+                description: '这是一段描述',
+                leftListController: [
+                  SwiperCellHandleController(
+                    text: '取消',
+                    icon: Icons.check,
+                    theme: MXButtonThemeEnum.error,
+                  )
+                ],
+                rightListController: [
+                  SwiperCellHandleController(
+                    text: '选择',
+                    icon: Icons.check,
+                    theme: MXButtonThemeEnum.primary,
+                  ),
+                  SwiperCellHandleController(
+                    text: '取消',
+                    icon: Icons.check,
+                    theme: MXButtonThemeEnum.warn,
+                  )
+                ],
+              ),
               MXStepper(
                 disabled: false,
                 max: 10,
@@ -376,6 +632,112 @@ class _MyHomePageState extends State<MyHomePage>
                 shape: MXButtonShapeEnum.round,
                 sizeEnum: MXButtonSizeEnum.medium,
               ),
+
+              MXDropDownMenu(menuList: [
+                DropDownMenuItemController(
+                    label: '单选菜单',
+                    columnsEnum: MXDropDownMenuItemColumnsEnum.three,
+                    disabledIds: [
+                      '5',
+                      '7',
+                      '9'
+                    ],
+                    options: [
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项一',
+                        MXDropDownMenuOptionsEnum.value: '1'
+                      },
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项二',
+                        MXDropDownMenuOptionsEnum.value: '2'
+                      },
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项三',
+                        MXDropDownMenuOptionsEnum.value: '3'
+                      },
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项四',
+                        MXDropDownMenuOptionsEnum.value: '4'
+                      },
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项五',
+                        MXDropDownMenuOptionsEnum.value: '5'
+                      },
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项六',
+                        MXDropDownMenuOptionsEnum.value: '6'
+                      },
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项七',
+                        MXDropDownMenuOptionsEnum.value: '7'
+                      },
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项八',
+                        MXDropDownMenuOptionsEnum.value: '8'
+                      },
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项九',
+                        MXDropDownMenuOptionsEnum.value: '9'
+                      },
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项十',
+                        MXDropDownMenuOptionsEnum.value: '10'
+                      }
+                    ]),
+                DropDownMenuItemController(
+                    label: '多选菜单',
+                    multiple: true,
+                    columnsEnum: MXDropDownMenuItemColumnsEnum.three,
+                    disabledIds: [],
+                    initValue: [
+                      '3',
+                      '5',
+                      '7',
+                      '9'
+                    ],
+                    options: [
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项一',
+                        MXDropDownMenuOptionsEnum.value: '1'
+                      },
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项二',
+                        MXDropDownMenuOptionsEnum.value: '2'
+                      },
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项三',
+                        MXDropDownMenuOptionsEnum.value: '3'
+                      },
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项四',
+                        MXDropDownMenuOptionsEnum.value: '4'
+                      },
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项五',
+                        MXDropDownMenuOptionsEnum.value: '5'
+                      },
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项六',
+                        MXDropDownMenuOptionsEnum.value: '6'
+                      },
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项七',
+                        MXDropDownMenuOptionsEnum.value: '7'
+                      },
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项八',
+                        MXDropDownMenuOptionsEnum.value: '8'
+                      },
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项九',
+                        MXDropDownMenuOptionsEnum.value: '9'
+                      },
+                      {
+                        MXDropDownMenuOptionsEnum.label: '选项十',
+                        MXDropDownMenuOptionsEnum.value: '10'
+                      }
+                    ])
+              ]),
               MXButton(
                 text: '错误toast',
                 icon: Icons.ac_unit,

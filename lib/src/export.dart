@@ -118,3 +118,26 @@ export 'widgets/dialog/mx_dialog.dart';
 
 // stepper组件
 export 'widgets/stepper/mx_stepper.dart';
+
+// swipercell组件
+export 'widgets/swiperCell/mx_swiper_cell.dart';
+export 'widgets/swiperCell/swiper_cell_handle_controll.dart';
+
+// dropDownMenu组件
+export 'widgets/dropDownMenu/mx_drop_down_menu.dart';
+export 'widgets/dropDownMenu/drop_down_menu_item_controller.dart';
+
+// 退出二次确认组件
+export 'widgets/popScope/mx_pop_scope.dart';
+
+// grid宫格组件
+export 'widgets/grid/mx_grid.dart';
+export 'widgets/grid/mx_grid_item_model.dart';
+
+// searchBar搜索栏组件
+export 'widgets/searchBar/mx_search_bar.dart';
+
+// collapse 组件
+export 'widgets/collapse/mx_collapse.dart';
+export 'widgets/collapse/mx_collapse_panner_controller.dart';
+export 'widgets/collapse/mx_collapse_panner_model.dart';

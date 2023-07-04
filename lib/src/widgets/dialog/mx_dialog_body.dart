@@ -40,6 +40,7 @@ class MXDialogBody extends StatefulWidget {
     this.dialogCustomWidgetDirectionEnum =
         MXDialogCustomWidgetDirectionEnum.center,
     this.mxDialogLoadingCallback,
+    this.onDialogCloseCallback,
   });
 
   final String? title;
@@ -60,6 +61,8 @@ class MXDialogBody extends StatefulWidget {
   final VoidCallback? cancelCallback;
 
   final VoidCallback? closeCallback;
+
+  final VoidCallback? onDialogCloseCallback;
 
   final MXDialogFooterDirectionEnum dialogFooterDirectionEnum;
 
@@ -260,22 +263,24 @@ class _MXDialogBodyState extends State<MXDialogBody> {
         loading = true;
       });
 
-      widget.mxDialogLoadingCallback!.call().then((value) => {
-            if (value)
-              {
-                {Navigator.pop(context)}
-              }
-            else
-              {
-                setState(() {
-                  loading = false;
-                })
-              }
+      widget.mxDialogLoadingCallback!.call().then((value) {
+        if (value) {
+          Navigator.pop(context);
+          widget.onDialogCloseCallback?.call();
+        } else {
+          setState(() {
+            loading = false;
           });
+        }
+      });
     } else {
-      widget.confirmCallback != null
-          ? widget.confirmCallback?.call()
-          : Navigator.pop(context);
+      if (widget.confirmCallback != null) {
+        widget.confirmCallback?.call();
+      } else {
+        Navigator.pop(context);
+
+        widget.onDialogCloseCallback?.call();
+      }
     }
   }
 

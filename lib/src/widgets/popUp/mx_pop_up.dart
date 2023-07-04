@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mx_widget/mx_widget.dart';
+import 'package:mx_widget/src/util/curve_util.dart';
 import 'package:mx_widget/src/widgets/popUp/mx_pop_up_body.dart';
 import 'package:mx_widget/src/widgets/popUp/mx_pop_up_route.dart';
 
@@ -28,17 +29,22 @@ class MXPopUp {
         mxPopUpShowTypeEnum: MXPopUpShowTypeEnum.toBottom,
         customModelColor: customModelColor,
         builder: (BuildContext context) {
-          return MXPopUpBottomBody(
-            title: title,
-            leftText: leftText,
-            rightText: rightText,
-            rightWidget: rightWidget,
-            leftWidget: leftWidget,
-            onLeftCallback: onLeftCallback,
-            onRightCallback: onRightCallback,
-            titleStyle: titleStyle,
-            backgroundColor: backgroundColor,
-            child: child,
+          return AnimatedPadding(
+            curve: CurveUtil.curve_1(),
+            padding: MediaQuery.of(context).viewInsets,
+            duration: const Duration(milliseconds: 100),
+            child: MXPopUpBottomBody(
+              title: title,
+              leftText: leftText,
+              rightText: rightText,
+              rightWidget: rightWidget,
+              leftWidget: leftWidget,
+              onLeftCallback: onLeftCallback,
+              onRightCallback: onRightCallback,
+              titleStyle: titleStyle,
+              backgroundColor: backgroundColor,
+              child: child,
+            ),
           );
         });
   }

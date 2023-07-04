@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mx_widget/mx_widget.dart';
+import 'package:mx_widget/src/util/curve_util.dart';
 
-const Duration popUpToLiveDuration = Duration(milliseconds: 100);
+const Duration popUpToLiveDuration = Duration(milliseconds: 200);
 
 class MXPopUpRoute extends PopupRoute {
   MXPopUpRoute(
@@ -38,7 +39,7 @@ class MXPopUpRoute extends PopupRoute {
       Animation<double> secondaryAnimation, Widget child) {
     if (showTypeEnum == MXPopUpShowTypeEnum.toCenter) {
       return AnimatedScale(
-          curve: Curves.ease,
+          curve: CurveUtil.curve_1(),
           scale: animation.value,
           duration: popUpToLiveDuration,
           child: CustomSingleChildLayout(
@@ -48,7 +49,8 @@ class MXPopUpRoute extends PopupRoute {
           ));
     } else {
       return AnimatedBuilder(
-          animation: animation,
+          animation:
+              CurvedAnimation(parent: animation, curve: CurveUtil.curve_1()),
           builder: (BuildContext context, child) {
             return CustomSingleChildLayout(
               delegate: MXSingleChildLayoutDelegate(

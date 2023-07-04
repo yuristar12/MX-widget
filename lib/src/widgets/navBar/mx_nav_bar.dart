@@ -115,10 +115,10 @@ class _MXNavBarState extends State<MXNavBar> {
 
   Widget _backIcon() {
     return MXIcon(
-      iconFontSize: 30,
+      iconFontSize: 36,
       useDefaultPadding: false,
       iconColor: _getFontColor(),
-      icon: Icons.keyboard_arrow_left_rounded,
+      icon: Icons.keyboard_arrow_left_sharp,
       iconSizeEnum: MXIconSizeEnum.large,
       action: () {
         widget.onHandleBack?.call();

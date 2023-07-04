@@ -305,11 +305,63 @@ enum MXDialogFooterDirectionEnum { horizontal, vertical }
 
 enum MXDialogCustomWidgetDirectionEnum { top, center }
 
-/// loading状态的回调方法
+/// dialongloading状态的回调方法
 typedef MXDialogLoadingCallback = Future<bool> Function();
 
+/// stepper步骤器组件
 enum MXStepperSizeEnum { mini, small, medium }
 
 enum MXStepperThemeEnum { fill, plain, bord }
 
 typedef MXStepperOnChangeCallback = void Function(int value);
+
+///
+/// 下拉菜单
+typedef MXDropDownMenuOnChangeCallback = void Function(List<String>);
+
+enum MXDropDownMenuItemColumnsEnum { one, two, three }
+
+/// 下拉菜单的单个菜单item属性
+/// [value] 对应id
+/// [label] 对应标题
+enum MXDropDownMenuOptionsEnum {
+  value,
+  label,
+}
+
+/// gird 宫格组件
+/// [norma] 一般
+/// [card] 卡片
+enum MXGirdThemeEnum {
+  norma,
+  card,
+}
+
+/// gird 每个item的大小
+/// [mini] 小
+/// [medium] 中等
+/// [large] 大
+enum MXGirdSizeEnum {
+  mini,
+  medium,
+  large,
+}
+
+/// gird 单个item 点击事件
+/// [index] 对应数组下标
+typedef MXGirdItemClickCallback = void Function(int index);
+
+/// searchBar 的样式
+///
+enum MXSearchBarThemeEnum {
+  rect,
+  round,
+}
+
+/// collapse 的排列位置
+enum MXCollapsePlacementEnum {
+  top,
+  bottom,
+}
+
+typedef MXCollapseOnChange = void Function(List<String>? value);

@@ -109,14 +109,20 @@ class _MXButtonState extends State<MXButton> {
 
   @override
   void didUpdateWidget(covariant MXButton oldWidget) {
-    super.didUpdateWidget(oldWidget);
+    if (widget.disabled || widget.loading) {
+      statusEnum = MXButtonStatusEnum.disabled;
+    } else {
+      statusEnum = MXButtonStatusEnum.normal;
+    }
+
+    if (widget.typeEnum != oldWidget.typeEnum ||
+        widget.themeEnum != oldWidget.themeEnum) {}
+
     setState(() {
-      if (widget.disabled || widget.loading) {
-        statusEnum = MXButtonStatusEnum.disabled;
-      } else {
-        statusEnum = MXButtonStatusEnum.normal;
-      }
+      cacheNormalStyle = null;
     });
+
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -341,7 +347,7 @@ class _MXButtonState extends State<MXButton> {
     switch (widget.shape) {
       case MXButtonShapeEnum.rect:
       case MXButtonShapeEnum.square:
-        return Radius.circular(MXTheme.of(context).radiusMedium);
+        return Radius.circular(MXTheme.of(context).radiusMedium - 2);
       case MXButtonShapeEnum.round:
       case MXButtonShapeEnum.circ:
         return Radius.circular(MXTheme.of(context).radiusRound);

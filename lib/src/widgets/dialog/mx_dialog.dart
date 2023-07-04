@@ -101,6 +101,7 @@ class MXDialog {
   /// [contentWidget] 自定义弹窗内容的部件
   /// dialogByConfigAndCustomWidget的弹窗高度限制为160
   /// [dialogFooterDirectionEnum] 弹窗底部按钮的排列方式 horizontal与vertical
+  /// []
   static void dialogByConfirm(
       {required String cancelText,
       required String confirmText,
@@ -109,6 +110,7 @@ class MXDialog {
       VoidCallback? confirmCallback,
       VoidCallback? closeCallback,
       VoidCallback? cancelCallback,
+      VoidCallback? onDialogCloseCallback,
       MXDialogLoadingCallback? mxDialogLoadingCallback,
       MXButton? confirmWidget,
       MXButton? cancelWidget,
@@ -131,6 +133,7 @@ class MXDialog {
       mxDialogLoadingCallback: mxDialogLoadingCallback,
       dialogFooterDirectionEnum: dialogFooterDirectionEnum,
       confirmCallback: confirmCallback,
+      onDialogCloseCallback: onDialogCloseCallback,
     );
     showDialog(context, child);
   }

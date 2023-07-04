@@ -264,7 +264,7 @@ class _MXStepperState extends State<MXStepper> {
                   bottomRight: Radius.circular(radius))
               : BorderRadius.only(
                   topLeft: Radius.circular(radius),
-                  bottomRight: Radius.circular(radius))),
+                  bottomLeft: Radius.circular(radius))),
       child: Center(
         child: MXIcon(
           icon: iconData,

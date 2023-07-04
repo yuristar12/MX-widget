@@ -97,8 +97,9 @@ class MXPopUpBottomBody extends StatelessWidget {
       padding: EdgeInsets.all(MXTheme.of(context).space4),
       decoration: BoxDecoration(
           color: backgroundColor ?? MXTheme.of(context).whiteColor,
-          borderRadius:
-              BorderRadius.circular(MXTheme.of(context).radiusMedium)),
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(MXTheme.of(context).radiusMedium),
+              topRight: Radius.circular(MXTheme.of(context).radiusMedium))),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [_buildTitle(context), child],

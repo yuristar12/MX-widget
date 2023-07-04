@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:mx_widget/mx_widget.dart';
 import 'package:mx_widget/src/widgets/input/mx_input_body.dart';
 
-const double verticalPadding = 8;
 const double horizontalPadding = 14;
 
 ///--------------------input组件用于输入小段文字，如果需要输入长文本需改换成textarea组件
@@ -69,6 +68,8 @@ class MXInput extends StatelessWidget {
 
   final int? maxLength;
 
+  final double verticalPadding;
+
   final Color? cursorColor;
   final String? placeholder;
   final TextInputType? keyboardType;
@@ -121,6 +122,7 @@ class MXInput extends StatelessWidget {
     this.maxLength,
     this.useBottomDividerLine = false,
     this.dividerColor,
+    this.verticalPadding = 8,
   }) : assert(() {
           if (labelText != null && labelText.length > 10) {
             throw FlutterError('使用input组件如果lableText存在字符数必须小于等于10');
@@ -278,7 +280,7 @@ class MXInput extends StatelessWidget {
         cursorColor: _getCursorColor(context),
         placeholder: placeholder,
         keyboardType: keyboardType,
-        inputBackgroundColor: inputBackgroundColor,
+        inputBackgroundColor: _getBackgroundColor(context),
         placeholderStyle: _getPlaceholderStyle(context),
         decoration: decoration,
         onChange: onChange,
@@ -319,7 +321,7 @@ class MXInput extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.only(right: horizontalPadding),
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: children),
         ));
@@ -390,8 +392,7 @@ class MXInput extends StatelessWidget {
 
     return Container(
       color: _getBackgroundColor(context),
-      padding:
-          const EdgeInsets.only(top: verticalPadding, bottom: verticalPadding),
+      padding: EdgeInsets.only(top: verticalPadding, bottom: verticalPadding),
       child: child,
     );
   }

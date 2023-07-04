@@ -42,7 +42,9 @@ class MXButtonStyle {
         break;
       case MXButtonThemeEnum.info:
         backgroundColor = _getColorByInfo(context, statusEnum);
-        textColor = MXTheme.of(context).fontUsePrimaryColor;
+        textColor = statusEnum == MXButtonStatusEnum.disabled
+            ? MXTheme.of(context).fontUseDisabledColor
+            : MXTheme.of(context).fontUsePrimaryColor;
         break;
     }
 
@@ -59,23 +61,33 @@ class MXButtonStyle {
     switch (theme) {
       case MXButtonThemeEnum.primary:
         backgroundColor = _getColorByPlainPrimary(context, statusEnum);
-        textColor = MXTheme.of(context).brandPrimaryColor;
+        textColor = statusEnum == MXButtonStatusEnum.disabled
+            ? MXTheme.of(context).brandDisabledColor
+            : MXTheme.of(context).brandPrimaryColor;
         break;
       case MXButtonThemeEnum.error:
         backgroundColor = _getColorByPlainError(context, statusEnum);
-        textColor = MXTheme.of(context).errorPrimaryColor;
+        textColor = statusEnum == MXButtonStatusEnum.disabled
+            ? MXTheme.of(context).errorDisabledColor
+            : MXTheme.of(context).errorPrimaryColor;
         break;
       case MXButtonThemeEnum.success:
         backgroundColor = _getColorByPlainSuccess(context, statusEnum);
-        textColor = MXTheme.of(context).successPrimaryColor;
+        textColor = statusEnum == MXButtonStatusEnum.disabled
+            ? MXTheme.of(context).successDisabledColor
+            : MXTheme.of(context).successPrimaryColor;
         break;
       case MXButtonThemeEnum.warn:
         backgroundColor = _getColorByPlainWarn(context, statusEnum);
-        textColor = MXTheme.of(context).warnPrimaryColor;
+        textColor = statusEnum == MXButtonStatusEnum.disabled
+            ? MXTheme.of(context).warnDisabledColor
+            : MXTheme.of(context).warnPrimaryColor;
         break;
       case MXButtonThemeEnum.info:
         backgroundColor = _getColorByInfo(context, statusEnum);
-        textColor = MXTheme.of(context).fontUsePrimaryColor;
+        textColor = statusEnum == MXButtonStatusEnum.disabled
+            ? MXTheme.of(context).fontUseDisabledColor
+            : MXTheme.of(context).fontUsePrimaryColor;
         break;
     }
 
@@ -229,7 +241,7 @@ class MXButtonStyle {
     }
   }
 
-  /// 根据按钮的状态来获取对应的警告色
+  /// 根据按钮的状态来获取对应的中性色
   Color _getColorByInfo(BuildContext context, MXButtonStatusEnum statusEnum) {
     switch (statusEnum) {
       case MXButtonStatusEnum.normal:
