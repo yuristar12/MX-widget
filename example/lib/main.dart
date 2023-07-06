@@ -89,9 +89,18 @@ class _MyHomePageState extends State<MyHomePage>
     onConfirm: (p0) {},
   );
 
+  late MXCountDownController countDownController;
+
   @override
   void initState() {
     super.initState();
+
+    countDownController = MXCountDownController(
+      time: 1000 * 10,
+      onFinish: () {
+        MXToast().toastBySuccess(context, '倒计时结束');
+      },
+    );
     _tabController = TabController(length: 4, vsync: this);
   }
 
@@ -159,6 +168,191 @@ class _MyHomePageState extends State<MyHomePage>
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              const SizedBox(
+                height: 20,
+              ),
+              MXCountDown(
+                autoStare: true,
+                controller: countDownController,
+                size: MXCountDownSizeEnum.lager,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              MXCountDown(
+                autoStare: true,
+                controller: countDownController,
+                size: MXCountDownSizeEnum.medium,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              MXCountDown(
+                autoStare: true,
+                controller: countDownController,
+                size: MXCountDownSizeEnum.mini,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              MXCountDown(
+                autoStare: true,
+                shape: MXCountDownShapeEnum.rect,
+                controller: countDownController,
+                size: MXCountDownSizeEnum.lager,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              MXCountDown(
+                autoStare: true,
+                shape: MXCountDownShapeEnum.rect,
+                controller: countDownController,
+                size: MXCountDownSizeEnum.medium,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              MXCountDown(
+                autoStare: true,
+                shape: MXCountDownShapeEnum.rect,
+                controller: countDownController,
+                size: MXCountDownSizeEnum.mini,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              MXCountDown(
+                autoStare: true,
+                shape: MXCountDownShapeEnum.circ,
+                controller: countDownController,
+                size: MXCountDownSizeEnum.lager,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              MXCountDown(
+                autoStare: true,
+                shape: MXCountDownShapeEnum.circ,
+                controller: countDownController,
+                size: MXCountDownSizeEnum.medium,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              MXCountDown(
+                autoStare: true,
+                shape: MXCountDownShapeEnum.circ,
+                controller: countDownController,
+                size: MXCountDownSizeEnum.mini,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              MXCountDown(
+                useUnit: true,
+                autoStare: true,
+                shape: MXCountDownShapeEnum.circ,
+                controller: countDownController,
+                size: MXCountDownSizeEnum.lager,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              MXCountDown(
+                useUnit: true,
+                autoStare: true,
+                shape: MXCountDownShapeEnum.circ,
+                controller: countDownController,
+                size: MXCountDownSizeEnum.medium,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              MXCountDown(
+                useUnit: true,
+                autoStare: true,
+                shape: MXCountDownShapeEnum.circ,
+                controller: countDownController,
+                size: MXCountDownSizeEnum.mini,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+
+              MXCountDown(
+                autoStare: true,
+                format: MXCountDownFormatEnum.ddhhmmsss,
+                controller: countDownController,
+                size: MXCountDownSizeEnum.lager,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              MXCountDown(
+                autoStare: true,
+                useUnit: true,
+                shape: MXCountDownShapeEnum.rect,
+                format: MXCountDownFormatEnum.ddhhmmsss,
+                controller: countDownController,
+                size: MXCountDownSizeEnum.lager,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              MXCountDown(
+                autoStare: true,
+                useUnit: true,
+                shape: MXCountDownShapeEnum.reverse,
+                format: MXCountDownFormatEnum.ddhhmmsss,
+                controller: countDownController,
+                size: MXCountDownSizeEnum.lager,
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+
+              const MXResult(
+                typeEnum: MXResultTypeEnum.primary,
+                title: '成功页面',
+                description: '这是一段描述',
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const MXResult(
+                typeEnum: MXResultTypeEnum.error,
+                title: '错误页面',
+                description: '这是一段描述',
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const MXResult(
+                typeEnum: MXResultTypeEnum.success,
+                title: '成功页面',
+                description: '这是一段描述',
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const MXResult(
+                typeEnum: MXResultTypeEnum.warn,
+                title: '警告页面',
+                description: '这是一段描述',
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+              const MXResult(
+                netUrl:
+                    "https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg",
+                title: '结果页但是自定义网络图片',
+                description: '这是一段描述',
+              ),
+
               const SizedBox(
                 height: 20,
               ),

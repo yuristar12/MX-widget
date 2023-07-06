@@ -48,15 +48,13 @@
   新增 dialog 组件。
   button 组件新增一个 type 类型为 plain。
 
-
 ## 0.1.0
 
 - TODO:
   新增 stepper 步骤器组件。
-  调整button按钮组件样式
-  dialog confirm类型新增loading回调方法
-  input新增onTapOutCallback回调方法
-
+  调整 button 按钮组件样式
+  dialog confirm 类型新增 loading 回调方法
+  input 新增 onTapOutCallback 回调方法
 
 ## 0.1.1
 
@@ -65,3 +63,9 @@
   新增 grid 宫格组件。
   新增 searchBar 搜索组件
   新增 dropDownMenu 下拉菜单组件
+
+  ## 0.1.2
+
+- TODO:
+  新增 countDown 倒计时组件。
+  新增 result 结果页面组件。

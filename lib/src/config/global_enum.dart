@@ -365,3 +365,33 @@ enum MXCollapsePlacementEnum {
 }
 
 typedef MXCollapseOnChange = void Function(List<String>? value);
+
+/// result 结果页
+
+enum MXResultTypeEnum {
+  primary,
+  success,
+  error,
+  warn,
+}
+
+/// countDown组件
+enum MXCountDownFormatEnum {
+  ddhhmmss,
+  ddhhmmsss,
+  hhmmss,
+  hhmmsss,
+}
+
+enum MXCountDownShapeEnum { circ, rect, plain, reverse }
+
+enum MXCountDownSizeEnum {
+  mini,
+  medium,
+  lager,
+}
+
+/// countDown组件改变的回调方法
+typedef MXCountDownOnChange = void Function(int time);
+
+typedef MXCountDownOnFinish = void Function();

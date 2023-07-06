@@ -11,34 +11,42 @@ import '../../util/platform_util.dart';
 ///使用该组件能让中文在android机中强制居中
 //ignore: must_be_immutable
 class MXText extends StatelessWidget {
-  MXText({
-    super.key,
-    this.data,
-    this.font,
-    this.fontWeight,
-    this.fontFamily,
-    this.textColor,
-    this.backgroundColor,
-    this.package,
-    this.isTextThrough = false,
-    this.lineThroughColor,
-    this.style,
-    this.strutStyle,
-    this.textAlign,
-    this.textDirection,
-    this.locale,
-    this.softWrap,
-    this.overflow,
-    this.textScaleFactor,
-    this.maxLines,
-    this.semanticsLabel,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.textSpan,
-    this.forceVerticalCenter = true,
-  });
+  MXText(
+      {super.key,
+      this.data,
+      this.font,
+      this.isNumber = false,
+      this.fontWeight,
+      this.fontFamily,
+      this.textColor,
+      this.backgroundColor,
+      this.package = 'mx_widget',
+      this.isTextThrough = false,
+      this.lineThroughColor,
+      this.style,
+      this.strutStyle,
+      this.textAlign,
+      this.textDirection,
+      this.locale,
+      this.softWrap,
+      this.overflow,
+      this.textScaleFactor,
+      this.maxLines,
+      this.semanticsLabel,
+      this.textWidthBasis,
+      this.textHeightBehavior,
+      this.textSpan,
+      this.forceVerticalCenter = true,
+      this.isLine = true});
 
   final MXFontStyle? font;
+
+  ///是否居中，如果是则采用居中算法的字体，但是该方法会导致文字无法换行
+
+  final bool isLine;
+
+  /// 是否是数字类型，采用将使用字体为DIN显示数字类型
+  final bool isNumber;
 
   /// 字体粗细
   final FontWeight? fontWeight;
@@ -52,7 +60,7 @@ class MXText extends StatelessWidget {
   /// 背景颜色
   final Color? backgroundColor;
 
-  /// 字体包名
+  /// 项目字体包名
   final String? package;
 
   /// 是否是横线穿过样式(删除线)
@@ -109,22 +117,34 @@ class MXText extends StatelessWidget {
 
     paddingConfig ??= TextPaddingConfig.getDefaultConfig();
     var showHeight = min(paddingConfig.heightRate, height);
-    return Container(
-      color: style?.backgroundColor ?? backgroundColor,
-      height: fontSize * height,
-      padding: paddingConfig.getPadding(data, fontSize, height),
-      child: _getRawText(
+    Widget child = _getRawText(
+        context: context, textStyle: getTextStyle(context, height: showHeight));
+    if (isLine && !isNumber) {
+      child = Container(
+          color: style?.backgroundColor ?? backgroundColor,
+          height: fontSize * height,
+          padding: paddingConfig.getPadding(data, fontSize, height),
+          child: child);
+    } else if (isNumber) {
+      child = _getRawText(
           context: context,
-          textStyle: getTextStyle(context, height: showHeight)),
-    );
+          textStyle: getTextStyle(context,
+              height: showHeight, fontfamily: 'DINMedium'));
+    }
+
+    return child;
   }
 
   TextConfiguration? getConfiguration(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<TextConfiguration>();
   }
 
-  TextStyle? getTextStyle(BuildContext? context,
-      {double? height, Color? backgroundColor}) {
+  TextStyle? getTextStyle(
+    BuildContext? context, {
+    double? height,
+    Color? backgroundColor,
+    String? fontfamily,
+  }) {
     var textFont = font ??
         MXTheme.of(context).fontBodyLarge ??
         MXFontStyle(size: 16, lineHeight: 24);
@@ -151,7 +171,7 @@ class MXText extends StatelessWidget {
       decorationStyle: style?.decorationStyle,
       decorationThickness: style?.decorationThickness,
       debugLabel: style?.debugLabel,
-      fontFamily: style?.fontFamily ?? fontFamily?.fontFamily,
+      fontFamily: style?.fontFamily ?? fontfamily ?? fontFamily?.fontFamily,
       fontFamilyFallback: style?.fontFamilyFallback,
       package: package,
     );

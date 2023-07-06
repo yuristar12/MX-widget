@@ -141,3 +141,11 @@ export 'widgets/searchBar/mx_search_bar.dart';
 export 'widgets/collapse/mx_collapse.dart';
 export 'widgets/collapse/mx_collapse_panner_controller.dart';
 export 'widgets/collapse/mx_collapse_panner_model.dart';
+
+// result 结果页组件
+
+export 'widgets/result/mx_result.dart';
+
+// countDown组件
+export 'widgets/countDown/mx_count_down.dart';
+export 'widgets/countDown/mx_count_down_controller.dart';
