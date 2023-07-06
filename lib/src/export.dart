@@ -149,3 +149,7 @@ export 'widgets/result/mx_result.dart';
 // countDown组件
 export 'widgets/countDown/mx_count_down.dart';
 export 'widgets/countDown/mx_count_down_controller.dart';
+
+// 进度条组件
+export 'widgets/progress/mx_progress.dart';
+export 'widgets/progress/mx_progress_controller.dart';

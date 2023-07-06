@@ -9,6 +9,7 @@ class MXAuthCode extends StatefulWidget {
     super.key,
     this.backgroundColor,
     this.textStyle,
+    this.useAutoFocus = true,
     required this.mxAuthCodeController,
   });
 
@@ -17,6 +18,8 @@ class MXAuthCode extends StatefulWidget {
   TextStyle? textStyle;
 
   MXAuthCodeController mxAuthCodeController;
+
+  bool useAutoFocus;
 
   @override
   State<MXAuthCode> createState() => MXAuthCodeState();
@@ -43,7 +46,7 @@ class MXAuthCodeState extends State<MXAuthCode> {
             padding: EdgeInsets.only(
                 right: i == widget.mxAuthCodeController.codeNum - 1 ? 0 : 8),
             child: MXInput(
-              autofocus: i == 0,
+              autofocus: widget.useAutoFocus && i == 0,
               keyboardType: TextInputType.number,
               textAlign: TextAlign.center,
               maxLength: 1,

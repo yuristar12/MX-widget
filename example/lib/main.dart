@@ -91,6 +91,10 @@ class _MyHomePageState extends State<MyHomePage>
 
   late MXCountDownController countDownController;
 
+  late MXProgressController progressController;
+
+  late MXProgressController progressControllerCirc;
+
   @override
   void initState() {
     super.initState();
@@ -102,6 +106,10 @@ class _MyHomePageState extends State<MyHomePage>
       },
     );
     _tabController = TabController(length: 4, vsync: this);
+
+    progressController = MXProgressController(initValue: 25);
+
+    progressControllerCirc = MXProgressController(initValue: 25);
   }
 
   @override
@@ -168,6 +176,131 @@ class _MyHomePageState extends State<MyHomePage>
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              const SizedBox(
+                height: 20,
+              ),
+
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    MXProgress(
+                      /// 支持渐变色
+                      // gradient: LinearGradient(
+                      //   colors: [Colors.blue, Colors.purple],
+                      //   begin: Alignment.centerLeft,
+                      //   end: Alignment.centerRight,
+                      // ),
+                      type: MXProgressTypeEnum.circ,
+                      controller: progressControllerCirc,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Flex(
+                      direction: Axis.horizontal,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Flexible(
+                          child: MXButton(
+                              customMargin: EdgeInsets.all(2),
+                              text: '减少进度',
+                              disabled: disabled,
+                              themeEnum: themeEnum,
+                              afterClickButtonCallback: () {
+                                int value = progressControllerCirc.value - 10;
+                                progressControllerCirc.setProgressValue(value);
+                              }),
+                        ),
+                        Flexible(
+                          child: MXButton(
+                              customMargin: EdgeInsets.all(2),
+                              text: '重置进度',
+                              disabled: disabled,
+                              themeEnum: themeEnum,
+                              afterClickButtonCallback: () {
+                                progressControllerCirc.reset();
+                              }),
+                        ),
+                        Flexible(
+                          child: MXButton(
+                              customMargin: EdgeInsets.all(2),
+                              text: '增加进度',
+                              disabled: disabled,
+                              themeEnum: themeEnum,
+                              afterClickButtonCallback: () {
+                                int value = progressControllerCirc.value + 10;
+                                progressControllerCirc.setProgressValue(value);
+                              }),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  children: [
+                    MXProgress(
+                      controller: progressController,
+
+                      /// 支持渐变色
+                      // gradient: LinearGradient(
+                      //   colors: [Colors.blue, Colors.purple],
+                      //   begin: Alignment.centerLeft,
+                      //   end: Alignment.centerRight,
+                      // ),
+                    ),
+                    Flex(
+                      direction: Axis.horizontal,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Flexible(
+                          child: MXButton(
+                              customMargin: EdgeInsets.all(2),
+                              text: '减少进度',
+                              disabled: disabled,
+                              themeEnum: themeEnum,
+                              afterClickButtonCallback: () {
+                                int value = progressController.value - 10;
+                                progressController.setProgressValue(value);
+                              }),
+                        ),
+                        Flexible(
+                          child: MXButton(
+                              customMargin: EdgeInsets.all(2),
+                              text: '重置进度',
+                              disabled: disabled,
+                              themeEnum: themeEnum,
+                              afterClickButtonCallback: () {
+                                progressController.reset();
+                              }),
+                        ),
+                        Flexible(
+                          child: MXButton(
+                              customMargin: EdgeInsets.all(2),
+                              text: '增加进度',
+                              disabled: disabled,
+                              themeEnum: themeEnum,
+                              afterClickButtonCallback: () {
+                                int value = progressController.value + 10;
+                                progressController.setProgressValue(value);
+                              }),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+
               const SizedBox(
                 height: 20,
               ),
@@ -786,7 +919,10 @@ class _MyHomePageState extends State<MyHomePage>
                 },
               ),
 
-              MXAuthCode(mxAuthCodeController: mxAuthCodeController),
+              MXAuthCode(
+                mxAuthCodeController: mxAuthCodeController,
+                useAutoFocus: false,
+              ),
               MXButton(
                 text: '设置code为错误状态',
                 icon: Icons.ac_unit,

@@ -53,11 +53,20 @@ class _MXCircleLoadingState extends State<MXCircleLoading>
 
   @override
   Widget build(BuildContext context) {
-    double size = _animation.value * 2 * pi;
+    double roateSize = _animation.value * 2 * pi;
+
+    // return SizedBox(
+    //     width: widget.size,
+    //     height: widget.size,
+    //     child: CustomPaint(
+    //       painter: _CirclePointer(
+    //           widget.circleColor ?? MXTheme.of(context).brandPrimaryColor,
+    //           widget.strokeWidth),
+    //     ));
 
     return Transform(
         alignment: Alignment.center,
-        transform: Matrix4.identity()..rotateZ(size),
+        transform: Matrix4.identity()..rotateZ(roateSize),
         child: SizedBox(
             width: widget.size,
             height: widget.size,

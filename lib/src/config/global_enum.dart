@@ -395,3 +395,16 @@ enum MXCountDownSizeEnum {
 typedef MXCountDownOnChange = void Function(int time);
 
 typedef MXCountDownOnFinish = void Function();
+
+/// progress进度条组件
+enum MXProgressThemeEnum {
+  primary,
+  success,
+  error,
+  warn,
+}
+
+enum MXProgressTypeEnum {
+  circ,
+  line,
+}
