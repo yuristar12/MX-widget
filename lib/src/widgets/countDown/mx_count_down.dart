@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mx_widget/mx_widget.dart';
-import 'package:mx_widget/src/widgets/countDown/mx_count_down_%20millisecond.dart';
+import 'package:mx_widget/src/widgets/countDown/mx_count_down_mill_second.dart';
 
 import 'mx_count_down_model.dart';
 
@@ -118,7 +117,7 @@ class MXCountDownState extends State<MXCountDown> {
       list.add(_buildUnit());
 
       /// 需要渲染毫秒级
-      list.add(MXCountDownMillsecond(
+      list.add(MXCountDownMillSecond(
         fontStyle: _getFontSize(),
         color: _getFontColor(),
       ));
@@ -181,7 +180,7 @@ class MXCountDownState extends State<MXCountDown> {
       }
 
       /// 需要渲染毫秒级
-      list.add(_buildFillWrap(MXCountDownMillsecond(
+      list.add(_buildFillWrap(MXCountDownMillSecond(
         fontStyle: _getFontSize(),
         color: _getFontColor(),
       )));

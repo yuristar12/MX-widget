@@ -69,3 +69,4 @@
 - TODO:
   新增 countDown 倒计时组件。
   新增 result 结果页面组件。
+  新增 progress 进度条组件。

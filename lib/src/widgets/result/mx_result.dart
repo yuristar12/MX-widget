@@ -43,29 +43,29 @@ class MXResult extends StatelessWidget {
   }
 
   Widget _buildIcon(BuildContext context) {
-    IconData _icon;
+    IconData child;
 
     if (icon != null) {
-      _icon = icon!;
+      child = icon!;
     } else {
       switch (typeEnum) {
         case MXResultTypeEnum.primary:
-          _icon = Icons.check_circle_outline_outlined;
+          child = Icons.check_circle_outline_outlined;
           break;
         case MXResultTypeEnum.success:
-          _icon = Icons.check_circle_outline_outlined;
+          child = Icons.check_circle_outline_outlined;
           break;
         case MXResultTypeEnum.error:
-          _icon = Icons.highlight_off_sharp;
+          child = Icons.highlight_off_sharp;
           break;
         case MXResultTypeEnum.warn:
-          _icon = Icons.info_outline;
+          child = Icons.info_outline;
           break;
       }
     }
 
     return MXIcon(
-      icon: _icon,
+      icon: child,
       iconFontSize: assetsSize,
       useDefaultPadding: false,
       iconColor: _getIconColor(context),

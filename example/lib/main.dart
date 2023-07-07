@@ -2,8 +2,7 @@ import 'dart:async';
 
 import 'package:example/test.dart';
 import 'package:flutter/material.dart';
-// ignore: implementation_imports
-import 'package:mx_widget/src/export.dart';
+import 'package:mx_widget/mx_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -205,7 +204,7 @@ class _MyHomePageState extends State<MyHomePage>
                       children: [
                         Flexible(
                           child: MXButton(
-                              customMargin: EdgeInsets.all(2),
+                              customMargin: const EdgeInsets.all(2),
                               text: '减少进度',
                               disabled: disabled,
                               themeEnum: themeEnum,
@@ -216,7 +215,7 @@ class _MyHomePageState extends State<MyHomePage>
                         ),
                         Flexible(
                           child: MXButton(
-                              customMargin: EdgeInsets.all(2),
+                              customMargin: const EdgeInsets.all(2),
                               text: '重置进度',
                               disabled: disabled,
                               themeEnum: themeEnum,
@@ -226,7 +225,7 @@ class _MyHomePageState extends State<MyHomePage>
                         ),
                         Flexible(
                           child: MXButton(
-                              customMargin: EdgeInsets.all(2),
+                              customMargin: const EdgeInsets.all(2),
                               text: '增加进度',
                               disabled: disabled,
                               themeEnum: themeEnum,
@@ -265,7 +264,7 @@ class _MyHomePageState extends State<MyHomePage>
                       children: [
                         Flexible(
                           child: MXButton(
-                              customMargin: EdgeInsets.all(2),
+                              customMargin: const EdgeInsets.all(2),
                               text: '减少进度',
                               disabled: disabled,
                               themeEnum: themeEnum,
@@ -276,7 +275,7 @@ class _MyHomePageState extends State<MyHomePage>
                         ),
                         Flexible(
                           child: MXButton(
-                              customMargin: EdgeInsets.all(2),
+                              customMargin: const EdgeInsets.all(2),
                               text: '重置进度',
                               disabled: disabled,
                               themeEnum: themeEnum,
@@ -286,7 +285,7 @@ class _MyHomePageState extends State<MyHomePage>
                         ),
                         Flexible(
                           child: MXButton(
-                              customMargin: EdgeInsets.all(2),
+                              customMargin: const EdgeInsets.all(2),
                               text: '增加进度',
                               disabled: disabled,
                               themeEnum: themeEnum,

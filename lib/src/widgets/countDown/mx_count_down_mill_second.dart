@@ -1,32 +1,17 @@
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/widgets.dart';
 import 'package:mx_widget/mx_widget.dart';
-import 'package:mx_widget/src/util/curve_util.dart';
 
-class TextTween extends Tween<double> {
-  TextTween({required double begin, required double end})
-      : super(begin: begin, end: end);
-  bool flag = false;
-
-  @override
-  double lerp(double t) {
-    print(t);
-    return (1000 - 1000 * t);
-  }
-}
-
-class MXCountDownMillsecond extends StatefulWidget {
-  const MXCountDownMillsecond({super.key, required this.fontStyle, this.color});
+class MXCountDownMillSecond extends StatefulWidget {
+  const MXCountDownMillSecond({super.key, required this.fontStyle, this.color});
 
   final MXFontStyle fontStyle;
   final Color? color;
 
   @override
-  State<MXCountDownMillsecond> createState() => _MXCountDownMillsecondState();
+  State<MXCountDownMillSecond> createState() => _MXCountDownMillSecondState();
 }
 
-class _MXCountDownMillsecondState extends State<MXCountDownMillsecond>
+class _MXCountDownMillSecondState extends State<MXCountDownMillSecond>
     with TickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<double> _animation;

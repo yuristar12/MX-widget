@@ -186,7 +186,8 @@ class MXProgressState extends State<MXProgress> {
                       useRound: false,
                       radiuValue: pi * 2,
                       strokeWidth: widget.strokeWidth,
-                      color: MXTheme.of(context).infoPrimaryColor),
+                      color: widget.customUnderColor ??
+                          MXTheme.of(context).infoPrimaryColor),
                 ),
               )),
           Positioned(
