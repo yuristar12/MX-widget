@@ -153,3 +153,11 @@ export 'widgets/countDown/mx_count_down_controller.dart';
 // 进度条组件
 export 'widgets/progress/mx_progress.dart';
 export 'widgets/progress/mx_progress_controller.dart';
+
+// textarea 組件
+export 'widgets/textarea/mx_text_area.dart';
+
+// steps组件
+export 'widgets/steps/mx_steps.dart';
+export 'widgets/steps/mx_steps_controller.dart';
+export 'widgets/steps/mx_steps_item_model.dart';

@@ -5,48 +5,52 @@ import 'package:mx_widget/src/theme/mx_theme.dart';
 extension MXColors on MXThemeConfig {
   // 如果主题并没有成功赋值则寻找默认的主题的AHEX模式
   // ----------------------------------------------------------------------品牌色
-  /// #F2F8FF
-  Color get brandColor1 => colorsMap['brandColor1'] ?? const Color(0xFFF2F8FF);
+  /// #F2F3FF
+  Color get brandColor1 => colorsMap['brandColor1'] ?? const Color(0xFFF2F3FF);
 
-  /// #C9E0FF
-  Color get brandColor2 => colorsMap['brandColor2'] ?? const Color(0xFFC9E0FF);
+  /// #DAE1FF
+  Color get brandColor2 => colorsMap['brandColor2'] ?? const Color(0xFFDAE1FF);
 
-  /// #A3C6FF
-  Color get brandColor3 => colorsMap['brandColor3'] ?? const Color(0xFFA3C6FF);
+  /// #B7C7FF
+  Color get brandColor3 => colorsMap['brandColor3'] ?? const Color(0xFFB7C7FF);
 
-  /// #7AA9FF
-  Color get brandColor4 => colorsMap['brandColor4'] ?? const Color(0xFF7AA9FF);
+  /// #8FAAFF
+  Color get brandColor4 => colorsMap['brandColor4'] ?? const Color(0xFF8FAAFF);
 
-  /// #548AFF
-  Color get brandColor5 => colorsMap['brandColor5'] ?? const Color(0xFF548AFF);
+  /// #658CFF
+  Color get brandColor5 => colorsMap['brandColor5'] ?? const Color(0xFF658CFF);
 
   /// #2C68FF
   Color get brandColor6 => colorsMap['brandColor6'] ?? const Color(0xFF2C68FF);
 
-  /// #1C4AD4
-  Color get brandColor7 => colorsMap['brandColor7'] ?? const Color(0xFF1C4AD4);
+  /// #004EE6
+  Color get brandColor7 => colorsMap['brandColor7'] ?? const Color(0xFF004EE6);
 
-  /// #0D2EA6
-  Color get brandColor8 => colorsMap['brandColor8'] ?? const Color(0xFF0D2EA6);
+  /// #003AB1
+  Color get brandColor8 => colorsMap['brandColor8'] ?? const Color(0xFF003AB1);
 
-  /// #051A7A
-  Color get brandColor9 => colorsMap['brandColor9'] ?? const Color(0xFF051A7A);
+  /// #002881
+  Color get brandColor9 => colorsMap['brandColor9'] ?? const Color(0xFF002881);
+
+  /// #00195A
+  Color get brandColor10 =>
+      colorsMap['brandColor10'] ?? const Color(0xFF00195A);
 
   /// #2C68FF
   Color get brandPrimaryColor =>
       colorsMap['brandPrimaryColor'] ?? const Color(0xFF2C68FF);
 
-  /// #7AA9FF
+  /// #004EE6
   Color get brandFocusColor =>
-      colorsMap['brandFocusColor'] ?? const Color(0xFF7AA9FF);
+      colorsMap['brandFocusColor'] ?? const Color(0xFF004EE6);
 
-  /// #A3C6FF
+  /// #DAE1FF
   Color get brandDisabledColor =>
-      colorsMap['brandDisabledColor'] ?? const Color(0xFFA3C6FF);
+      colorsMap['brandDisabledColor'] ?? const Color(0xFFDAE1FF);
 
-  /// #1C4AD4
+  /// #003AB1
   Color get brandClickColor =>
-      colorsMap['brandClickColor'] ?? const Color(0xFF1C4AD4);
+      colorsMap['brandClickColor'] ?? const Color(0xFF003AB1);
 
   // ----------------------------------------------------------------------错误色
   /// #FFF2F5
@@ -190,40 +194,43 @@ extension MXColors on MXThemeConfig {
       colorsMap['warnClickColor'] ?? const Color(0xFFD47B00);
 
   // ----------------------------------------------------------------------信息色
-  /// #F5F5F5
-  Color get infoColor1 => colorsMap['infoColor1'] ?? const Color(0xfff5f5f5);
+  /// #F3F3F3
+  Color get infoColor1 => colorsMap['infoColor1'] ?? const Color(0xffF3F3F3);
 
-  /// #F0F0F0
-  Color get infoColor2 => colorsMap['infoColor2'] ?? const Color(0xfff0f0f0);
+  /// #EEEEEE
+  Color get infoColor2 => colorsMap['infoColor2'] ?? const Color(0xffEEEEEE);
 
-  /// #E5E5E5
-  Color get infoColor3 => colorsMap['infoColor2'] ?? const Color(0xffe5e5e5);
+  /// #E7E7E7
+  Color get infoColor3 => colorsMap['infoColor2'] ?? const Color(0xffE7E7E7);
 
-  /// #D9D9D9
-  Color get infoColor4 => colorsMap['infoColor4'] ?? const Color(0xffd9d9d9);
+  /// #DCDCDC
+  Color get infoColor4 => colorsMap['infoColor4'] ?? const Color(0xffDCDCDC);
 
-  /// #BFBFBF
-  Color get infoColor5 => colorsMap['infoColor5'] ?? const Color(0xffbfbfbf);
+  /// #C5C5C5
+  Color get infoColor5 => colorsMap['infoColor5'] ?? const Color(0xffC5C5C5);
 
-  /// #8C8C8C
-  Color get infoColor6 => colorsMap['infoColor6'] ?? const Color(0xff8c8c8c);
+  /// #A6A6A6
+  Color get infoColor6 => colorsMap['infoColor6'] ?? const Color(0xffA6A6A6);
 
-  /// #595959
-  Color get infoColor7 => colorsMap['infoColor7'] ?? const Color(0xff595959);
+  /// #8B8B8B
+  Color get infoColor7 => colorsMap['infoColor7'] ?? const Color(0xff8B8B8B);
 
-  /// #262626
-  Color get infoColor8 => colorsMap['infoColor8'] ?? const Color(0xff262626);
+  /// #777777
+  Color get infoColor8 => colorsMap['infoColor8'] ?? const Color(0xff777777);
 
-  /// #000000
-  Color get infoColor9 => colorsMap['infoColor9'] ?? const Color(0xff000000);
+  /// #5E5E5E
+  Color get infoColor9 => colorsMap['infoColor9'] ?? const Color(0xff5E5E5E);
 
-  /// #F5F5F5
+  /// #4B4B4B
+  Color get infoColor10 => colorsMap['infoColor10'] ?? const Color(0xff4B4B4B);
+
+  /// #A6A6A6
   Color get infoPrimaryColor =>
-      colorsMap['infoPrimaryColor'] ?? const Color(0xFFF0F0F0);
+      colorsMap['infoPrimaryColor'] ?? const Color(0xFFA6A6A6);
 
-  /// #E5E5E5
+  /// #EEEEEE
   Color get infoDisabledColor =>
-      colorsMap['infoDisabledColor'] ?? const Color(0xFFF5F5F5);
+      colorsMap['infoDisabledColor'] ?? const Color(0xFFEEEEEE);
 
   // --------------------------------------------------------------------字体颜色
   /// #F5F5F5

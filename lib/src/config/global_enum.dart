@@ -408,3 +408,30 @@ enum MXProgressTypeEnum {
   circ,
   line,
 }
+
+/// textArea组件
+
+enum MXTextAreaTypeEnum {
+  card,
+  norma,
+}
+
+enum MXTextAreaSizeEnum {
+  small,
+  medium,
+  large,
+}
+
+/// 排列方式
+enum MXTextAreaAlignmentEnum {
+  vertical,
+  horizontal,
+}
+
+/// steps组件
+
+enum MXStepsTypeEnum {
+  number,
+  simple,
+  pattern,
+}

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'mx_collapse_paner_item.dart';
 import 'package:mx_widget/mx_widget.dart';
+
+import 'mx_collapse_paner_item.dart';
 
 /// ------------------------------------------------------------------折叠面板组件
 /// [padding] 容器的内边距 默认为16

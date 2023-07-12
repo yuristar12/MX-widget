@@ -94,6 +94,10 @@ class _MyHomePageState extends State<MyHomePage>
 
   late MXProgressController progressControllerCirc;
 
+  late MXStepsController stepsController;
+
+  late MXStepsController stepsController2;
+
   @override
   void initState() {
     super.initState();
@@ -109,6 +113,74 @@ class _MyHomePageState extends State<MyHomePage>
     progressController = MXProgressController(initValue: 25);
 
     progressControllerCirc = MXProgressController(initValue: 25);
+
+    stepsController = MXStepsController(
+      stepsItems: [
+        MXStepsItemModel(
+            title: '未完成',
+            pastTitle: '已完成',
+            activityTitle: '当前步骤',
+            description: '描述信息描述信息描述信息',
+            pluginWidget: Container(
+              height: 300,
+              color: Colors.red,
+            )),
+        MXStepsItemModel(
+            title: '未完成',
+            pastTitle: '已完成',
+            activityTitle: '当前步骤',
+            description: '描述信息'),
+        MXStepsItemModel(
+            title: '未完成',
+            pastTitle: '已完成',
+            activityTitle: '当前步骤',
+            description: '描述信息'),
+        MXStepsItemModel(
+            title: '未完成',
+            pastTitle: '已完成',
+            activityTitle: '当前步骤',
+            description: '描述信息')
+      ],
+      onAction: () {
+        print("object");
+      },
+    );
+
+    stepsController2 = MXStepsController(
+      stepsItems: [
+        MXStepsItemModel(
+            icon: Icons.public_outlined,
+            title: '未完成',
+            pastTitle: '已完成',
+            activityTitle: '当前步骤',
+            description: '描述信息',
+            pluginWidget: Container(
+              height: 300,
+              color: Colors.red,
+            )),
+        MXStepsItemModel(
+            icon: Icons.public_outlined,
+            title: '未完成',
+            pastTitle: '已完成',
+            activityTitle: '当前步骤',
+            description: '描述信息'),
+        MXStepsItemModel(
+            icon: Icons.public_outlined,
+            title: '未完成',
+            pastTitle: '已完成',
+            activityTitle: '当前步骤',
+            description: '描述信息'),
+        MXStepsItemModel(
+            icon: Icons.public_outlined,
+            title: '未完成',
+            pastTitle: '已完成',
+            activityTitle: '当前步骤',
+            description: '描述信息')
+      ],
+      onAction: () {
+        print("object");
+      },
+    );
   }
 
   @override
@@ -175,6 +247,75 @@ class _MyHomePageState extends State<MyHomePage>
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              const SizedBox(
+                height: 20,
+              ),
+
+              MXSteps(
+                type: MXStepsTypeEnum.simple,
+                controller: stepsController2,
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+
+              MXSteps(
+                axis: Axis.vertical,
+                type: MXStepsTypeEnum.simple,
+                controller: stepsController2,
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+
+              MXSteps(
+                type: MXStepsTypeEnum.pattern,
+                controller: stepsController2,
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+              MXSteps(
+                axis: Axis.vertical,
+                type: MXStepsTypeEnum.pattern,
+                controller: stepsController2,
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+
+              MXSteps(
+                controller: stepsController,
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+              MXSteps(
+                axis: Axis.vertical,
+                controller: stepsController,
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+              MXTextArea(
+                // useBorder: true,
+                maxLength: 10,
+                useIndicator: true,
+                autoHeight: true,
+                onMaxLengthCallback: () {
+                  MXToast().toastByError(context, '字数过长');
+                },
+                alignment: MXTextAreaAlignmentEnum.horizontal,
+                controller: textEditingController,
+                label: '标签文字',
+              ),
+
               const SizedBox(
                 height: 20,
               ),
