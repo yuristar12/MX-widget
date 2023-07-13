@@ -67,7 +67,7 @@ class MXRawTHeme {
             "infoColor8": "#777777",
             "infoColor9": "#5E5E5E",
             "infoColor10": "#4B4B4B",
-            "infoPrimaryColor": "#A6A6A6",
+            "infoPrimaryColor": "#E7E7E7",
             "infoDisabledColor": "#EEEEEE",
             "fontColor1": "#F5F5F5",
             "fontColor2": "#F0F0F0",

@@ -98,6 +98,8 @@ class _MyHomePageState extends State<MyHomePage>
 
   late MXStepsController stepsController2;
 
+  late MXSideBarController sideBarController;
+
   @override
   void initState() {
     super.initState();
@@ -113,6 +115,49 @@ class _MyHomePageState extends State<MyHomePage>
     progressController = MXProgressController(initValue: 25);
 
     progressControllerCirc = MXProgressController(initValue: 25);
+
+    sideBarController = MXSideBarController(initValue: 2, sideBarItemList: [
+      MXSideBarItemModel(
+        title: '选项1',
+        builder: (index) {
+          return Container(
+            height: 900,
+            child: MXText(
+              data: '这是页面内容',
+              textColor: MXTheme.of(context).whiteColor,
+            ),
+            color: MXTheme.of(context).brandClickColor,
+          );
+        },
+      ),
+      MXSideBarItemModel(
+        title: '选项2',
+        builder: (index) {
+          return Container(
+            height: 1200,
+            color: MXTheme.of(context).successPrimaryColor,
+          );
+        },
+      ),
+      MXSideBarItemModel(
+        title: '选项3',
+        builder: (index) {
+          return Container(
+            height: 1200,
+            color: MXTheme.of(context).errorPrimaryColor,
+          );
+        },
+      ),
+      MXSideBarItemModel(
+        title: '选项4',
+        builder: (index) {
+          return Container(
+            height: 1200,
+            color: MXTheme.of(context).warnPrimaryColor,
+          );
+        },
+      )
+    ]);
 
     stepsController = MXStepsController(
       stepsItems: [
@@ -247,6 +292,12 @@ class _MyHomePageState extends State<MyHomePage>
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              const SizedBox(
+                height: 20,
+              ),
+
+              MXSideBar(height: 500, controller: sideBarController),
+
               const SizedBox(
                 height: 20,
               ),

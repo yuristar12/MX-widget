@@ -224,9 +224,9 @@ extension MXColors on MXThemeConfig {
   /// #4B4B4B
   Color get infoColor10 => colorsMap['infoColor10'] ?? const Color(0xff4B4B4B);
 
-  /// #A6A6A6
+  /// #E7E7E7
   Color get infoPrimaryColor =>
-      colorsMap['infoPrimaryColor'] ?? const Color(0xFFA6A6A6);
+      colorsMap['infoPrimaryColor'] ?? const Color(0xFFE7E7E7);
 
   /// #EEEEEE
   Color get infoDisabledColor =>

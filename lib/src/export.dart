@@ -161,3 +161,8 @@ export 'widgets/textarea/mx_text_area.dart';
 export 'widgets/steps/mx_steps.dart';
 export 'widgets/steps/mx_steps_controller.dart';
 export 'widgets/steps/mx_steps_item_model.dart';
+
+// siderBar组件
+export 'widgets/sideBar/mx_side_bar.dart';
+export 'widgets/sideBar/mx_side_bar_item_model.dart';
+export 'widgets/sideBar/mx_side_bar_controller.dart';

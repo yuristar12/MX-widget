@@ -435,3 +435,9 @@ enum MXStepsTypeEnum {
   simple,
   pattern,
 }
+
+/// sideBar组件
+enum MXSideBarTypeEnum {
+  page,
+  anchor,
+}
