@@ -18,6 +18,14 @@ class MXSideBar extends StatefulWidget {
             throw FlutterError('model层不能缺少builder方法');
           }
 
+          if (type == MXSideBarTypeEnum.anchor) {
+            flag = controller.sideBarItemList
+                .every((element) => element.id != null);
+            if (!flag) {
+              throw FlutterError('anchor模式下model層必須傳入ID');
+            }
+          }
+
           return true;
         }());
 
