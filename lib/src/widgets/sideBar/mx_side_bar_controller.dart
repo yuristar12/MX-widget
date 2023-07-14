@@ -4,9 +4,13 @@ import 'package:mx_widget/src/widgets/sideBar/mx_side_bar_item_model.dart';
 
 typedef MXSideBarOnTabChange = void Function(int index);
 
+typedef MXSideBarItemBuilder = Widget Function(
+    MXSideBarItemModel model, bool isActivity);
+
 class MXSideBarController {
   MXSideBarController({
     this.initValue,
+    this.sideBarItemBuilder,
     this.onTabChangeCallback,
     required this.sideBarItemList,
   }) : assert(() {
@@ -27,6 +31,9 @@ class MXSideBarController {
   /// [sideBarItemList] sideBar的选项列表
   List<MXSideBarItemModel> sideBarItemList;
 
+  /// [sideBarItemBuilder] 自定义item的widget
+  MXSideBarItemBuilder? sideBarItemBuilder;
+
   MXSideBarState? state;
 
   MXSideBarOnTabChange? onTabChangeCallback;
@@ -39,11 +46,20 @@ class MXSideBarController {
     this.state = state;
   }
 
+  /// 修改sideBar的活动状态
   void onTabChange(int index) {
+    if (index == activityValue) return;
     activityValue = index;
 
     state?.onActivityChange();
 
     onTabChangeCallback?.call(activityValue);
+  }
+
+  /// 跳转至最后一个
+  void onTabChangeToLast() {
+    int index = sideBarItemList.length - 1;
+
+    onTabChange(index);
   }
 }

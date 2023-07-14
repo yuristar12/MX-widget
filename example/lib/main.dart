@@ -116,48 +116,73 @@ class _MyHomePageState extends State<MyHomePage>
 
     progressControllerCirc = MXProgressController(initValue: 25);
 
-    sideBarController = MXSideBarController(initValue: 2, sideBarItemList: [
-      MXSideBarItemModel(
-        title: '选项1',
-        builder: (index) {
+    sideBarController = MXSideBarController(
+        sideBarItemBuilder: (model, isActivity) {
           return Container(
-            height: 900,
-            child: MXText(
-              data: '这是页面内容',
-              textColor: MXTheme.of(context).whiteColor,
+            width: 120,
+            padding: EdgeInsets.all(10),
+            child: Center(
+              child: MXText(
+                data: model.title,
+              ),
             ),
-            color: MXTheme.of(context).brandClickColor,
           );
         },
-      ),
-      MXSideBarItemModel(
-        title: '选项2',
-        builder: (index) {
-          return Container(
-            height: 1200,
-            color: MXTheme.of(context).successPrimaryColor,
-          );
-        },
-      ),
-      MXSideBarItemModel(
-        title: '选项3',
-        builder: (index) {
-          return Container(
-            height: 1200,
-            color: MXTheme.of(context).errorPrimaryColor,
-          );
-        },
-      ),
-      MXSideBarItemModel(
-        title: '选项4',
-        builder: (index) {
-          return Container(
-            height: 1200,
-            color: MXTheme.of(context).warnPrimaryColor,
-          );
-        },
-      )
-    ]);
+        sideBarItemList: [
+          MXSideBarItemModel(
+            title: '选项1',
+            id: "1",
+            builder: (index) {
+              return Container(
+                color: MXTheme.of(context).whiteColor,
+                child: MXGrid(
+                    space: 0,
+                    useBorder: false,
+                    size: MXGirdSizeEnum.medium,
+                    column: 3,
+                    gridItemAxis: Axis.vertical,
+                    itemList: List.generate(
+                      40,
+                      (index) => MXGridItemModel(
+                        title: '标题文字',
+                        netUrl:
+                            'https://test-technology.oss-cn-hangzhou.aliyuncs.com/Web/system/20220831/image/623263909669acc4da4f61195e9c1a5d.jpg',
+                      ),
+                    )),
+              );
+            },
+          ),
+          MXSideBarItemModel(
+            title: '选项2',
+            id: "2",
+            builder: (index) {
+              return Container(
+                height: 1200,
+                color: MXTheme.of(context).successPrimaryColor,
+              );
+            },
+          ),
+          MXSideBarItemModel(
+            title: '选项3',
+            id: "3",
+            builder: (index) {
+              return Container(
+                height: 1200,
+                color: MXTheme.of(context).errorPrimaryColor,
+              );
+            },
+          ),
+          MXSideBarItemModel(
+            title: '选项4',
+            id: "4",
+            builder: (index) {
+              return Container(
+                height: 1200,
+                color: MXTheme.of(context).warnPrimaryColor,
+              );
+            },
+          )
+        ]);
 
     stepsController = MXStepsController(
       stepsItems: [
@@ -296,7 +321,12 @@ class _MyHomePageState extends State<MyHomePage>
                 height: 20,
               ),
 
-              MXSideBar(height: 500, controller: sideBarController),
+              MXSideBar(
+                height: 500,
+                customContentPadding: 2,
+                controller: sideBarController,
+                type: MXSideBarTypeEnum.page,
+              ),
 
               const SizedBox(
                 height: 20,

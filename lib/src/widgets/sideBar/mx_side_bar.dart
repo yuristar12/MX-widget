@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mx_widget/mx_widget.dart';
 import 'package:mx_widget/src/widgets/sideBar/mx_side_bar_item.dart';
 import 'package:mx_widget/src/widgets/sideBar/mx_side_bar_page_content.dart';
+import 'package:mx_widget/src/widgets/sideBar/mx_side_bar_anchor_content.dart';
 
 class MXSideBar extends StatefulWidget {
   MXSideBar({
@@ -46,11 +47,25 @@ class MXSideBar extends StatefulWidget {
 }
 
 class MXSideBarState extends State<MXSideBar> {
+  MXSideBarAnchorContentState? anchorContentState;
+
   @override
   void initState() {
+    if (widget.type == MXSideBarTypeEnum.anchor) {}
+
     widget.controller.setState(this);
 
     super.initState();
+
+    if (widget.controller.initValue != null) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        if (anchorContentState != null) {
+          String id = widget
+              .controller.sideBarItemList[widget.controller.activityValue].id!;
+          anchorContentState!.onSideBarChangeLinkScrollOffset(id);
+        }
+      });
+    }
   }
 
   List<Widget> _getSideBarItemList() {
@@ -68,10 +83,17 @@ class MXSideBarState extends State<MXSideBar> {
         model: element,
         listLength: length,
         isActivity: activityValue == i,
+        itemBuilder: controller.sideBarItemBuilder,
         onTap: () {
           if (activityValue == i) return;
 
           controller.onTabChange(i);
+
+          if (widget.type == MXSideBarTypeEnum.anchor) {
+            String id = widget.controller
+                .sideBarItemList[widget.controller.activityValue].id!;
+            anchorContentState!.onSideBarChangeLinkScrollOffset(id);
+          }
         },
       ));
     }
@@ -108,7 +130,14 @@ class MXSideBarState extends State<MXSideBar> {
 
   Widget _buildSideContent() {
     if (widget.type == MXSideBarTypeEnum.anchor) {
-      return Container();
+      return LayoutBuilder(
+          builder: ((context, constraints) => MXSideBarAnchorContent(
+              sideBarItemList: widget.controller.sideBarItemList,
+              controller: widget.controller,
+              width: constraints.maxWidth,
+              anchorInitCallback: (MXSideBarAnchorContentState state) {
+                anchorContentState = state;
+              })));
     } else {
       return MXSideBarPageContent(
           height: widget.height,

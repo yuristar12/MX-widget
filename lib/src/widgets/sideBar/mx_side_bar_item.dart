@@ -14,6 +14,7 @@ class MXSideBarItem extends StatelessWidget {
       required this.isActivity,
       required this.index,
       required this.listLength,
+      this.itemBuilder,
       required this.onTap});
 
   final MXSideBarItemModel model;
@@ -25,6 +26,8 @@ class MXSideBarItem extends StatelessWidget {
   final int listLength;
 
   final VoidCallback onTap;
+
+  final MXSideBarItemBuilder? itemBuilder;
 
   bool get _isFirst {
     return index == 0;
@@ -173,7 +176,14 @@ class MXSideBarItem extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context) {
+    Widget child;
+
     List<Widget> children = [];
+
+    if (itemBuilder != null) {
+      child = itemBuilder!.call(model, isActivity);
+      return child;
+    }
 
     if (isActivity) {
       children.add(_buildPositionContent(context));
@@ -181,9 +191,11 @@ class MXSideBarItem extends StatelessWidget {
 
     children.add(_buildContent(context));
 
-    return Container(
+    child = Container(
         color: isActivity ? MXTheme.of(context).whiteColor : Colors.transparent,
         child: Stack(children: children));
+
+    return child;
   }
 
   @override
