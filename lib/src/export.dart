@@ -166,3 +166,6 @@ export 'widgets/steps/mx_steps_item_model.dart';
 export 'widgets/sideBar/mx_side_bar.dart';
 export 'widgets/sideBar/mx_side_bar_item_model.dart';
 export 'widgets/sideBar/mx_side_bar_controller.dart';
+
+// expendAbleText组件
+export 'widgets/expendAbleText/mx_expend_able_text.dart';

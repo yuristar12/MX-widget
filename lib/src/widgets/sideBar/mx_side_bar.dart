@@ -10,6 +10,8 @@ class MXSideBar extends StatefulWidget {
     required this.height,
     required this.controller,
     this.customContentPadding,
+    this.sideBarColor,
+    this.contentColor,
     this.type = MXSideBarTypeEnum.page,
   }) : assert(() {
           bool flag = controller.sideBarItemList
@@ -41,6 +43,12 @@ class MXSideBar extends StatefulWidget {
 
   /// [customContentPadding] 自定义padding间距
   final double? customContentPadding;
+
+  /// [sideBarColor] 自定义左侧选项的颜色
+  final Color? sideBarColor;
+
+  /// [contentColor] 自定义内容区域颜色
+  final Color? contentColor;
 
   @override
   State<MXSideBar> createState() => MXSideBarState();
@@ -107,22 +115,28 @@ class MXSideBarState extends State<MXSideBar> {
 
   Widget _buildSideBarLeft() {
     return Container(
-        color: MXTheme.of(context).infoColor1,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: _getSideBarItemList(),
+        height: widget.height,
+        color: widget.sideBarColor ?? MXTheme.of(context).infoColor1,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: _getSideBarItemList(),
+          ),
         ));
   }
 
   Widget _buildSideContentWarp() {
+    double paddingSize =
+        widget.customContentPadding ?? MXTheme.of(context).space16;
+
     return Expanded(
       child: Container(
-        color: MXTheme.of(context).whiteColor,
+        color: widget.contentColor ?? MXTheme.of(context).whiteColor,
         height: widget.height,
-        padding: EdgeInsets.all(
-            widget.customContentPadding ?? MXTheme.of(context).space16),
+        padding: EdgeInsets.only(
+            top: paddingSize, left: paddingSize, right: paddingSize),
         child: _buildSideContent(),
       ),
     );
