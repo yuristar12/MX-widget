@@ -286,9 +286,7 @@ class _MyHomePageState extends State<MyHomePage>
             activityTitle: '当前步骤',
             description: '描述信息')
       ],
-      onAction: () {
-        print("object");
-      },
+      onAction: () {},
     );
 
     stepsController2 = MXStepsController(
@@ -322,9 +320,7 @@ class _MyHomePageState extends State<MyHomePage>
             activityTitle: '当前步骤',
             description: '描述信息')
       ],
-      onAction: () {
-        print("object");
-      },
+      onAction: () {},
     );
   }
 
@@ -2218,9 +2214,9 @@ class _MyHomePageState extends State<MyHomePage>
                   SizedBox(
                     height: MXTheme.of(context).space32,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       MXIcon(
                         icon: Icons.accessibility,
                         iconSizeEnum: MXIconSizeEnum.small,

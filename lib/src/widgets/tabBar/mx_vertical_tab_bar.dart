@@ -215,7 +215,7 @@ class _TabLabelBarRenderer extends RenderFlex {
 }
 
 class _TabLabelBar extends Flex {
-  _TabLabelBar({
+  const _TabLabelBar({
     Key? key,
     List<Widget> children = const <Widget>[],
     required this.onPerformLayout,

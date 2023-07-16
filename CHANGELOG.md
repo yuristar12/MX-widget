@@ -64,9 +64,20 @@
   新增 searchBar 搜索组件
   新增 dropDownMenu 下拉菜单组件
 
-  ## 0.1.2
+## 0.1.2
 
 - TODO:
   新增 countDown 倒计时组件。
   新增 result 结果页面组件。
   新增 progress 进度条组件。
+
+
+## 0.1.3
+
+- TODO:
+  新增 textarea 多行文本输入组件
+  新增 steps 进度条组件。
+  新增 siderBar 侧边栏组件。
+  新增 expendAbleText 文字展开组件。
+
+
