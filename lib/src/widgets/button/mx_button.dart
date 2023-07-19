@@ -22,6 +22,7 @@ class MXButton extends StatefulWidget {
       required this.themeEnum,
       this.slot,
       this.icon,
+      this.customWidth,
       this.disabled = false,
       this.customIconWidget,
       this.afterClickButtonCallback,
@@ -78,6 +79,9 @@ class MXButton extends StatefulWidget {
 
   /// 自定义高度
   final double? customHeight;
+
+  /// 自定义宽度
+  final double? customWidth;
 
   /// 是否独占一行
   final bool isLine;
@@ -187,7 +191,7 @@ class _MXButtonState extends State<MXButton> {
       }
     }
 
-    if (childrenList.length > 1) {
+    if (childrenList.length > 1 && widget.shape != MXButtonShapeEnum.circ) {
       childrenList.insert(1, _getSpace(context));
     }
 
@@ -324,6 +328,9 @@ class _MXButtonState extends State<MXButton> {
   }
 
   double? _width() {
+    if (widget.customWidth != null) {
+      return widget.customWidth;
+    }
     var sizeEnum = widget.sizeEnum;
 
     if (!widget.isLine &&
@@ -363,6 +370,9 @@ class _MXButtonState extends State<MXButton> {
   }
 
   double? _height() {
+    if (widget.shape == MXButtonShapeEnum.circ) {
+      return _width();
+    }
     if (widget.customHeight != null) {
       return widget.customHeight;
     }
@@ -374,9 +384,9 @@ class _MXButtonState extends State<MXButton> {
       case MXButtonSizeEnum.medium:
         return 40;
       case MXButtonSizeEnum.small:
-        return 34;
+        return 30;
       case MXButtonSizeEnum.mini:
-        return 32;
+        return 22;
     }
   }
 

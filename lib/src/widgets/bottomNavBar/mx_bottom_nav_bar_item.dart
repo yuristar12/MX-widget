@@ -181,7 +181,7 @@ class MXBottomNavBarItem extends StatelessWidget {
         Positioned(
             right:
                 navBarItemConfig.mxBottomNavBarItemBadgeConfig?.offsetX ?? -6,
-            top: navBarItemConfig.mxBottomNavBarItemBadgeConfig?.offsetX ?? -4,
+            top: navBarItemConfig.mxBottomNavBarItemBadgeConfig?.offsetY ?? -4,
             child: _buildBadge())
       ],
     );

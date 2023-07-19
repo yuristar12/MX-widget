@@ -169,3 +169,8 @@ export 'widgets/sideBar/mx_side_bar_controller.dart';
 
 // expendAbleText组件
 export 'widgets/expendAbleText/mx_expend_able_text.dart';
+
+// fab按钮组件
+export 'widgets/fabButton/mx_fab_button_model.dart';
+export 'widgets/fabButton/mx_fab_button_controller.dart';
+export 'widgets/fabButton/mx_fab_button_custom_position.dart';

@@ -441,3 +441,12 @@ enum MXSideBarTypeEnum {
   page,
   anchor,
 }
+
+/// fab组件
+enum MXFabButtonAligimentEnum {
+  bottomLeft,
+  bottomRight,
+  topLeft,
+  topRight,
+  customer,
+}

@@ -102,6 +102,8 @@ class _MyHomePageState extends State<MyHomePage>
 
   late MXSideBarController sideBarController2;
 
+  late MXFabButtonController fabButtonController;
+
   @override
   void initState() {
     super.initState();
@@ -322,6 +324,17 @@ class _MyHomePageState extends State<MyHomePage>
       ],
       onAction: () {},
     );
+
+    fabButtonController = MXFabButtonController(
+        context: context,
+        model: MXFabButtonModel(
+            icon: Icons.check,
+            text: '按钮文字',
+            afterClickButtonCallback: () {
+              MXToast().toastBySuccess(context, "点击成功");
+            },
+            themeEnum: MXButtonThemeEnum.primary,
+            sizeEnum: MXButtonSizeEnum.large));
   }
 
   @override
@@ -371,6 +384,29 @@ class _MyHomePageState extends State<MyHomePage>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
+
+                  MXButton(
+                    text: '打开悬浮按钮',
+                    themeEnum: themeEnum,
+                    afterClickButtonCallback: () {
+                      fabButtonController.show();
+                    },
+                  ),
+
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  MXButton(
+                    text: '隐藏悬浮按钮',
+                    themeEnum: themeEnum,
+                    afterClickButtonCallback: () {
+                      fabButtonController.hidden();
+                    },
+                  ),
+
                   const SizedBox(
                     height: 20,
                   ),
