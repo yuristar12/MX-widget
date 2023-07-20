@@ -83,6 +83,7 @@ class MXFabButtonController {
   void hidden() {
     if (_overlayEntry != null) {
       _overlayEntry?.remove();
+      _overlayEntry = null;
     }
   }
 }

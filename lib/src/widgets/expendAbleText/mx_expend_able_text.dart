@@ -65,6 +65,7 @@ class _MXExpendAbleTextState extends State<MXExpendAbleText> {
   TextStyle _getTextStyle() {
     return widget.textStyle ??
         TextStyle(
+            fontWeight: FontWeight.w400,
             fontSize: MXTheme.of(context).fontBodySmall!.size,
             color: MXTheme.of(context).fontUsePrimaryColor);
   }
@@ -93,45 +94,53 @@ class _MXExpendAbleTextState extends State<MXExpendAbleText> {
     }
   }
 
-  Widget _buildBody() {
-    List<Widget> children = [];
-    children.add(Text(
+  Widget _buildUnExpendText() {
+    return Text(
       widget.text,
       overflow: TextOverflow.ellipsis,
       maxLines: isExpend ? widget.maxLines : widget.ellipseLines,
       style: _getTextStyle(),
-    ));
-    if (!isExpend && hasEllipsis) {
-      children.add(Positioned(
-          bottom: 0,
-          right: 0,
-          child: GestureDetector(
-            onTap: () {
-              isExpend = !isExpend;
-              setState(() {});
-            },
-            child: Container(
-              padding: EdgeInsets.only(
-                  left: MXTheme.of(context).space24,
-                  right: MXTheme.of(context).space8),
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                Colors.white70,
-                MXTheme.of(context).whiteColor
-              ])),
-              child: MXText(
-                data: widget.unExpendText ?? '更多',
-                style: _getHandleTextStyle(),
+    );
+  }
+
+  Widget _buildBody() {
+    List<Widget> children = [];
+
+    if (hasEllipsis || isExpend) {
+      if (isExpend) {
+        children.add(_buildExpendText());
+      } else {
+        children.add(_buildUnExpendText());
+        children.add(Positioned(
+            bottom: 0,
+            right: 0,
+            child: GestureDetector(
+              onTap: () {
+                isExpend = !isExpend;
+                setState(() {});
+              },
+              child: Container(
+                padding: EdgeInsets.only(
+                    left: MXTheme.of(context).space24,
+                    right: MXTheme.of(context).space8),
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                  Colors.white70,
+                  MXTheme.of(context).whiteColor
+                ])),
+                child: Text(
+                  widget.unExpendText ?? '更多',
+                  style: _getHandleTextStyle(),
+                ),
               ),
-            ),
-          )));
-    } else if (isExpend) {
-      children.add(_buildExpendText());
+            )));
+      }
+    } else {
+      children.add(_buildUnExpendText());
     }
 
     return SizedBox(
       child: Stack(
-        alignment: Alignment.bottomRight,
         children: children,
       ),
     );
@@ -157,11 +166,13 @@ class _MXExpendAbleTextState extends State<MXExpendAbleText> {
   }
 
   Widget _buildExpendText() {
-    return RichText(
-      text: TextSpan(
-          text: widget.text,
-          style: _getTextStyle(),
-          children: [_buildHandleButton()]),
+    return Text.rich(
+      TextSpan(
+        text: widget.text,
+        style: _getTextStyle(),
+        children: [_buildHandleButton()],
+      ),
+      style: _getTextStyle(),
     );
   }
 
