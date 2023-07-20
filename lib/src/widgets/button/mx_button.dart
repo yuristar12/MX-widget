@@ -384,9 +384,9 @@ class _MXButtonState extends State<MXButton> {
       case MXButtonSizeEnum.medium:
         return 40;
       case MXButtonSizeEnum.small:
-        return 30;
+        return 34;
       case MXButtonSizeEnum.mini:
-        return 22;
+        return 32;
     }
   }
 
