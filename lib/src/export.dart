@@ -174,3 +174,7 @@ export 'widgets/expendAbleText/mx_expend_able_text.dart';
 export 'widgets/fabButton/mx_fab_button_model.dart';
 export 'widgets/fabButton/mx_fab_button_controller.dart';
 export 'widgets/fabButton/mx_fab_button_custom_position.dart';
+
+// cascader组件
+export 'widgets/cascader/mx_cascader_controller.dart';
+export 'widgets/cascader/mx_cascader_options.dart';

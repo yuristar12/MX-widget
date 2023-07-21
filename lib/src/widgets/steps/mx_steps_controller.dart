@@ -8,9 +8,9 @@ class MXStepsController {
     this.onAction,
   }) : assert(() {
           if (initValue != null) {
-            if (initValue > stepsItems.length - 1) {
-              throw FlutterError('初始值超出数组下标');
-            }
+            // if (initValue > stepsItems.length - 1) {
+            //   throw FlutterError('初始值超出数组下标');
+            // }
           }
 
           return true;

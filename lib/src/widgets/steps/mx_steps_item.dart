@@ -94,7 +94,9 @@ class MXStepsItem extends StatelessWidget {
       height: anchorSize,
       margin: axis == Axis.horizontal
           ? const EdgeInsets.symmetric(horizontal: space)
-          : EdgeInsets.only(bottom: space, top: isFirst ? 0 : space),
+          : model.builder == null
+              ? EdgeInsets.only(bottom: space, top: isFirst ? 0 : space)
+              : null,
       child: Center(
         child: _buildSimpleContent(context),
       ),
@@ -246,6 +248,7 @@ class MXStepsItem extends StatelessWidget {
       child = Flex(
           direction: Axis.vertical,
           mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             anchor,
@@ -378,28 +381,13 @@ class MXStepsItem extends StatelessWidget {
             offset: const Offset(contentSize, 0),
             child: SizedBox(
               width: width - contentSize,
-              child: content,
+              child: model.builder != null
+                  ? model.builder!.call(isActivity)
+                  : content,
             ),
           ))
         ],
       );
-
-      // child = Flex(
-      //     direction: Axis.horizontal,
-      //     mainAxisSize: MainAxisSize.max,
-      //     mainAxisAlignment: MainAxisAlignment.start,
-      //     crossAxisAlignment: CrossAxisAlignment.start,
-      //     children: [
-      //       Align(
-      //         alignment: Alignment.topLeft,
-      //         heightFactor: 1.0,
-      //         child: _buildAnchor(context),
-      //       ),
-      //       SizedBox(
-      //         width: MXTheme.of(context).space8,
-      //       ),
-      //       Expanded(child: content)
-      //     ]);
     }
 
     return child;
@@ -410,9 +398,11 @@ class MXStepsItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
-        width: width,
-        child: _buildBody(context),
-      ),
+          width: width,
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: _buildBody(context),
+          )),
     );
   }
 }

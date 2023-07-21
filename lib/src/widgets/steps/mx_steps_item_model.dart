@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+typedef MXStepsItemBuilder = Widget Function(bool isActivity);
+
 class MXStepsItemModel {
   MXStepsItemModel({
     this.icon,
@@ -8,6 +10,7 @@ class MXStepsItemModel {
     this.pluginWidget,
     this.activityTitle,
     this.pastTitle,
+    this.builder,
   });
 
   final IconData? icon;
@@ -21,4 +24,6 @@ class MXStepsItemModel {
   final String? activityTitle;
 
   final String? pastTitle;
+
+  final MXStepsItemBuilder? builder;
 }

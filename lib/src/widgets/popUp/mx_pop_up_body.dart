@@ -71,7 +71,7 @@ class MXPopUpBottomBody extends StatelessWidget {
               customMargin: const EdgeInsets.all(0),
               text: rightText ?? '',
               afterClickButtonCallback: () {
-                onLeftCallback?.call();
+                onRightCallback?.call();
               },
               sizeEnum: MXButtonSizeEnum.small,
               themeEnum: MXButtonThemeEnum.primary,
