@@ -4,13 +4,32 @@ import 'package:mx_widget/src/widgets/cascader/mx_cascader_anchor_item.dart';
 
 import '../../../mx_widget.dart';
 
+/// -----------------------------------------------------------Cascader 级联选择器
+/// 用于多层级数据选择，主要为树形结构，可展示更多的数据。
+/// [options] 树形结构的数据
+/// [onChange]  值发生变更时触发
+/// [onClose] 关闭抽屉时触发
+/// [onPick] 单个选项被选中时触发
 class MXCascaderController {
   MXCascaderController({
+    this.onChange,
+    this.onPick,
+    this.onClose,
     required this.options,
   });
 
-  /// 选项
-  List<MXCascaderOptions> options;
+  /// [options] 树形结构的数据
+  final List<MXCascaderOptions> options;
+
+  /// [onChange]  值发生变更时触发
+  final MXCascaderOnchange? onChange;
+
+  /// [onPick] 单个选项被选中时触发
+
+  final MXCascaderOnpick? onPick;
+
+  /// [onClose] 关闭抽屉时触发
+  final VoidCallback? onClose;
 
 // 步骤的控制器
   static MXStepsController? _stepsController;
@@ -27,13 +46,13 @@ class MXCascaderController {
 // 层级
   static int _activityIndex = 0;
 
-  // 缓存context
+// 缓存context
   static BuildContext? _context;
 
 // 记录被选中的id
   String? id;
 
-  // 是否是步骤条选中
+// 是否是步骤条选中
 
   String? _isStepItemClickId;
 
@@ -115,6 +134,7 @@ class MXCascaderController {
       leftText: '',
       rightText: '取消',
       title: title,
+      onClose: onClose,
       child: _buildCascader(),
       onRightCallback: () {
         toHiddenCascader();
@@ -140,7 +160,7 @@ class MXCascaderController {
         } else {
           _isStepItemClickId = null;
         }
-
+        onPick?.call(option);
         updateLayout();
         return;
       }
@@ -151,12 +171,14 @@ class MXCascaderController {
     _isStepItemClickId = null;
 
     if (option.children != null) {
+      onPick?.call(option);
       _addOption(option);
       _addValue(option);
       updateLayout();
     } else {
       // 如果是最后一个则默认关闭
       toHiddenCascader();
+      onChange?.call(id!, option);
     }
   }
 

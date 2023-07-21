@@ -338,50 +338,55 @@ class _MyHomePageState extends State<MyHomePage>
             themeEnum: MXButtonThemeEnum.primary,
             sizeEnum: MXButtonSizeEnum.large));
 
-    mxCascaderController = MXCascaderController(options: [
-      MXCascaderOptions(label: "北京市", value: "110000", children: [
-        MXCascaderOptions(label: "北京市", value: "110100", children: [
-          MXCascaderOptions(
-            label: "东城区",
-            value: "110101",
-          ),
-          MXCascaderOptions(
-            label: "西城区",
-            value: "110102",
-          ),
-          MXCascaderOptions(
-            label: "丰台区",
-            value: "110105",
-          ),
-          MXCascaderOptions(
-            label: "石景山区",
-            value: "110106",
-          ),
-          MXCascaderOptions(
-            label: "海淀区",
-            value: "110107",
-          ),
-          MXCascaderOptions(
-            label: "门头沟区",
-            value: "110108",
-          ),
-          MXCascaderOptions(
-            label: "房山区",
-            value: "110109",
-          ),
-          MXCascaderOptions(
-            label: "通州区",
-            value: "110110",
-          ),
-        ]),
-      ]),
-      MXCascaderOptions(label: "天津市", value: "120000", children: [
-        MXCascaderOptions(
-          value: '120100',
-          label: '天津市',
-        ),
-      ])
-    ]);
+    mxCascaderController = MXCascaderController(
+        onChange: (id, lastSelectOption) {},
+        onClose: () {
+          print('关闭');
+        },
+        options: [
+          MXCascaderOptions(label: "北京市", value: "110000", children: [
+            MXCascaderOptions(label: "北京市", value: "110100", children: [
+              MXCascaderOptions(
+                label: "东城区",
+                value: "110101",
+              ),
+              MXCascaderOptions(
+                label: "西城区",
+                value: "110102",
+              ),
+              MXCascaderOptions(
+                label: "丰台区",
+                value: "110105",
+              ),
+              MXCascaderOptions(
+                label: "石景山区",
+                value: "110106",
+              ),
+              MXCascaderOptions(
+                label: "海淀区",
+                value: "110107",
+              ),
+              MXCascaderOptions(
+                label: "门头沟区",
+                value: "110108",
+              ),
+              MXCascaderOptions(
+                label: "房山区",
+                value: "110109",
+              ),
+              MXCascaderOptions(
+                label: "通州区",
+                value: "110110",
+              ),
+            ]),
+          ]),
+          MXCascaderOptions(label: "天津市", value: "120000", children: [
+            MXCascaderOptions(
+              value: '120100',
+              label: '天津市',
+            ),
+          ])
+        ]);
   }
 
   @override

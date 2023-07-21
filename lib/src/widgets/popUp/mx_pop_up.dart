@@ -20,12 +20,14 @@ class MXPopUp {
     Widget? rightWidget,
     VoidCallback? onRightCallback,
     VoidCallback? onLeftCallback,
+    VoidCallback? onClose,
     Color? backgroundColor,
   }) {
     _buildPopUp(
         modelClose: modelClose,
         context: context,
         modelLabel: modelLabel,
+        onClose: onClose,
         mxPopUpShowTypeEnum: MXPopUpShowTypeEnum.toBottom,
         customModelColor: customModelColor,
         builder: (BuildContext context) {
@@ -74,14 +76,19 @@ class MXPopUp {
       {required bool modelClose,
       required BuildContext context,
       required String? modelLabel,
+      VoidCallback? onClose,
       required MXPopUpShowTypeEnum mxPopUpShowTypeEnum,
       required Color? customModelColor,
       required WidgetBuilder builder}) {
-    Navigator.of(context).push(MXPopUpRoute(
-        modelClose: modelClose,
-        modelLabel: modelLabel,
-        showTypeEnum: mxPopUpShowTypeEnum,
-        customModelColor: customModelColor,
-        builder: builder));
+    Navigator.of(context)
+        .push(MXPopUpRoute(
+            modelClose: modelClose,
+            modelLabel: modelLabel,
+            showTypeEnum: mxPopUpShowTypeEnum,
+            customModelColor: customModelColor,
+            builder: builder))
+        .then((value) {
+      onClose?.call();
+    });
   }
 }

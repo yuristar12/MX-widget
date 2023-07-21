@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../mx_widget.dart';
+
 /// 按钮的类型枚举
 enum MXButtonTypeEnum { fill, text, outline, plain, plainText }
 
@@ -450,3 +452,10 @@ enum MXFabButtonAligimentEnum {
   topRight,
   customer,
 }
+
+/// cascader组件的回调事件方法
+
+typedef MXCascaderOnchange = void Function(
+    String id, MXCascaderOptions? lastSelectOption);
+
+typedef MXCascaderOnpick = void Function(MXCascaderOptions lastSelectOption);
