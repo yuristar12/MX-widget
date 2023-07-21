@@ -343,6 +343,9 @@ class _MyHomePageState extends State<MyHomePage>
         onClose: () {
           print('关闭');
         },
+        onPick: (lastSelectOption) {
+          print(lastSelectOption);
+        },
         options: [
           MXCascaderOptions(label: "北京市", value: "110000", children: [
             MXCascaderOptions(label: "北京市", value: "110100", children: [
