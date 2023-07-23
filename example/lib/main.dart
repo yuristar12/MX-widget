@@ -443,6 +443,35 @@ class _MyHomePageState extends State<MyHomePage>
                     height: 20,
                   ),
 
+                  MXRate(
+                    initValue: 1.0,
+                  ),
+
+                  const SizedBox(
+                    height: 20,
+                  ),
+
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 50,
+                      ),
+                      MXRate(
+                        size: 40,
+                        initValue: 3.5,
+                        useHalf: true,
+                        customSelectIcon: Icons.thumb_up,
+                        customUnselectIcon: Icons.thumb_up_outlined,
+                        customSelectColor:
+                            MXTheme.of(context).brandPrimaryColor,
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(
+                    height: 20,
+                  ),
+
                   MXButton(
                     text: '打开cascader组件',
                     themeEnum: themeEnum,

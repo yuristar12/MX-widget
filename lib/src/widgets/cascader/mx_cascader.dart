@@ -39,7 +39,7 @@ class MXCascaderState extends State<MXCascader> {
               bottom: BorderSide(
                   width: 1, color: MXTheme.of(context).infoPrimaryColor))),
       child: MXCascaderAnchorByVertical(
-          controller: widget.controller.stepsController!),
+          controller: widget.controller.stepsController),
     );
   }
 

@@ -459,3 +459,7 @@ typedef MXCascaderOnchange = void Function(
     String id, MXCascaderOptions? lastSelectOption);
 
 typedef MXCascaderOnpick = void Function(MXCascaderOptions lastSelectOption);
+
+/// rate 组件
+
+typedef MXRateOnchange = void Function(double index);
