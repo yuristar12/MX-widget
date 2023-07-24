@@ -14,6 +14,7 @@ class MXRateItem extends StatelessWidget {
       this.customUnselectIcon,
       this.customSelectIcon,
       this.customSelectColor,
+      this.useEvent = true,
       this.customUnSelectColor});
 
   final IconData? customUnselectIcon;
@@ -31,6 +32,8 @@ class MXRateItem extends StatelessWidget {
   final double size;
 
   final MXRateItemOnTap onTap;
+
+  final bool useEvent;
 
   bool get isPast {
     return value >= index;
@@ -92,6 +95,7 @@ class MXRateItem extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context) {
+    Widget child;
     double size = _getSize();
     List<Widget> children = [];
 
@@ -101,18 +105,23 @@ class MXRateItem extends StatelessWidget {
       children.add(_buildHaleIcon(context, size));
     }
 
-    return GestureDetector(
-      onPanDown: (details) {
-        onTap(details, index);
-      },
-      child: SizedBox(
-        width: size,
-        height: size,
-        child: Stack(
-          children: children,
-        ),
+    child = SizedBox(
+      width: size,
+      height: size,
+      child: Stack(
+        children: children,
       ),
     );
+
+    if (useEvent) {
+      return GestureDetector(
+          onPanDown: (details) {
+            onTap(details, index);
+          },
+          child: child);
+    } else {
+      return child;
+    }
   }
 
   @override

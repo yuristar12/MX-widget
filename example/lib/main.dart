@@ -341,10 +341,10 @@ class _MyHomePageState extends State<MyHomePage>
     mxCascaderController = MXCascaderController(
         onChange: (id, lastSelectOption) {},
         onClose: () {
-          print('关闭');
+          // print('关闭');
         },
         onPick: (lastSelectOption) {
-          print(lastSelectOption);
+          // print(lastSelectOption);
         },
         options: [
           MXCascaderOptions(label: "北京市", value: "110000", children: [
@@ -443,7 +443,132 @@ class _MyHomePageState extends State<MyHomePage>
                     height: 20,
                   ),
 
-                  MXRate(
+                  MXFormItem(
+                      model: MXFormItemModel(
+                          require: true,
+                          label: "开关",
+                          initValue: true,
+                          contentAlign: MXFormPositionAlign.end,
+                          builder: (MXFormItemModel model) {
+                            return MXSwitch(
+                              isOn: model.value,
+                              disabled: false,
+                              modeEnum: MXSwitchModeEnum.icon,
+                              sizeEnum: MXSwitchSizeEnum.medium,
+                              onChange: (value) {
+                                model.value = value;
+                              },
+                            );
+                          }),
+                      align: MXFormAlign.horizontal),
+
+                  const SizedBox(
+                    height: 20,
+                  ),
+
+                  Container(
+                    padding: EdgeInsets.all(MXTheme.of(context).space16),
+                    color: MXTheme.of(context).infoPrimaryColor,
+                    child: MXCellGroup(type: MXCellGroupType.cadr, cellList: [
+                      MXCellModel(
+                          title: '单行标题', description: '这是一段描述', note: '辅助描述'),
+                      MXCellModel(
+                        title: '单行标题',
+                        description: '这是一段描述',
+                        note: '辅助描述',
+                        rightWidget: const MXSwitch(
+                          isOn: false,
+                          disabled: false,
+                          modeEnum: MXSwitchModeEnum.icon,
+                          sizeEnum: MXSwitchSizeEnum.medium,
+                        ),
+                      ),
+                      MXCellModel(
+                          title: '单行标题',
+                          description: '这是一段描述',
+                          useArrow: false),
+                      MXCellModel(
+                        leftIconWidget: const MXAvatar(
+                          avatarNetUrl:
+                              'https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp',
+                          sizeEnum: MXAvatarSizeEnum.medium,
+                          shapeEnum: MXAvatarShapeEnum.circle,
+                        ),
+                        title: '单行标题',
+                        description: '这是一段描述',
+                        note: '辅助描述',
+                        onClick: (details) {
+                          print(details);
+                        },
+                      ),
+                      MXCellModel(
+                          type: MXCellType.mutipleLine,
+                          leftIconWidget: const MXAvatar(
+                            avatarNetUrl:
+                                'https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp',
+                            sizeEnum: MXAvatarSizeEnum.lager,
+                            shapeEnum: MXAvatarShapeEnum.circle,
+                          ),
+                          title:
+                              '这是一段很长的标题，这是一段很长的标题，这是一段很长的标题，这是一段很长的标题，这是一段很长的标题，这是一段很长的标题，这是一段很长的标题，这是一段很长的标题，这是一段很长的标题',
+                          description:
+                              '这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，',
+                          note: '辅助描述'),
+                    ]),
+                  ),
+
+                  const SizedBox(
+                    height: 20,
+                  ),
+
+                  MXCellGroup(cellList: [
+                    MXCellModel(
+                        title: '单行标题', description: '这是一段描述', note: '辅助描述'),
+                    MXCellModel(
+                      title: '单行标题',
+                      description: '这是一段描述',
+                      note: '辅助描述',
+                      rightWidget: const MXSwitch(
+                        isOn: false,
+                        disabled: false,
+                        modeEnum: MXSwitchModeEnum.icon,
+                        sizeEnum: MXSwitchSizeEnum.medium,
+                      ),
+                    ),
+                    MXCellModel(
+                      leftIconWidget: const MXAvatar(
+                        avatarNetUrl:
+                            'https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp',
+                        sizeEnum: MXAvatarSizeEnum.medium,
+                        shapeEnum: MXAvatarShapeEnum.circle,
+                      ),
+                      title: '单行标题',
+                      description: '这是一段描述',
+                      note: '辅助描述',
+                      onClick: (details) {
+                        print(details);
+                      },
+                    ),
+                    MXCellModel(
+                        type: MXCellType.mutipleLine,
+                        leftIconWidget: const MXAvatar(
+                          avatarNetUrl:
+                              'https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp',
+                          sizeEnum: MXAvatarSizeEnum.lager,
+                          shapeEnum: MXAvatarShapeEnum.circle,
+                        ),
+                        title:
+                            '这是一段很长的标题，这是一段很长的标题，这是一段很长的标题，这是一段很长的标题，这是一段很长的标题，这是一段很长的标题，这是一段很长的标题，这是一段很长的标题，这是一段很长的标题',
+                        description:
+                            '这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，这一段很长的描述，',
+                        note: '辅助描述'),
+                  ]),
+
+                  const SizedBox(
+                    height: 20,
+                  ),
+
+                  const MXRate(
                     initValue: 1.0,
                   ),
 
@@ -453,7 +578,7 @@ class _MyHomePageState extends State<MyHomePage>
 
                   Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 50,
                       ),
                       MXRate(
@@ -2487,28 +2612,28 @@ class _MyHomePageState extends State<MyHomePage>
                   SizedBox(
                     height: MXTheme.of(context).space32,
                   ),
-                  // const MXAvatar(
-                  //   avatarNetUrl:
-                  //       "https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp",
-                  //   sizeEnum: MXAvatarSizeEnum.lager,
-                  //   shapeEnum: MXAvatarShapeEnum.square,
-                  //   modeEnum: MXAvatarModeEnum.img,
-                  // ),
+                  const MXAvatar(
+                    avatarNetUrl:
+                        "https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp",
+                    sizeEnum: MXAvatarSizeEnum.lager,
+                    shapeEnum: MXAvatarShapeEnum.square,
+                    modeEnum: MXAvatarModeEnum.img,
+                  ),
                   SizedBox(
                     height: MXTheme.of(context).space32,
                   ),
-                  // MXAvatar(
-                  //   avatarNetUrlList: const [
-                  //     'https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp',
-                  //     'https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp',
-                  //     'https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp'
-                  //   ],
-                  //   avatarAppendixText: "+5",
-                  //   avatarAppendixCallback: () {},
-                  //   sizeEnum: MXAvatarSizeEnum.medium,
-                  //   shapeEnum: MXAvatarShapeEnum.circle,
-                  //   modeEnum: MXAvatarModeEnum.imgList,
-                  // ),
+                  MXAvatar(
+                    avatarNetUrlList: const [
+                      'https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp',
+                      'https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp',
+                      'https://i0.hdslb.com/bfs/face/eb101ef90ebc4e9bf79f65312a22ebac84946700.jpg@240w_240h_1c_1s.webp'
+                    ],
+                    avatarAppendixText: "+5",
+                    avatarAppendixCallback: () {},
+                    sizeEnum: MXAvatarSizeEnum.medium,
+                    shapeEnum: MXAvatarShapeEnum.circle,
+                    modeEnum: MXAvatarModeEnum.imgList,
+                  ),
                   SizedBox(
                     height: MXTheme.of(context).space32,
                   ),

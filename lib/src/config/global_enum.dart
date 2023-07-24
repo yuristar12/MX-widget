@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mx_widget/src/widgets/form/mx_form_item_model.dart';
 
 import '../../mx_widget.dart';
 
@@ -463,3 +464,30 @@ typedef MXCascaderOnpick = void Function(MXCascaderOptions lastSelectOption);
 /// rate 组件
 
 typedef MXRateOnchange = void Function(double index);
+
+/// cell 组件
+enum MXCellGroupType {
+  normal,
+  cadr,
+}
+
+enum MXCellType {
+  singleLine,
+  mutipleLine,
+}
+
+enum MXCellAlign {
+  top,
+  middle,
+  bottom,
+}
+
+typedef MXCellOnClick = void Function(DragDownDetails details);
+
+/// form组件
+
+enum MXFormAlign { horizontal, vertical }
+
+enum MXFormPositionAlign { start, center, end }
+
+typedef MXFormItemBuilder = Widget Function(MXFormItemModel value);

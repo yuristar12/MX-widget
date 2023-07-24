@@ -31,11 +31,22 @@ class MXCollapsePanerItem extends StatelessWidget {
   final VoidCallback collapseItemClick;
 
   Widget _buildTitle(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [_builldTitleLeft(context), _buildTitleRight(context)],
+    Color fontColor = MXTheme.of(context).fontUseSecondColors;
+    MXFontStyle fontSize = MXTheme.of(context).fontBodySmall!;
+    MXCellModel cellModel = MXCellModel(
+        useBorder: false,
+        title: model.title,
+        note: isCollapse ? model.collapseNotice : model.noCollapseNotice,
+        rightIconWidget: MXIcon(
+          icon: isCollapse ? collapseIcon : noCollapseIcon,
+          useDefaultPadding: false,
+          iconColor: fontColor,
+          iconFontSize: fontSize.size,
+        ));
+
+    return MXCell(
+      model: cellModel,
+      padding: 0,
     );
   }
 
@@ -71,44 +82,6 @@ class MXCollapsePanerItem extends StatelessWidget {
     }
 
     return pannerWrap;
-  }
-
-  Widget _buildTitleRight(BuildContext context) {
-    List<Widget> child = [];
-
-    Color fontColor = MXTheme.of(context).fontUseSecondColors;
-    MXFontStyle fontSize = MXTheme.of(context).fontBodySmall!;
-
-    if (model.collapseNotice != null || model.noCollapseNotice != null) {
-      child.add(MXText(
-        data: isCollapse ? model.collapseNotice : model.noCollapseNotice,
-        font: fontSize,
-        textColor: fontColor,
-      ));
-
-      child.add(SizedBox(
-        width: padding,
-      ));
-    }
-
-    child.add(MXIcon(
-      icon: isCollapse ? collapseIcon : noCollapseIcon,
-      useDefaultPadding: false,
-      iconColor: fontColor,
-      iconFontSize: fontSize.size,
-    ));
-
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: child,
-    );
-  }
-
-  Widget _builldTitleLeft(BuildContext context) {
-    return MXText(
-      data: model.title,
-      font: MXTheme.of(context).fontBodyMedium,
-    );
   }
 
   Widget _buildContent(BuildContext context) {

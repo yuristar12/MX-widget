@@ -181,3 +181,14 @@ export 'widgets/cascader/mx_cascader_options.dart';
 
 // rate组件
 export 'widgets/rate/mx_rate.dart';
+
+// cell组件
+export 'widgets/cell/mx_cell.dart';
+export 'widgets/cell/mx_cell_group.dart';
+export 'widgets/cell/mx_cell_model.dart';
+
+// form组件
+export 'widgets/form/mx_form.dart';
+export 'widgets/form/mx_form_item.dart';
+export 'widgets/form/mx_form_controller.dart';
+export 'widgets/form/mx_form_item_model.dart';

@@ -56,11 +56,8 @@ class _MXSwitchState extends State<MXSwitch> {
 
   @override
   void initState() {
+    isOn = widget.isOn;
     super.initState();
-
-    setState(() {
-      isOn = widget.isOn;
-    });
   }
 
   @override
