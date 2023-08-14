@@ -106,6 +106,8 @@ class _MyHomePageState extends State<MyHomePage>
 
   late MXCascaderController mxCascaderController;
 
+  late MXFormController mxFormController;
+
   @override
   void initState() {
     super.initState();
@@ -390,6 +392,26 @@ class _MyHomePageState extends State<MyHomePage>
             ),
           ])
         ]);
+
+    mxFormController = MXFormController(rules: {
+      'switch': [
+        MXFormRule(
+          required: true,
+        )
+      ],
+      'rate': [
+        MXFormRule(
+          required: true,
+          message: '分数过低会影响整体评价',
+          validator: (value) {
+            if (value < 3.0) {
+              return MXFormRuleResult(result: false, message: '自定义错误提示');
+            }
+            return MXFormRuleResult(result: true);
+          },
+        )
+      ],
+    });
   }
 
   @override
@@ -437,30 +459,116 @@ class _MyHomePageState extends State<MyHomePage>
           slivers: [
             SliverToBoxAdapter(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(
+                    height: 200,
+                  ),
+
+                  Container(
+                    padding: const EdgeInsets.only(left: 200),
+                    child: MXPopover(
+                      popoverModel: MXPopoverModel(showTriangle: true),
+                      positionEnum: MXPopoverPositionEnum.topCenter,
+                      triggerWidget: MXIcon(
+                          useDefaultPadding: false,
+                          action: () {},
+                          icon: Icons.chair),
+                      contentByText: '弹出气泡内容，弹出气泡内容',
+                    ),
+                  ),
+
                   const SizedBox(
                     height: 20,
                   ),
 
-                  MXFormItem(
-                      model: MXFormItemModel(
-                          require: true,
-                          label: "开关",
-                          initValue: true,
-                          contentAlign: MXFormPositionAlign.end,
-                          builder: (MXFormItemModel model) {
-                            return MXSwitch(
-                              isOn: model.value,
-                              disabled: false,
-                              modeEnum: MXSwitchModeEnum.icon,
-                              sizeEnum: MXSwitchSizeEnum.medium,
-                              onChange: (value) {
-                                model.value = value;
-                              },
-                            );
-                          }),
-                      align: MXFormAlign.horizontal),
+                  MXForm(formList: [
+                    MXFormItemModel(
+                        require: true,
+                        label: "开关",
+                        initValue: false,
+                        props: 'switch',
+                        contentAlign: MXFormPositionAlign.end,
+                        builder: (MXFormItemModel model) {
+                          return MXSwitch(
+                            isOn: model.value,
+                            disabled: false,
+                            modeEnum: MXSwitchModeEnum.icon,
+                            sizeEnum: MXSwitchSizeEnum.medium,
+                            onChange: (value) {
+                              model.value = value;
+
+                              if (!value) {
+                                mxFormController.disabled = true;
+                              }
+                            },
+                          );
+                        }),
+                    MXFormItemModel(
+                        require: true,
+                        label: "自我评价",
+                        initValue: 1.0,
+                        props: 'rate',
+                        contentAlign: MXFormPositionAlign.end,
+                        builder: (MXFormItemModel model) {
+                          return MXRate(
+                            size: 28,
+                            initValue: model.value,
+                            onchange: (index) {
+                              model.value = index;
+                            },
+                          );
+                        }),
+                    MXFormItemModel(
+                        require: false,
+                        label: "个人简介",
+                        initValue: '',
+                        props: 'brief',
+                        contentAlign: MXFormPositionAlign.end,
+                        builder: (MXFormItemModel model) {
+                          return MXTextArea(
+                            maxLength: 60,
+                            maxLines: 5,
+                            space: 0,
+                            useIndicator: true,
+                            autoHeight: false,
+                            backgroundColor: Colors.transparent,
+                            onMaxLengthCallback: () {
+                              MXToast().toastByError(context, '字数过长');
+                            },
+                            alignment: MXTextAreaAlignmentEnum.horizontal,
+                            controller: textEditingController,
+                          );
+                        })
+                  ], controller: mxFormController),
+
+                  Flex(
+                    direction: Axis.horizontal,
+                    children: [
+                      Flexible(
+                        child: MXButton(
+                            customMargin: const EdgeInsets.all(2),
+                            text: '校验全部',
+                            disabled: disabled,
+                            themeEnum: themeEnum,
+                            afterClickButtonCallback: () {
+                              mxFormController.onValidatorByAll();
+                            }),
+                      ),
+                      Flexible(
+                        child: MXButton(
+                            customMargin: const EdgeInsets.all(2),
+                            text: '清除校验',
+                            disabled: disabled,
+                            themeEnum: themeEnum,
+                            afterClickButtonCallback: () {
+                              mxFormController.onCleanAllValidator();
+                            }),
+                      ),
+                    ],
+                  ),
 
                   const SizedBox(
                     height: 20,

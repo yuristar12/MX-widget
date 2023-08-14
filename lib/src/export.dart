@@ -189,6 +189,12 @@ export 'widgets/cell/mx_cell_model.dart';
 
 // form组件
 export 'widgets/form/mx_form.dart';
+export 'widgets/form/mx_form_rule.dart';
 export 'widgets/form/mx_form_item.dart';
 export 'widgets/form/mx_form_controller.dart';
 export 'widgets/form/mx_form_item_model.dart';
+export 'widgets/form/mx_form_rule_result.dart';
+
+// popover组件
+export 'widgets/popover/mx_popover.dart';
+export 'widgets/popover/mx_popover_model.dart';

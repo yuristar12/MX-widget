@@ -2,11 +2,10 @@ import 'package:mx_widget/mx_widget.dart';
 
 class MXFormItemModel {
   MXFormItemModel({
-    this.props,
+    required this.props,
     this.help,
     this.require = false,
     this.initValue,
-    this.errorMessage,
     required this.label,
     required this.builder,
     this.contentAlign = MXFormPositionAlign.end,
@@ -21,7 +20,7 @@ class MXFormItemModel {
 
   final String label;
 
-  final String? props;
+  final String props;
 
   final String? help;
 
@@ -37,12 +36,25 @@ class MXFormItemModel {
 
   dynamic _value;
 
+  MXFormController? formController;
+
   set value(dynamic value) {
     if (_value == value) return;
+
     _value = value;
+
+    // 调用校验的方法
+    if (formController != null) {
+      formController!.onValidatorByProps(props);
+    }
   }
 
   dynamic get value {
     return _value;
+  }
+
+  /// 设置控制器
+  setFormController(MXFormController controller) {
+    formController = controller;
   }
 }

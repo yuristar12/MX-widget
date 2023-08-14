@@ -4,9 +4,11 @@ import 'package:mx_widget/mx_widget.dart';
 class MXFormItem extends StatelessWidget {
   const MXFormItem(
       {super.key,
+      this.disabled = false,
       this.padding = 16,
       required this.model,
       required this.align,
+      required this.useBottomBorder,
       this.isError = false,
       this.labelWidth = 80});
 
@@ -20,11 +22,15 @@ class MXFormItem extends StatelessWidget {
 
   final double padding;
 
+  final bool disabled;
+
+  final bool useBottomBorder;
+
   Widget _buildItemHelpText(BuildContext context) {
     return MXText(
       data: model.help,
       font: MXTheme.of(context).fontInfoLarge,
-      textColor: MXTheme.of(context).infoPrimaryColor,
+      textColor: MXTheme.of(context).infoColor7,
     );
   }
 
@@ -36,14 +42,17 @@ class MXFormItem extends StatelessWidget {
     );
   }
 
-  Widget _buildSpaceWidget(BuildContext context) {
+  Widget _buildSpaceWidget(BuildContext context, {double? height}) {
     return SizedBox(
-      height: MXTheme.of(context).space8,
+      height: height ?? MXTheme.of(context).space8,
     );
   }
 
   Widget _buildItemContent(BuildContext context) {
-    List<Widget> children = [];
+    Widget child;
+    Widget contentChild;
+    List<Widget> contentChildren = [];
+
     CrossAxisAlignment alignment;
 
     switch (model.contentAlign) {
@@ -59,23 +68,36 @@ class MXFormItem extends StatelessWidget {
         alignment = CrossAxisAlignment.end;
         break;
     }
-    children.add(model.builder.call(model));
+    contentChildren.add(model.builder.call(model));
 
-    if (model.help != null) {
-      children.add(_buildSpaceWidget(context));
-      children.add(_buildItemHelpText(context));
+    if (model.help != null || isError) {
+      contentChildren.add(_buildSpaceWidget(context, height: 4));
+      if (model.help != null) {
+        contentChildren.add(_buildItemHelpText(context));
+      }
+      if (isError) {
+        contentChildren.add(_buildErrorText(context));
+      }
     }
 
-    if (isError) {
-      children.add(_buildSpaceWidget(context));
-      children.add(_buildErrorText(context));
-    }
-
-    return Column(
+    contentChild = Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: alignment,
-      children: children,
+      children: contentChildren,
     );
+
+    if (disabled) {
+      child = Opacity(
+        opacity: 0.4,
+        child: IgnorePointer(
+          child: contentChild,
+        ),
+      );
+    } else {
+      child = contentChild;
+    }
+
+    return child;
   }
 
   AlignmentGeometry _getAlignment(MXFormPositionAlign align) {
@@ -110,10 +132,6 @@ class MXFormItem extends StatelessWidget {
 
     List<Widget> children = [];
 
-    if (model.require) {
-      children.add(_buildRequireSymbole(context));
-    }
-
     children.add(
       MXText(
         maxLines: 1,
@@ -122,6 +140,13 @@ class MXFormItem extends StatelessWidget {
         font: MXTheme.of(context).fontBodyMedium,
       ),
     );
+
+    if (model.require) {
+      children.add(const SizedBox(
+        width: 8,
+      ));
+      children.add(_buildRequireSymbole(context));
+    }
 
     return Container(
         margin: EdgeInsets.only(right: padding),
@@ -180,8 +205,10 @@ class MXFormItem extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: padding),
       decoration: BoxDecoration(
           border: Border(
-              bottom: BorderSide(
-                  width: 1, color: MXTheme.of(context).infoPrimaryColor))),
+              bottom: useBottomBorder
+                  ? BorderSide(
+                      width: 1, color: MXTheme.of(context).infoPrimaryColor)
+                  : BorderSide.none)),
       child: _buildBody(context),
     );
   }

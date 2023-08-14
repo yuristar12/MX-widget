@@ -3,8 +3,6 @@ import 'package:mx_widget/mx_widget.dart';
 import 'package:mx_widget/src/widgets/input/mx_input_body.dart';
 import 'package:mx_widget/src/widgets/textarea/mx_text_area_indicator.dart';
 
-final double space = MXTheme.getThemeConfig().space16;
-
 class MXTextArea extends StatefulWidget {
   const MXTextArea(
       {super.key,
@@ -27,7 +25,8 @@ class MXTextArea extends StatefulWidget {
       this.onChange,
       this.onEditingComplete,
       this.onSubmitted,
-      this.onMaxLengthCallback});
+      this.onMaxLengthCallback,
+      this.space = 16});
 
   final String placeholder;
 
@@ -69,6 +68,8 @@ class MXTextArea extends StatefulWidget {
 
   final VoidCallback? onMaxLengthCallback;
 
+  final double space;
+
   @override
   State<MXTextArea> createState() => _MXTextAreaState();
 }
@@ -100,9 +101,10 @@ class _MXTextAreaState extends State<MXTextArea> {
     EdgeInsets margin;
 
     if (widget.alignment == MXTextAreaAlignmentEnum.vertical) {
-      margin = EdgeInsets.only(left: space, right: space, top: space);
+      margin = EdgeInsets.only(
+          left: widget.space, right: widget.space, top: widget.space);
     } else {
-      margin = EdgeInsets.only(top: space, left: space);
+      margin = EdgeInsets.only(top: widget.space, left: widget.space);
     }
 
     return Container(
@@ -117,13 +119,19 @@ class _MXTextAreaState extends State<MXTextArea> {
     EdgeInsets margin;
 
     if (widget.alignment == MXTextAreaAlignmentEnum.vertical) {
-      double vertical = space / 2;
+      double vertical = widget.space / 2;
 
       margin = EdgeInsets.only(
-          top: vertical, bottom: vertical, left: space, right: space);
+          top: vertical,
+          bottom: vertical,
+          left: widget.space,
+          right: widget.space);
     } else {
-      margin =
-          EdgeInsets.only(top: space, bottom: space, left: space, right: space);
+      margin = EdgeInsets.only(
+          top: widget.space,
+          bottom: widget.space,
+          left: widget.space,
+          right: widget.space);
     }
 
     Widget input = MXInputBody(
@@ -156,7 +164,7 @@ class _MXTextAreaState extends State<MXTextArea> {
       },
       onSubmitted: widget.onSubmitted,
       onEditingComplete: widget.onEditingComplete,
-      contentPadding: EdgeInsets.all(widget.useBorder ? space / 2 : 0),
+      contentPadding: EdgeInsets.all(widget.useBorder ? widget.space / 2 : 0),
     );
 
     if (widget.autoFocus) {

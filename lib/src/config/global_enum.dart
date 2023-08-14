@@ -491,3 +491,19 @@ enum MXFormAlign { horizontal, vertical }
 enum MXFormPositionAlign { start, center, end }
 
 typedef MXFormItemBuilder = Widget Function(MXFormItemModel value);
+
+/// popover组件
+enum MXPopoverPositionEnum {
+  topLeft,
+  topCenter,
+  topRight,
+  bottomLeft,
+  bottomCenter,
+  bottomRight,
+  rightTop,
+  rightCenter,
+  rightBottom,
+  leftTop,
+  leftCenter,
+  leftBottom,
+}
