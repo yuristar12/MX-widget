@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mx_widget/mx_widget.dart';
 import 'package:mx_widget/src/util/curve_util.dart';
+import 'package:mx_widget/src/widgets/popover/popover_position.dart';
 import 'package:mx_widget/src/widgets/popover/mx_popover_triangle.dart';
 import 'package:mx_widget/src/widgets/popover/popover_over_layer_controller.dart';
-import 'package:mx_widget/src/widgets/popover/popover_position.dart';
 
 const double space = 10;
+
+double padding = MXTheme.getThemeConfig().space12;
 
 enum RenderDirectionEnum { column, horizontal }
 
@@ -91,8 +93,12 @@ class _MXPopoverWrapState extends State<MXPopoverWrap>
 // 记录需要渲染的widget高度
   double renderHeight = 0;
 
+// 容器最大的宽度,不要考虑高度
+  double renderMaxWidth = 0;
+
   @override
   void initState() {
+    setDirectionEnum();
     WidgetsBinding.instance.addPostFrameCallback(
       (timeStamp) {
         animationController = AnimationController(
@@ -115,12 +121,12 @@ class _MXPopoverWrapState extends State<MXPopoverWrap>
 
   @override
   void dispose() {
-    // 组件销魂时需要将动画控制器也销毁
+    // 组件销毁时需要将动画控制器也销毁
     animationController.dispose();
     super.dispose();
   }
 
-  void _judgeDirection() {
+  void setDirectionEnum() {
     for (var element in renderDirectionJudgeMap.keys) {
       List<MXPopoverPositionEnum>? list = renderDirectionJudgeMap[element];
       if (list != null) {
@@ -131,7 +137,9 @@ class _MXPopoverWrapState extends State<MXPopoverWrap>
         }
       }
     }
+  }
 
+  void _judgeDirection() {
     if (directionEnum == RenderDirectionEnum.horizontal) {
       _judgeDirectionByHorizontal();
     } else if (directionEnum == RenderDirectionEnum.column) {
@@ -147,12 +155,20 @@ class _MXPopoverWrapState extends State<MXPopoverWrap>
     double renderHeight = renderBox.size.height;
     double limitHeight = widget.position.dy - space;
 
+    // 获取屏幕宽度
+    double screenWidth = MediaQuery.of(context).size.width - padding * 2;
+
     // 获取屏幕剩余高度
     double residueHeight =
         MediaQuery.of(context).size.height - widget.position.dy;
 
     // 判断是否上面能排下
     if (topDirectionList.contains(widgetPositionEnum)) {
+      if (renderWidth > screenWidth) {
+        renderMaxWidth = screenWidth;
+        positionEnum = MXPopoverPositionEnum.topCenter;
+        return;
+      }
       if (limitHeight >= renderHeight) {
         positionEnum = widget.position.positionEnum;
         return;
@@ -160,6 +176,11 @@ class _MXPopoverWrapState extends State<MXPopoverWrap>
         positionEnum = MXPopoverPositionEnum.bottomCenter;
       }
     } else {
+      if (renderWidth > screenWidth) {
+        renderMaxWidth = screenWidth;
+        positionEnum = MXPopoverPositionEnum.bottomCenter;
+        return;
+      }
       if (residueHeight >= renderHeight) {
         positionEnum = widget.position.positionEnum;
         return;
@@ -181,7 +202,7 @@ class _MXPopoverWrapState extends State<MXPopoverWrap>
         (widget.position.dx + widget.position.width + space);
 
     // 获取屏幕剩余宽度
-    double residueWidthByLeft = (widget.position.dx - space);
+    double residueWidthByLeft = (widget.position.dx - space - padding);
 
     // 判断是否能在右侧排下
     if (rightDirectionList.contains(widgetPositionEnum)) {
@@ -190,6 +211,9 @@ class _MXPopoverWrapState extends State<MXPopoverWrap>
         return;
       } else if (residueWidthByLeft >= renderWidth) {
         positionEnum = MXPopoverPositionEnum.leftCenter;
+      } else {
+        renderMaxWidth = residueWidthByRight - padding;
+        positionEnum = MXPopoverPositionEnum.rightCenter;
       }
     } else {
       // 判断是否能在左侧排下
@@ -198,13 +222,15 @@ class _MXPopoverWrapState extends State<MXPopoverWrap>
         return;
       } else if (residueWidthByRight >= renderWidth) {
         positionEnum = MXPopoverPositionEnum.rightCenter;
+      } else {
+        renderMaxWidth = residueWidthByLeft - padding;
+        positionEnum = MXPopoverPositionEnum.leftCenter;
       }
     }
   }
 
   void _onRenderComplated() {
     RenderBox renderBox = _getRenderBox();
-
     if (positionEnum != null) {
       if (directionEnum == RenderDirectionEnum.horizontal) {
         if (positionEnum == MXPopoverPositionEnum.rightTop ||
@@ -224,7 +250,9 @@ class _MXPopoverWrapState extends State<MXPopoverWrap>
         if (rightDirectionList.contains(positionEnum)) {
           left = widget.position.dx + widget.position.width + space;
         } else if (leftDirectionList.contains(positionEnum)) {
-          left = widget.position.dx - renderBox.size.width - space;
+          left = widget.position.dx -
+              (renderMaxWidth > 0 ? renderMaxWidth : renderBox.size.width) -
+              space;
         }
       } else if (directionEnum == RenderDirectionEnum.column) {
         if (positionEnum == MXPopoverPositionEnum.topLeft ||
@@ -282,7 +310,9 @@ class _MXPopoverWrapState extends State<MXPopoverWrap>
         return Positioned(bottom: space * 3, left: renderWidth, child: child);
       } else if (positionEnum == MXPopoverPositionEnum.leftCenter) {
         return Positioned(
-            top: renderHeight / 2 - space, left: renderWidth, child: child);
+            top: renderHeight / 2 - space,
+            left: renderMaxWidth > 0 ? renderMaxWidth : renderWidth,
+            child: child);
       } else if (positionEnum == MXPopoverPositionEnum.leftTop) {
         return Positioned(top: space, left: renderWidth, child: child);
       }
@@ -337,14 +367,44 @@ class _MXPopoverWrapState extends State<MXPopoverWrap>
   Widget _buildWrap(Widget child) {
     List<Widget> children = [];
 
+    if (!isComplated) {
+      double maxWidth;
+      if (directionEnum == RenderDirectionEnum.column) {
+        maxWidth = MediaQuery.of(context).size.width - padding * 2;
+        child = ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: maxWidth),
+          child: child,
+        );
+      } else {
+        if (rightDirectionList.contains(widget.position.positionEnum)) {
+          maxWidth = MediaQuery.of(context).size.width -
+              widget.position.dx -
+              widget.position.width -
+              padding;
+        } else {
+          maxWidth = widget.position.dx - padding;
+        }
+
+        child = ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: maxWidth),
+          child: child,
+        );
+      }
+    }
+
     children.add(Container(
-        padding: EdgeInsets.all(MXTheme.of(context).space12),
+        padding: EdgeInsets.all(padding),
         decoration: BoxDecoration(
             color: Colors.black,
             boxShadow: MXTheme.of(context).shadowTopList,
             borderRadius: BorderRadius.all(
                 Radius.circular(MXTheme.of(context).radiusDefault))),
-        child: child));
+        child: renderMaxWidth > 0
+            ? SizedBox(
+                width: renderMaxWidth - padding * 2,
+                child: child,
+              )
+            : child));
 
     if (isComplated && widget.showTriangle) {
       children.add(_buildPopoverTriangle());
@@ -362,11 +422,10 @@ class _MXPopoverWrapState extends State<MXPopoverWrap>
 
     if (!isComplated) {
       child = Opacity(
-        opacity: 0,
-        child: Stack(
-          children: [_buildWrap(widget.renderChild)],
-        ),
-      );
+          opacity: 0,
+          child: Stack(
+            children: [_buildWrap(widget.renderChild)],
+          ));
     } else {
       child = AnimatedBuilder(
           animation: CurvedAnimation(
@@ -384,6 +443,8 @@ class _MXPopoverWrapState extends State<MXPopoverWrap>
     return TapRegion(
         onTapOutside: (event) {
           final Offset localPosition = event.localPosition;
+
+          // 判断点击区域是否处于触发popover/widget内
           if (localPosition.dx >= widget.position.dx &&
               localPosition.dx <= widget.position.dx + widget.position.width &&
               localPosition.dy >= widget.position.dy &&

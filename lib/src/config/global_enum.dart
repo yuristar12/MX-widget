@@ -507,3 +507,5 @@ enum MXPopoverPositionEnum {
   leftCenter,
   leftBottom,
 }
+
+enum MXCalendarTypeEnum { single, multiple, range }

@@ -1,3 +1,6 @@
+/// 事件中心
+export '../src/util/eventCenter/mx_event_center.dart';
+
 /// 主题样式相关
 export "../src/theme/mx_theme.dart";
 export "../src/theme/mx_colors.dart";
@@ -198,3 +201,9 @@ export 'widgets/form/mx_form_rule_result.dart';
 // popover组件
 export 'widgets/popover/mx_popover.dart';
 export 'widgets/popover/mx_popover_model.dart';
+
+// calendar组件
+export 'widgets/calendar/mx_calendar.dart';
+export 'widgets/calendar/mx_calendar_time.dart';
+export 'widgets/calendar/mx_calendar_controller.dart';
+export 'widgets/calendar/mx_calendar_value_by_range.dart';

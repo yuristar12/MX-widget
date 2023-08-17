@@ -464,19 +464,27 @@ class _MyHomePageState extends State<MyHomePage>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
+                    height: 10,
+                  ),
+                  MXCalendar(
+                      controller: MXCalendarController(
+                          typeEnum: MXCalendarTypeEnum.range,
+                          minDate: MXCalendarTime(2021, 1, 15),
+                          maxDate: MXCalendarTime(2021, 12, 3))),
+
+                  const SizedBox(
                     height: 200,
                   ),
-
                   Container(
                     padding: const EdgeInsets.only(left: 200),
                     child: MXPopover(
                       popoverModel: MXPopoverModel(showTriangle: true),
-                      positionEnum: MXPopoverPositionEnum.topCenter,
+                      positionEnum: MXPopoverPositionEnum.bottomCenter,
                       triggerWidget: MXIcon(
                           useDefaultPadding: false,
                           action: () {},
                           icon: Icons.chair),
-                      contentByText: '弹出气泡内容，弹出气泡内容',
+                      contentByText: '弹出气泡内容，弹出气泡内容，弹出气泡内容，弹出气泡内容，弹出气泡内容。',
                     ),
                   ),
 
