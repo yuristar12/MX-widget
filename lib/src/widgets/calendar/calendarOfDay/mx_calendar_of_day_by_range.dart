@@ -53,6 +53,7 @@ class MXCalendarOfDayByRange extends StatelessWidget {
           isNumber: true,
           font: mxThemeConfig.fontBodyMedium,
           data: day,
+          fontWeight: FontWeight.bold,
           textColor: _getTextColor(mxThemeConfig),
         ),
       ),
