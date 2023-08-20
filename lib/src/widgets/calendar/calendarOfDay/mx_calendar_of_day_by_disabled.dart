@@ -1,27 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:mx_widget/mx_widget.dart';
+import 'package:mx_widget/src/widgets/calendar/calendarOfDay/mx_calendar_of_day.dart';
 
-// 日历中被禁用的日期组件
-class MXCalendarOfDayByDisabled extends StatelessWidget {
-  const MXCalendarOfDayByDisabled({super.key, required this.day});
+import '../../../../mx_widget.dart';
 
-  final String day;
+// // 日历中被禁用的日期组件
+class MXCalendarOfDayByDisabled extends MXCalendarOfDay {
+  const MXCalendarOfDayByDisabled(
+      {super.key, required super.day, required super.width, super.builder});
 
-  Widget _buildBody(BuildContext context) {
-    MXThemeConfig mxThemeConfig = MXTheme.of(context);
-    return Center(
-      child: MXText(
-        data: day,
-        isNumber: true,
-        fontWeight: FontWeight.bold,
-        font: mxThemeConfig.fontBodyMedium,
-        textColor: mxThemeConfig.fontUseDisabledColor,
-      ),
-    );
+  @override
+  Color getTextColor(MXThemeConfig mxThemeConfig) {
+    return mxThemeConfig.fontUseDisabledColor;
   }
 
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(child: _buildBody(context));
+  Widget buildBody(BuildContext context) {
+    return SizedBox(
+      child: buildContent(context),
+    );
   }
 }

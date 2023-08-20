@@ -1,13 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:mx_widget/mx_widget.dart';
 
+/// 日历组件的控制器
+/// [typeEnum] 选择的类型 single/multiple/range
+/// [defaultValue] 默认需要选中的值 single下为[DateTime]/multiple下为[List<DateTime>]
+/// range 下为 [MXCalendarValueByRange]
+/// [minDate] 开始时间 如果携带具体日期如'2021,1,15' 则15日包括（15日）之前的日期无法选择
+/// [maxDate] 结束时间 如果携带具体日期如'2021,12,18' 则18日包括（18日）之后的日期无法选择
+/// [dayBuilder] 自定义单个日期渲染内容
+/// [disableds] 无法选择的日期数组
+/// [weaknessColor] 只有当选择类型为range 时生效，被选中之间的日期盒子背景颜色
+/// [aweakColor] 被选中的日期盒子背景颜色
+/// [onSelect] 日期被选择时
+
 class MXCalendarController {
   MXCalendarController(
       {this.typeEnum = MXCalendarTypeEnum.single,
       this.defaultValue,
       required this.minDate,
       required this.maxDate,
+      this.onSelect,
       this.disableds,
+      this.aweakColor,
+      this.dayBuilder,
+      this.weaknessColor,
       this.firstDayOfWeek = 0})
       : assert(() {
           if (defaultValue != null) {
@@ -44,6 +60,14 @@ class MXCalendarController {
   late dynamic value;
 
   late List<DateTime>? disableds;
+
+  final MXCalendarOfDayBuilder? dayBuilder;
+
+  final Color? weaknessColor;
+
+  final Color? aweakColor;
+
+  final MXCalendarOnSelect? onSelect;
 
   void _onInit() {
     if (defaultValue != null) {

@@ -1,25 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:mx_widget/mx_widget.dart';
+import 'package:mx_widget/src/widgets/calendar/calendarOfDay/mx_calendar_of_day.dart';
 
-class MXCalendarOfDayByRange extends StatelessWidget {
-  const MXCalendarOfDayByRange(
-      {super.key,
-      required this.day,
-      this.isEnd = false,
-      this.isStart = false,
-      this.isRange = false,
-      required this.clickCallback});
-
-  final String day;
+class MXCalendarOfDayByRange extends MXCalendarOfDay {
+  const MXCalendarOfDayByRange({
+    super.key,
+    super.builder,
+    required super.day,
+    required super.width,
+    super.clickCallback,
+    this.isEnd = false,
+    this.isStart = false,
+    this.isRange = false,
+    this.aweakColor,
+    this.weaknessColor,
+  });
 
   final bool isEnd;
   final bool isStart;
 
   final bool isRange;
 
-  final VoidCallback clickCallback;
+  final Color? weaknessColor;
 
-  BorderRadiusGeometry _getRadius(MXThemeConfig mxThemeConfig) {
+  final Color? aweakColor;
+
+  @override
+  BorderRadiusGeometry getRadius(MXThemeConfig mxThemeConfig) {
     Radius radius = Radius.circular(mxThemeConfig.radiusDefault);
 
     if (isStart) {
@@ -31,37 +38,16 @@ class MXCalendarOfDayByRange extends StatelessWidget {
     return const BorderRadius.all(Radius.zero);
   }
 
-  Color _getTextColor(MXThemeConfig mxThemeConfig) {
+  @override
+  Color getTextColor(MXThemeConfig mxThemeConfig) {
     if (isEnd || isStart) return mxThemeConfig.whiteColor;
     return mxThemeConfig.fontUsePrimaryColor;
   }
 
-  Color _getBackgroundColor(MXThemeConfig mxThemeConfig) {
-    if (isEnd || isStart) return mxThemeConfig.brandPrimaryColor;
-    if (isRange) return mxThemeConfig.brandColor2;
-    return Colors.transparent;
-  }
-
-  Widget _buildBody(BuildContext context) {
-    MXThemeConfig mxThemeConfig = MXTheme.of(context);
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: _getRadius(mxThemeConfig),
-          color: _getBackgroundColor(mxThemeConfig)),
-      child: Center(
-        child: MXText(
-          isNumber: true,
-          font: mxThemeConfig.fontBodyMedium,
-          data: day,
-          fontWeight: FontWeight.bold,
-          textColor: _getTextColor(mxThemeConfig),
-        ),
-      ),
-    );
-  }
-
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(onTap: clickCallback, child: _buildBody(context));
+  Color getBackgroundColor(MXThemeConfig mxThemeConfig) {
+    if (isEnd || isStart) return aweakColor ?? mxThemeConfig.brandPrimaryColor;
+    if (isRange) return weaknessColor ?? mxThemeConfig.brandColor2;
+    return Colors.transparent;
   }
 }

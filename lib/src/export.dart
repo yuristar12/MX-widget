@@ -204,6 +204,7 @@ export 'widgets/popover/mx_popover_model.dart';
 
 // calendar组件
 export 'widgets/calendar/mx_calendar.dart';
-export 'widgets/calendar/mx_calendar_time.dart';
-export 'widgets/calendar/mx_calendar_controller.dart';
-export 'widgets/calendar/mx_calendar_value_by_range.dart';
+export 'widgets/calendar/model/mx_calendar_time.dart';
+export 'widgets/calendar/use_mx_calendar_by_popup.dart';
+export 'widgets/calendar/model/mx_calendar_controller.dart';
+export 'widgets/calendar/model/mx_calendar_value_by_range.dart';

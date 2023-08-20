@@ -24,8 +24,8 @@ class MXCalendarOfMonth extends StatelessWidget {
     Color textColor = MXTheme.of(context).fontUsePrimaryColor;
     return Container(
       margin: EdgeInsets.symmetric(horizontal: MXTheme.of(context).space4),
-      child: Text(
-        str,
+      child: MXText(
+        data: str,
         style: TextStyle(
             fontSize: font.size, color: textColor, fontWeight: FontWeight.bold),
       ),
@@ -58,9 +58,12 @@ class MXCalendarOfMonth extends StatelessWidget {
     ));
     children.add(_buildTitleEnum('月', context));
 
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: children,
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: MXTheme.of(context).space16),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: children,
+      ),
     );
   }
 
@@ -86,8 +89,10 @@ class MXCalendarOfMonth extends StatelessWidget {
     children.add(_buildContent());
 
     return Container(
-      padding: EdgeInsets.all(MXTheme.of(context).space16),
+      padding: EdgeInsets.symmetric(vertical: MXTheme.of(context).space16),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: children,
       ),
     );

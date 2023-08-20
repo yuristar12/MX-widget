@@ -83,7 +83,7 @@ class MXPopUpBottomBody extends StatelessWidget {
     return MXText(
       data: title,
       maxLines: 1,
-      font: MXTheme.of(context).fontBodyMedium,
+      font: MXTheme.of(context).fontBodyLarge,
       style: titleStyle ??
           TextStyle(
               overflow: TextOverflow.ellipsis,
@@ -94,7 +94,7 @@ class MXPopUpBottomBody extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(MXTheme.of(context).space4),
+      padding: EdgeInsets.all(MXTheme.of(context).space16),
       decoration: BoxDecoration(
           color: backgroundColor ?? MXTheme.of(context).whiteColor,
           borderRadius: BorderRadius.only(

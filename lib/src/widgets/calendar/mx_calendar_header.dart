@@ -15,8 +15,8 @@ class MXCalendarHeader extends StatelessWidget {
   ) {
     return SizedBox(
       child: Center(
-        child: Text(
-          str,
+        child: MXText(
+          data: str,
           style: TextStyle(
               color: MXTheme.of(context).fontUseSecondColors,
               fontSize: MXTheme.of(context).fontBodySmall!.size),
@@ -30,23 +30,22 @@ class MXCalendarHeader extends StatelessWidget {
 
     List<Widget> children = [];
 
-    for (var i = 0; i < list.length; i++) {
-      children.add(_buildWeekItem(list[i], context));
-    }
-
     return LayoutBuilder(
       builder: (BuildContext content, BoxConstraints constraints) {
         double width = constraints.biggest.width;
 
-        double height = width / list.length;
-        return Container(
-          width: width,
-          height: height,
-          child: GridView.count(
-            crossAxisCount: list.length,
-            physics: const NeverScrollableScrollPhysics(),
-            children: children,
-          ),
+        double size = width / list.length;
+
+        for (var i = 0; i < list.length; i++) {
+          children.add(SizedBox(
+            width: size,
+            height: size,
+            child: _buildWeekItem(list[i], context),
+          ));
+        }
+
+        return Wrap(
+          children: children,
         );
       },
     );
@@ -55,7 +54,6 @@ class MXCalendarHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
       child: _buildBody(context),
     );
   }

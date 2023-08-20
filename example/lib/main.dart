@@ -108,6 +108,8 @@ class _MyHomePageState extends State<MyHomePage>
 
   late MXFormController mxFormController;
 
+  late MXCalendarController mxCalendarController;
+
   @override
   void initState() {
     super.initState();
@@ -402,7 +404,7 @@ class _MyHomePageState extends State<MyHomePage>
       'rate': [
         MXFormRule(
           required: true,
-          message: '分数过低会影响整体评价',
+          message: '分数过低',
           validator: (value) {
             if (value < 3.0) {
               return MXFormRuleResult(result: false, message: '自定义错误提示');
@@ -412,6 +414,45 @@ class _MyHomePageState extends State<MyHomePage>
         )
       ],
     });
+
+    mxCalendarController = MXCalendarController(
+      // defaultValue: MXCalendarValueByRange(
+      //     startTime: DateTime(2021, 1, 22), endTime: DateTime(2021, 1, 26)),
+      // defaultValue: [DateTime(2021, 1, 22), DateTime(2021, 1, 26)],
+      // defaultValue: DateTime(2021, 1, 22),
+      aweakColor: MXTheme.of(context).errorPrimaryColor,
+      weaknessColor: MXTheme.of(context).errorColor2,
+      typeEnum: MXCalendarTypeEnum.multiple,
+      minDate: MXCalendarTime(2021, 1, 15),
+      maxDate: MXCalendarTime(2021, 12, 3),
+      onSelect: (DateTime time) {
+        print(time);
+      },
+      // dayBuilder: (context, currentTime,
+      //     {isActivity, isDisabled, isEnd, isRange, isStart}) {
+      //   String text = currentTime.day.toString();
+      //   Color textColor = MXTheme.of(context).fontUsePrimaryColor;
+
+      //   if (isStart != null && isStart) {
+      //     text = '放假';
+      //     textColor = MXTheme.of(context).whiteColor;
+      //   } else if (isEnd != null && isEnd) {
+      //     text = '上班';
+      //     textColor = MXTheme.of(context).whiteColor;
+      //   } else if (isDisabled != null && isDisabled) {
+      //     textColor = MXTheme.of(context).fontUseDisabledColor;
+      //   }
+
+      //   return Center(
+      //     child: MXText(
+      //       data: text,
+      //       font: MXTheme.of(context).fontBodyMedium,
+      //       fontWeight: FontWeight.bold,
+      //       textColor: textColor,
+      //     ),
+      //   );
+      // },
+    );
   }
 
   @override
@@ -466,11 +507,24 @@ class _MyHomePageState extends State<MyHomePage>
                   const SizedBox(
                     height: 10,
                   ),
-                  MXCalendar(
-                      controller: MXCalendarController(
-                          typeEnum: MXCalendarTypeEnum.range,
-                          minDate: MXCalendarTime(2021, 1, 15),
-                          maxDate: MXCalendarTime(2021, 12, 3))),
+
+                  MXButton(
+                    text: '打开日历',
+                    icon: Icons.calendar_month_outlined,
+                    themeEnum: themeEnum,
+                    afterClickButtonCallback: () {
+                      UseMXCalendarByPopup.toRender(
+                          onClose: () {
+                            MXToast().toastBySuccess(context, '关闭日历');
+                          },
+                          onConfirm: () {
+                            MXToast().toastBySuccess(context,
+                                '日期为${mxCalendarController.value.toString()}');
+                          },
+                          context: context,
+                          controller: mxCalendarController);
+                    },
+                  ),
 
                   const SizedBox(
                     height: 200,
@@ -1580,6 +1634,7 @@ class _MyHomePageState extends State<MyHomePage>
                       }, MXPopUpShowTypeEnum.toCenter);
                     },
                   ),
+
                   MXButton(
                     text: 'popUpBottom',
                     icon: Icons.ac_unit,
@@ -1590,6 +1645,7 @@ class _MyHomePageState extends State<MyHomePage>
                           leftText: '取消',
                           rightText: '确定',
                           title: "这是title",
+                          footerText: '确定',
                           child: Container(
                             height: 200,
                           ));

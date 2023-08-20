@@ -43,6 +43,8 @@ class _MXCalendarOfMonthContentState extends State<MXCalendarOfMonthContent> {
         _onClickDayByRange(currentTime);
         break;
     }
+
+    widget.controller.onSelect?.call(currentTime);
   }
 
   /// 当模式为单选时触发
@@ -56,6 +58,7 @@ class _MXCalendarOfMonthContentState extends State<MXCalendarOfMonthContent> {
       if (widget.controller.value.isAtSameMomentAs(currentTime)) return;
     }
     widget.controller.value = currentTime;
+
     if (isUpdateLayout) {
       mxEventCenter.trigger<DateTime>(widget.eventKey, params: currentTime);
     } else {
@@ -72,7 +75,6 @@ class _MXCalendarOfMonthContentState extends State<MXCalendarOfMonthContent> {
     } else {
       value.add(currentTime);
     }
-
     mxEventCenter.trigger<DateTime>(widget.eventKey, params: currentTime);
   }
 
@@ -99,7 +101,7 @@ class _MXCalendarOfMonthContentState extends State<MXCalendarOfMonthContent> {
     mxEventCenter.trigger<DateTime>(widget.eventKey, params: currentTime);
   }
 
-  bool _judgeActivity(int day) {
+  bool _judgeActivity(DateTime currentTime) {
     bool result = false;
     MXCalendarController controller = widget.controller;
 
@@ -107,10 +109,10 @@ class _MXCalendarOfMonthContentState extends State<MXCalendarOfMonthContent> {
 
     switch (controller.typeEnum) {
       case MXCalendarTypeEnum.single:
-        result = _judgeActivityBySingle(day);
+        result = _judgeActivityBySingle(currentTime);
         break;
       case MXCalendarTypeEnum.multiple:
-        result = _judgeActivityByMultiple(day);
+        result = _judgeActivityByMultiple(currentTime);
         break;
       default:
         return false;
@@ -119,9 +121,7 @@ class _MXCalendarOfMonthContentState extends State<MXCalendarOfMonthContent> {
     return result;
   }
 
-  bool _judgeIsRange(int day) {
-    DateTime currentTime =
-        DateTime(widget.time.year, widget.time.month.toInt(), day);
+  bool _judgeIsRange(DateTime currentTime) {
     MXCalendarValueByRange value =
         widget.controller.value as MXCalendarValueByRange;
 
@@ -139,10 +139,8 @@ class _MXCalendarOfMonthContentState extends State<MXCalendarOfMonthContent> {
   }
 
 // 判断单选情况下的是否选中
-  bool _judgeActivityBySingle(int day) {
+  bool _judgeActivityBySingle(DateTime currentTime) {
     DateTime value = widget.controller.value;
-    DateTime currentTime =
-        DateTime(widget.time.year, widget.time.month.toInt(), day);
 
     if (value.isAtSameMomentAs(currentTime)) return true;
 
@@ -150,19 +148,15 @@ class _MXCalendarOfMonthContentState extends State<MXCalendarOfMonthContent> {
   }
 
 // 判断多选情况下的是否选中
-  bool _judgeActivityByMultiple(int day) {
+  bool _judgeActivityByMultiple(DateTime currentTime) {
     List<DateTime> value = widget.controller.value as List<DateTime>;
-    DateTime currentTime =
-        DateTime(widget.time.year, widget.time.month.toInt(), day);
 
     if (value.contains(currentTime)) return true;
     return false;
   }
 
 // 判断范围情况下的是否选中开始时间
-  bool _judgeActivityByRangeOfStart(int day) {
-    DateTime currentTime =
-        DateTime(widget.time.year, widget.time.month.toInt(), day);
+  bool _judgeActivityByRangeOfStart(DateTime currentTime) {
     MXCalendarValueByRange value =
         widget.controller.value as MXCalendarValueByRange;
 
@@ -175,9 +169,7 @@ class _MXCalendarOfMonthContentState extends State<MXCalendarOfMonthContent> {
   }
 
   // 判断范围情况下的是否选中结束时间
-  bool _judgeActivityByRangeOfEnd(int day) {
-    DateTime currentTime =
-        DateTime(widget.time.year, widget.time.month.toInt(), day);
+  bool _judgeActivityByRangeOfEnd(DateTime currentTime) {
     MXCalendarValueByRange value =
         widget.controller.value as MXCalendarValueByRange;
 
@@ -210,62 +202,85 @@ class _MXCalendarOfMonthContentState extends State<MXCalendarOfMonthContent> {
 
     return LayoutBuilder(
         builder: ((BuildContext context, BoxConstraints constraints) {
+      const double space = 4;
+      MXCalendarOfDayBuilder? builder = widget.controller.dayBuilder;
       MXCalendarTypeEnum typeEnum = widget.controller.typeEnum;
-      double width = constraints.biggest.width / 7;
+
+      Color? aweakColor = widget.controller.aweakColor;
+
+      Color? weaknessColor = widget.controller.weaknessColor;
+
+      double width = constraints.biggest.width / 7 - space;
       List<Widget> children = [];
-
-      const double dayItemHeight = 60;
-
-      final double horizontalSpace =
-          typeEnum == MXCalendarTypeEnum.range ? 0 : 4;
-      const double columnSpace = 4;
 
       for (var i = 0; i < totalNum; i++) {
         if (i < firstDay) {
           children.add(SizedBox(
             width: width,
-            height: dayItemHeight,
           ));
         } else {
           int day = i - firstDay + 1;
 
           bool isDisabled = _judgeByDisabled(day);
 
+          DateTime currentTime =
+              DateTime(widget.time.year, widget.time.month.toInt(), day);
+
           if (isDisabled) {
-            children.add(MXCalendarOfDayByDisabled(day: day.toString()));
+            children.add(MXCalendarOfDayByDisabled(
+              width: width,
+              day: day.toString(),
+              builder: builder != null
+                  ? () {
+                      return builder(context, currentTime = currentTime,
+                          isDisabled: isDisabled);
+                    }
+                  : null,
+            ));
           } else if (typeEnum == MXCalendarTypeEnum.range) {
+            bool isRange = _judgeIsRange(currentTime);
+            bool isEnd = _judgeActivityByRangeOfEnd(currentTime);
+            bool isStart = _judgeActivityByRangeOfStart(currentTime);
+
             children.add(MXCalendarOfDayByRange(
+                width: width,
+                builder: builder != null
+                    ? () {
+                        return builder(context, currentTime = currentTime,
+                            isEnd: isEnd, isStart: isStart, isRange: isRange);
+                      }
+                    : null,
                 day: day.toString(),
-                isRange: _judgeIsRange(day),
-                isEnd: _judgeActivityByRangeOfEnd(day),
-                isStart: _judgeActivityByRangeOfStart(day),
+                isRange: isRange,
+                isEnd: isEnd,
+                isStart: isStart,
+                weaknessColor: weaknessColor,
+                aweakColor: aweakColor,
                 clickCallback: () {
                   _onClickDay(day);
                 }));
           } else {
+            bool isActivity = _judgeActivity(currentTime);
             children.add(MXCalendarOfDayByCommon(
+              width: width,
+              aweakColor: aweakColor,
+              builder: builder != null
+                  ? () {
+                      return builder(context, currentTime = currentTime,
+                          isActivity: isActivity);
+                    }
+                  : null,
               day: day.toString(),
               clickCallback: () {
                 _onClickDay(day);
               },
-              isActivity: _judgeActivity(day),
+              isActivity: isActivity,
             ));
           }
         }
       }
 
-      return SizedBox(
-        height: ((totalNum / 7).ceil()) * dayItemHeight,
-        child: GridView.count(
-          crossAxisSpacing: horizontalSpace,
-          mainAxisSpacing: columnSpace,
-          crossAxisCount: 7,
-          physics: const NeverScrollableScrollPhysics(),
-          childAspectRatio:
-              (width - horizontalSpace) / (dayItemHeight - columnSpace),
-          children: children,
-        ),
-      );
+      return Wrap(spacing: space, runSpacing: space, children: children);
     }));
   }
 

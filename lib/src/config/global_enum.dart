@@ -508,4 +508,17 @@ enum MXPopoverPositionEnum {
   leftBottom,
 }
 
+/// 日历组件
 enum MXCalendarTypeEnum { single, multiple, range }
+
+typedef MXCalendarOfDayBuilder = Widget Function(
+    BuildContext context, DateTime currentTime,
+    {bool? isEnd,
+    bool? isStart,
+    bool? isRange,
+    bool? isActivity,
+    bool? isDisabled});
+
+typedef MXCalendarOnSelect = void Function(DateTime time);
+
+typedef MXCalendarOnChange = void Function(dynamic value);

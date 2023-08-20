@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mx_widget/src/widgets/calendar/mx_calendar_header.dart';
 import 'package:mx_widget/src/widgets/calendar/mx_calendar_content.dart';
-import 'package:mx_widget/src/widgets/calendar/mx_calendar_controller.dart';
+import 'package:mx_widget/src/widgets/calendar/model/mx_calendar_controller.dart';
 
 const Map<int, String> weekMap = {
   0: '日',

@@ -21,7 +21,10 @@ class MXPopUp {
     VoidCallback? onRightCallback,
     VoidCallback? onLeftCallback,
     VoidCallback? onClose,
+    VoidCallback? onFooterCallback,
     Color? backgroundColor,
+    String? footerText,
+    MXButton? footerWidget,
   }) {
     _buildPopUp(
         modelClose: modelClose,
@@ -31,11 +34,10 @@ class MXPopUp {
         mxPopUpShowTypeEnum: MXPopUpShowTypeEnum.toBottom,
         customModelColor: customModelColor,
         builder: (BuildContext context) {
-          return AnimatedPadding(
-            curve: CurveUtil.curve_1(),
-            padding: MediaQuery.of(context).viewInsets,
-            duration: const Duration(milliseconds: 100),
-            child: MXPopUpBottomBody(
+          List<Widget> children = [];
+
+          children.add(
+            MXPopUpBottomBody(
               title: title,
               leftText: leftText,
               rightText: rightText,
@@ -48,6 +50,33 @@ class MXPopUp {
               child: child,
             ),
           );
+
+          if (footerWidget != null || footerText != null) {
+            children.add(Container(
+              padding:
+                  EdgeInsets.symmetric(vertical: MXTheme.of(context).space8),
+              color: MXTheme.of(context).whiteColor,
+              child: footerWidget ??
+                  MXButton(
+                    text: footerText!,
+                    themeEnum: MXButtonThemeEnum.primary,
+                    afterClickButtonCallback: () {
+                      onFooterCallback != null
+                          ? onFooterCallback.call()
+                          : Navigator.pop(context);
+                    },
+                  ),
+            ));
+          }
+
+          return AnimatedPadding(
+              curve: CurveUtil.curve_1(),
+              padding: MediaQuery.of(context).viewInsets,
+              duration: const Duration(milliseconds: 100),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: children,
+              ));
         });
   }
 
