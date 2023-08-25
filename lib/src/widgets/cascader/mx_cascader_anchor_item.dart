@@ -6,13 +6,14 @@ final double bottomPadding = MXTheme.getThemeConfig().space24;
 typedef MXCascaderAnchorItemOntap = void Function(String id);
 
 class MXCascaderAnchorItem extends StatelessWidget {
-  const MXCascaderAnchorItem(
-      {super.key,
-      required this.id,
-      required this.onTap,
-      required this.title,
-      required this.isActivity,
-      required this.isLast});
+  const MXCascaderAnchorItem({
+    super.key,
+    required this.id,
+    required this.onTap,
+    required this.title,
+    required this.isLast,
+    required this.isActivity,
+  });
 
   final String id;
   final String title;

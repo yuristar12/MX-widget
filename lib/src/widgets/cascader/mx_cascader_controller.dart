@@ -60,10 +60,10 @@ class MXCascaderController {
     _stepsController = MXStepsController(stepsItems: [
       MXStepsItemModel(
         title: '选择选项',
-        builder: (isActivity) {
+        builder: (isActivity, {required int index}) {
           return MXCascaderAnchorItem(
-              isLast: true,
               id: "0",
+              isLast: _stepsController!.stepsItems.length - 1 == index,
               onTap: (String id) {},
               title: "选择选项",
               isActivity: true);
@@ -198,9 +198,11 @@ class MXCascaderController {
         _optionList[_activityIndex] = option;
         if (!isCurrent) {
           _optionList.removeRange(_activityIndex + 1, _optionList.length);
-        } else {
-          _activityIndex += 1;
         }
+        _activityIndex += 1;
+        // else {
+        //   _activityIndex += 1;
+        // }
       }
     }
   }
@@ -257,13 +259,13 @@ class MXCascaderController {
       MXCascaderOptions option, bool isActivity, bool isLast) {
     return MXStepsItemModel(
       title: option.label,
-      builder: (innerActivity) {
+      builder: (innerActivity, {required int index}) {
         return MXCascaderAnchorItem(
             id: option.value,
-            isLast: isLast,
             onTap: (String id) {
               _onStepItemTap(id);
             },
+            isLast: _stepsController!.stepsItems.length - 1 == index,
             title: option.label,
             isActivity: isActivity);
       },
@@ -273,7 +275,7 @@ class MXCascaderController {
   MXStepsItemModel _assemberDefaultAnchorItem() {
     return MXStepsItemModel(
       title: '选择选项',
-      builder: (isActivity) {
+      builder: (isActivity, {required int index}) {
         return MXCascaderAnchorItem(
             id: "0",
             onTap: (String id) {
@@ -281,8 +283,8 @@ class MXCascaderController {
               _isStepItemClickId = null;
               updateLayout();
             },
+            isLast: _stepsController!.stepsItems.length - 1 == index,
             title: "选择选项",
-            isLast: true,
             isActivity: _isStepItemClickId == null);
       },
     );

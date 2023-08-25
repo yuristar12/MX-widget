@@ -80,11 +80,22 @@ class MXFormItem extends StatelessWidget {
       }
     }
 
-    contentChild = Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: alignment,
-      children: contentChildren,
-    );
+    if (align == MXFormAlign.horizontal) {
+      contentChild = Container(
+        margin: const EdgeInsets.only(top: 2),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: alignment,
+          children: contentChildren,
+        ),
+      );
+    } else {
+      contentChild = Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: alignment,
+        children: contentChildren,
+      );
+    }
 
     if (disabled) {
       child = Opacity(

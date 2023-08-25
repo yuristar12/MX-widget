@@ -110,6 +110,8 @@ class _MyHomePageState extends State<MyHomePage>
 
   late MXCalendarController mxCalendarController;
 
+  late MXIndexesController mxIndexesController;
+
   @override
   void initState() {
     super.initState();
@@ -391,6 +393,12 @@ class _MyHomePageState extends State<MyHomePage>
             MXCascaderOptions(
               value: '120100',
               label: '天津市',
+              children: [
+                MXCascaderOptions(value: '120101', label: '和平区'),
+                MXCascaderOptions(value: '120102', label: '河东区'),
+                MXCascaderOptions(value: '120103', label: '河西区'),
+                MXCascaderOptions(value: '120104', label: '南开区'),
+              ],
             ),
           ])
         ]);
@@ -453,6 +461,89 @@ class _MyHomePageState extends State<MyHomePage>
       //   );
       // },
     );
+
+    mxIndexesController = MXIndexesController(
+        model: [
+          MXIndexesModel(index: "A", children: <String>[
+            '阿坝',
+            '阿拉善',
+            '阿里',
+            '安康',
+          ]),
+          MXIndexesModel(index: "B", children: <String>[
+            '北京',
+            '白银',
+            '保定',
+            '宝鸡',
+            '保山',
+            '包头',
+            '巴中',
+            '北海',
+            '蚌埠',
+            '本溪',
+            '毕节',
+            '滨州',
+            '百色',
+            '亳州',
+          ]),
+          MXIndexesModel(index: "C", children: <String>[
+            '重庆',
+            '成都',
+            '长沙',
+            '长春',
+            '沧州',
+            '常德',
+            '昌都',
+            '长治',
+            '常州',
+            '巢湖',
+            '潮州',
+            '承德',
+            '郴州',
+            '赤峰',
+            '池州',
+            '崇左',
+            '楚雄',
+            '滁州',
+            '朝阳',
+          ]),
+          MXIndexesModel(index: "D", children: <String>[
+            '大连',
+            '东莞',
+            '大理',
+            '丹东',
+            '大庆',
+            '大同',
+            '大兴安岭',
+            '德宏',
+            '德阳',
+            '德州',
+            '定西',
+            '迪庆',
+            '东营',
+          ]),
+          MXIndexesModel(index: "E", children: <String>['鄂尔多斯', '恩施', '鄂州']),
+          MXIndexesModel(
+              index: "F",
+              children: <String>['福州', '防城港', '佛山', '抚顺', '抚州', '阜新', '阜阳']),
+          MXIndexesModel(index: "G", children: <String>[
+            '广州',
+            '桂林',
+            '贵阳',
+            '甘南',
+            '赣州',
+            '甘孜',
+            '广安',
+            '广元',
+            '贵港',
+            '果洛'
+          ]),
+        ],
+        contentItemBuilder: <String>(String params) {
+          return Container(
+              child: MXCell(
+                  model: MXCellModel(title: params.toString()), padding: 16));
+        });
   }
 
   @override
@@ -508,6 +599,11 @@ class _MyHomePageState extends State<MyHomePage>
                     height: 10,
                   ),
 
+                  MXIndexes(height: 400, controller: mxIndexesController),
+
+                  const SizedBox(
+                    height: 10,
+                  ),
                   MXButton(
                     text: '打开日历',
                     icon: Icons.calendar_month_outlined,
@@ -546,65 +642,70 @@ class _MyHomePageState extends State<MyHomePage>
                     height: 20,
                   ),
 
-                  MXForm(formList: [
-                    MXFormItemModel(
-                        require: true,
-                        label: "开关",
-                        initValue: false,
-                        props: 'switch',
-                        contentAlign: MXFormPositionAlign.end,
-                        builder: (MXFormItemModel model) {
-                          return MXSwitch(
-                            isOn: model.value,
-                            disabled: false,
-                            modeEnum: MXSwitchModeEnum.icon,
-                            sizeEnum: MXSwitchSizeEnum.medium,
-                            onChange: (value) {
-                              model.value = value;
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                        color: MXTheme.of(context).infoPrimaryColor),
+                    child: MXForm(formList: [
+                      MXFormItemModel(
+                          require: true,
+                          label: "开关",
+                          initValue: false,
+                          props: 'switch',
+                          contentAlign: MXFormPositionAlign.end,
+                          builder: (MXFormItemModel model) {
+                            return MXSwitch(
+                              isOn: model.value,
+                              disabled: false,
+                              modeEnum: MXSwitchModeEnum.icon,
+                              sizeEnum: MXSwitchSizeEnum.medium,
+                              onChange: (value) {
+                                model.value = value;
 
-                              if (!value) {
-                                mxFormController.disabled = true;
-                              }
-                            },
-                          );
-                        }),
-                    MXFormItemModel(
-                        require: true,
-                        label: "自我评价",
-                        initValue: 1.0,
-                        props: 'rate',
-                        contentAlign: MXFormPositionAlign.end,
-                        builder: (MXFormItemModel model) {
-                          return MXRate(
-                            size: 28,
-                            initValue: model.value,
-                            onchange: (index) {
-                              model.value = index;
-                            },
-                          );
-                        }),
-                    MXFormItemModel(
-                        require: false,
-                        label: "个人简介",
-                        initValue: '',
-                        props: 'brief',
-                        contentAlign: MXFormPositionAlign.end,
-                        builder: (MXFormItemModel model) {
-                          return MXTextArea(
-                            maxLength: 60,
-                            maxLines: 5,
-                            space: 0,
-                            useIndicator: true,
-                            autoHeight: false,
-                            backgroundColor: Colors.transparent,
-                            onMaxLengthCallback: () {
-                              MXToast().toastByError(context, '字数过长');
-                            },
-                            alignment: MXTextAreaAlignmentEnum.horizontal,
-                            controller: textEditingController,
-                          );
-                        })
-                  ], controller: mxFormController),
+                                if (!value) {
+                                  mxFormController.disabled = true;
+                                }
+                              },
+                            );
+                          }),
+                      MXFormItemModel(
+                          require: true,
+                          label: "自我评价",
+                          initValue: 1.0,
+                          props: 'rate',
+                          contentAlign: MXFormPositionAlign.end,
+                          builder: (MXFormItemModel model) {
+                            return MXRate(
+                              size: 28,
+                              initValue: model.value,
+                              onchange: (index) {
+                                model.value = index;
+                              },
+                            );
+                          }),
+                      MXFormItemModel(
+                          require: false,
+                          label: "个人简介",
+                          initValue: '',
+                          props: 'brief',
+                          contentAlign: MXFormPositionAlign.end,
+                          builder: (MXFormItemModel model) {
+                            return MXTextArea(
+                              maxLength: 60,
+                              maxLines: 5,
+                              space: 0,
+                              useIndicator: true,
+                              autoHeight: false,
+                              backgroundColor: Colors.transparent,
+                              onMaxLengthCallback: () {
+                                MXToast().toastByError(context, '字数过长');
+                              },
+                              alignment: MXTextAreaAlignmentEnum.horizontal,
+                              controller: textEditingController,
+                            );
+                          })
+                    ], controller: mxFormController),
+                  ),
 
                   Flex(
                     direction: Axis.horizontal,
@@ -772,7 +873,7 @@ class _MyHomePageState extends State<MyHomePage>
                     themeEnum: themeEnum,
                     afterClickButtonCallback: () {
                       mxCascaderController.toRenderCascader(
-                          context: context, id: '110108');
+                          context: context, id: '120104');
                     },
                   ),
                   const SizedBox(

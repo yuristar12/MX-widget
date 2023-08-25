@@ -94,7 +94,9 @@ class MXPopUpBottomBody extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(MXTheme.of(context).space16),
+      padding: EdgeInsets.symmetric(
+          horizontal: MXTheme.of(context).space16,
+          vertical: MXTheme.of(context).space8),
       decoration: BoxDecoration(
           color: backgroundColor ?? MXTheme.of(context).whiteColor,
           borderRadius: BorderRadius.only(

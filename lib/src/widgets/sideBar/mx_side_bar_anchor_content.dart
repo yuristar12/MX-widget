@@ -90,7 +90,6 @@ class MXSideBarAnchorContentState extends State<MXSideBarAnchorContent> {
         if (offset > heightItem) {
           if (i == lenght - 1) {
             widget.controller.onTabChangeToLast();
-            return;
           } else if (offset <= heightList[i + 1]) {
             widget.controller.onTabChange(i);
             return;

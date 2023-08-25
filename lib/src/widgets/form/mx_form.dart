@@ -11,6 +11,7 @@ class MXForm extends StatefulWidget {
     this.labelWidth = 80,
     required this.formList,
     required this.controller,
+    this.type = MXFormTypeEnum.common,
     this.align = MXFormAlign.horizontal,
   });
 
@@ -23,6 +24,8 @@ class MXForm extends StatefulWidget {
   final MXFormController controller;
 
   final double labelWidth;
+
+  final MXFormTypeEnum type;
 
   @override
   State<MXForm> createState() => MXFormState();
@@ -80,11 +83,28 @@ class MXFormState extends State<MXForm> {
         crossAxisAlignment: CrossAxisAlignment.start, children: _getFormList());
   }
 
+  BoxDecoration _buildFormWrapDecoration() {
+    Color backgroundColor = MXTheme.of(context).whiteColor;
+
+    switch (widget.type) {
+      case MXFormTypeEnum.card:
+        return BoxDecoration(
+            borderRadius: BorderRadius.all(
+                Radius.circular(MXTheme.of(context).radiusMedium)),
+            color: backgroundColor);
+      case MXFormTypeEnum.common:
+        return BoxDecoration(color: backgroundColor);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    Widget child = _buildBody();
+
     return Container(
+      decoration: _buildFormWrapDecoration(),
       padding: EdgeInsets.symmetric(horizontal: widget.padding),
-      child: _buildBody(),
+      child: child,
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:mx_widget/src/widgets/form/mx_form_item_model.dart';
 
@@ -490,6 +492,8 @@ enum MXFormAlign { horizontal, vertical }
 
 enum MXFormPositionAlign { start, center, end }
 
+enum MXFormTypeEnum { common, card }
+
 typedef MXFormItemBuilder = Widget Function(MXFormItemModel value);
 
 /// popover组件
@@ -522,3 +526,6 @@ typedef MXCalendarOfDayBuilder = Widget Function(
 typedef MXCalendarOnSelect = void Function(DateTime time);
 
 typedef MXCalendarOnChange = void Function(dynamic value);
+
+/// indexes组件
+typedef MXIndexesItemClick = Void Function<T>(T params);

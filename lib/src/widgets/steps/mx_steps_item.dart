@@ -382,7 +382,7 @@ class MXStepsItem extends StatelessWidget {
             child: SizedBox(
               width: width - contentSize,
               child: model.builder != null
-                  ? model.builder!.call(isActivity)
+                  ? model.builder!.call(isActivity, index: index)
                   : content,
             ),
           ))

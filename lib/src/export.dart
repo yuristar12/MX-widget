@@ -208,3 +208,8 @@ export 'widgets/calendar/model/mx_calendar_time.dart';
 export 'widgets/calendar/use_mx_calendar_by_popup.dart';
 export 'widgets/calendar/model/mx_calendar_controller.dart';
 export 'widgets/calendar/model/mx_calendar_value_by_range.dart';
+
+// indexes组件
+export 'widgets/indexes/mx_indexes.dart';
+export 'widgets/indexes/model/mx_indexes_model.dart';
+export 'widgets/indexes/model/mx_indexes_controller.dart';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-typedef MXStepsItemBuilder = Widget Function(bool isActivity);
+typedef MXStepsItemBuilder = Widget Function(bool isActivity,
+    {required int index});
 
 class MXStepsItemModel {
   MXStepsItemModel({
