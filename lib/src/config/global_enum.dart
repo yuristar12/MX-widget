@@ -529,3 +529,6 @@ typedef MXCalendarOnChange = void Function(dynamic value);
 
 /// indexes组件
 typedef MXIndexesItemClick = Void Function<T>(T params);
+
+/// 上传组件
+enum MXUploadImgType { single, multiply }

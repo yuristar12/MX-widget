@@ -36,13 +36,20 @@ class MXPopUpBottomBody extends StatelessWidget {
   final Widget child;
 
   Widget _buildTitle(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return Stack(
+      alignment: Alignment.center,
       children: [
-        _buildTtileLeft(),
-        _buildTitleCenter(context),
-        _buildTitleRight()
+        Positioned(
+          left: 0,
+          child: _buildTtileLeft(),
+        ),
+        Center(
+          child: _buildTitleCenter(context),
+        ),
+        Positioned(
+          right: 0,
+          child: _buildTitleRight(),
+        ),
       ],
     );
   }

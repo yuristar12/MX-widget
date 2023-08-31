@@ -213,3 +213,8 @@ export 'widgets/calendar/model/mx_calendar_value_by_range.dart';
 export 'widgets/indexes/mx_indexes.dart';
 export 'widgets/indexes/model/mx_indexes_model.dart';
 export 'widgets/indexes/model/mx_indexes_controller.dart';
+
+// 上传图片组件
+export 'widgets/uploadImg/mx_upload_img.dart';
+export 'widgets/uploadImg/model/mx_upload_abstract_hooks.dart';
+export 'widgets/uploadImg/model/mx_upload_img_controller.dart';

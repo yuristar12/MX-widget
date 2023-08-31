@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:mx_widget/src/config/global_enum.dart';
 import 'package:mx_widget/src/theme/mx_radius.dart';
@@ -9,6 +11,7 @@ import 'package:mx_widget/src/widgets/image/image_widget.dart';
 /// [height] 图片高度
 /// [color] 图片背景颜色
 /// [netUrl] 网络图片地址
+/// [file] 文件格式的图片
 /// [assetsUrl] 本地图片地址
 /// [errorWidget] 图片加载错误的组件
 /// [loadingWidget] 图片加载中的组件默认存在骨架屏
@@ -25,6 +28,7 @@ class MXImage extends StatefulWidget {
       this.height = 72,
       this.color,
       this.netUrl,
+      this.file,
       this.assetsUrl,
       this.errorWidget,
       this.loadingWidget,
@@ -60,6 +64,8 @@ class MXImage extends StatefulWidget {
   final Widget? errorWidget;
   final Widget? loadingWidget;
 
+  final File? file;
+
   final BorderRadiusGeometry? customRadius;
 
   /// 以下是fluuter原生的img组件需要的参数
@@ -87,7 +93,7 @@ class MXImage extends StatefulWidget {
 
 class _MXImageState extends State<MXImage> {
   Widget _buildBaseImg(BuildContext context, BoxFit fit,
-      {bool isNetUrl = true}) {
+      {bool isNetUrl = false, bool isAssets = false, bool isFile = false}) {
     if (isNetUrl) {
       return ImageWidget.network(
         widget.netUrl,
@@ -113,7 +119,7 @@ class _MXImageState extends State<MXImage> {
         cacheHeight: widget.cacheHeight,
         cacheWidth: widget.cacheWidth,
       );
-    } else {
+    } else if (isAssets) {
       return ImageWidget.asset(
         widget.assetsUrl,
         width: widget.width,
@@ -138,52 +144,91 @@ class _MXImageState extends State<MXImage> {
         cacheHeight: widget.cacheHeight,
         cacheWidth: widget.cacheWidth,
       );
+    } else {
+      return Image.file(
+        widget.file!,
+        width: widget.width,
+        height: widget.height,
+        fit: fit,
+        color: widget.color,
+        frameBuilder: widget.frameBuilder,
+        semanticLabel: widget.semanticLabel,
+        errorBuilder: widget.errorWidgetBuilder,
+        excludeFromSemantics: widget.excludeFromSemantics,
+        opacity: widget.opacity,
+        colorBlendMode: widget.colorBlendMode,
+        alignment: widget.alignment,
+        repeat: widget.repeat,
+        centerSlice: widget.centerSlice,
+        matchTextDirection: widget.matchTextDirection,
+        gaplessPlayback: widget.gaplessPlayback,
+        filterQuality: widget.filterQuality,
+        isAntiAlias: widget.isAntiAlias,
+        cacheHeight: widget.cacheHeight,
+        cacheWidth: widget.cacheWidth,
+      );
     }
   }
 
   /// 构建图片模式为裁剪
   Widget buildCoverImg(BuildContext context) {
     if (widget.assetsUrl != null) {
-      return _buildBaseImg(context, BoxFit.cover, isNetUrl: false);
-    } else {
+      return _buildBaseImg(context, BoxFit.cover, isAssets: true);
+    } else if (widget.netUrl != null) {
       return _buildBaseImg(context, BoxFit.cover, isNetUrl: true);
+    } else if (widget.file != null) {
+      return _buildBaseImg(context, BoxFit.cover, isFile: true);
     }
+    return Container();
   }
 
   /// 构建图片高度自适应为裁剪
   Widget buildFitHeightImg(BuildContext context) {
     if (widget.assetsUrl != null) {
-      return _buildBaseImg(context, BoxFit.fitHeight, isNetUrl: false);
-    } else {
+      return _buildBaseImg(context, BoxFit.fitHeight, isAssets: true);
+    } else if (widget.netUrl != null) {
       return _buildBaseImg(context, BoxFit.fitHeight, isNetUrl: true);
+    } else if (widget.file != null) {
+      return _buildBaseImg(context, BoxFit.fitHeight, isFile: true);
     }
+    return Container();
   }
 
   /// 构建图片宽度自适应为裁剪
   Widget buildFitWidthImg(BuildContext context) {
     if (widget.assetsUrl != null) {
-      return _buildBaseImg(context, BoxFit.fitWidth, isNetUrl: false);
-    } else {
+      return _buildBaseImg(context, BoxFit.fitWidth, isAssets: true);
+    } else if (widget.netUrl != null) {
       return _buildBaseImg(context, BoxFit.fitWidth, isNetUrl: true);
+    } else if (widget.file != null) {
+      return _buildBaseImg(context, BoxFit.fitWidth, isFile: true);
     }
+    return Container();
   }
 
   /// 构建裁切图片
   Widget buildCutImg(BuildContext context) {
     if (widget.assetsUrl != null) {
-      return _buildBaseImg(context, BoxFit.none, isNetUrl: false);
-    } else {
+      return _buildBaseImg(context, BoxFit.none, isAssets: true);
+    } else if (widget.netUrl != null) {
       return _buildBaseImg(context, BoxFit.none, isNetUrl: true);
+    } else if (widget.file != null) {
+      return _buildBaseImg(context, BoxFit.none, isFile: true);
     }
+    return Container();
   }
 
   /// 构建圆角图片
   Widget buildRoundSquareImg(BuildContext context) {
     Widget child;
     if (widget.assetsUrl != null) {
-      child = _buildBaseImg(context, BoxFit.cover, isNetUrl: false);
-    } else {
+      child = _buildBaseImg(context, BoxFit.cover, isAssets: true);
+    } else if (widget.netUrl != null) {
       child = _buildBaseImg(context, BoxFit.cover, isNetUrl: true);
+    } else if (widget.file != null) {
+      child = _buildBaseImg(context, BoxFit.cover, isFile: true);
+    } else {
+      child = Container();
     }
 
     return Container(
@@ -202,9 +247,13 @@ class _MXImageState extends State<MXImage> {
   Widget buildCircleImg(BuildContext context) {
     Widget child;
     if (widget.assetsUrl != null) {
-      child = _buildBaseImg(context, BoxFit.cover, isNetUrl: false);
-    } else {
+      child = _buildBaseImg(context, BoxFit.cover, isAssets: true);
+    } else if (widget.netUrl != null) {
       child = _buildBaseImg(context, BoxFit.cover, isNetUrl: true);
+    } else if (widget.file != null) {
+      child = _buildBaseImg(context, BoxFit.cover, isFile: true);
+    } else {
+      child = Container();
     }
 
     return Container(

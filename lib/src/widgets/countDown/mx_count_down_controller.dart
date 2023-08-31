@@ -65,7 +65,7 @@ class MXCountDownController {
         onFinish?.call();
       }
       _setModel();
-      state?.onTimeChange();
+      state?.onUpdateLayout();
     });
   }
 
@@ -85,6 +85,7 @@ class MXCountDownController {
   void overTimer() {
     isOver = true;
     _cancelTimer();
+    state?.onUpdateLayout();
   }
 
   void setState(MXCountDownState state) {

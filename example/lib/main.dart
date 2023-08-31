@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:example/custom_upload_hooks.dart';
 import 'package:example/test.dart';
 import 'package:flutter/material.dart';
 import 'package:mx_widget/mx_widget.dart';
@@ -111,6 +112,8 @@ class _MyHomePageState extends State<MyHomePage>
   late MXCalendarController mxCalendarController;
 
   late MXIndexesController mxIndexesController;
+
+  late MXUploadImgController mxUploadImgController;
 
   @override
   void initState() {
@@ -430,7 +433,7 @@ class _MyHomePageState extends State<MyHomePage>
       // defaultValue: DateTime(2021, 1, 22),
       aweakColor: MXTheme.of(context).errorPrimaryColor,
       weaknessColor: MXTheme.of(context).errorColor2,
-      typeEnum: MXCalendarTypeEnum.multiple,
+      typeEnum: MXCalendarTypeEnum.range,
       minDate: MXCalendarTime(2021, 1, 15),
       maxDate: MXCalendarTime(2021, 12, 3),
       onSelect: (DateTime time) {
@@ -544,6 +547,17 @@ class _MyHomePageState extends State<MyHomePage>
               child: MXCell(
                   model: MXCellModel(title: params.toString()), padding: 16));
         });
+
+    mxUploadImgController = MXUploadImgController(
+      hooks: CustomUploadHooks(),
+      actionUrl: 'https://mx-admin-oa.oss-cn-hangzhou.aliyuncs.com',
+      uploadType: MXUploadImgType.multiply,
+      maxNum: 6,
+      defaultValue: [
+        'https://tdesign.gtimg.com/miniprogram/images/example4.png',
+        'https://tdesign.gtimg.com/miniprogram/images/example4.png',
+      ],
+    );
   }
 
   @override
@@ -599,6 +613,12 @@ class _MyHomePageState extends State<MyHomePage>
                     height: 10,
                   ),
 
+                  MXUploadImg(controller: mxUploadImgController),
+
+                  const SizedBox(
+                    height: 10,
+                  ),
+
                   MXIndexes(height: 400, controller: mxIndexesController),
 
                   const SizedBox(
@@ -634,7 +654,7 @@ class _MyHomePageState extends State<MyHomePage>
                           useDefaultPadding: false,
                           action: () {},
                           icon: Icons.chair),
-                      contentByText: '弹出气泡内容，弹出气泡内容，弹出气泡内容，弹出气泡内容，弹出气泡内容。',
+                      contentByText: '弹出气泡内',
                     ),
                   ),
 
@@ -1268,6 +1288,7 @@ class _MyHomePageState extends State<MyHomePage>
                     format: MXCountDownFormatEnum.ddhhmmsss,
                     controller: countDownController,
                     size: MXCountDownSizeEnum.lager,
+                    complatedWidget: MXText(data: '倒计时结束'),
                   ),
 
                   const SizedBox(

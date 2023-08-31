@@ -12,6 +12,7 @@ import 'mx_count_down_model.dart';
 /// [size] 倒计时大小 mini/medium/lager
 /// [shape] 倒计时样式 rect/cirl/plain
 /// [format] 倒计时的格式单位 ddhhmmss/ddhhmmsss/hhmmss/hhmmsss 最后携带sss将开启毫秒渲染
+/// [complatedWidget] 自定义结束内容
 
 class MXCountDown extends StatefulWidget {
   const MXCountDown(
@@ -20,6 +21,7 @@ class MXCountDown extends StatefulWidget {
       required this.controller,
       this.backgroundColor,
       this.useUnit = false,
+      this.complatedWidget,
       this.size = MXCountDownSizeEnum.medium,
       this.shape = MXCountDownShapeEnum.plain,
       this.format = MXCountDownFormatEnum.hhmmss});
@@ -37,6 +39,8 @@ class MXCountDown extends StatefulWidget {
   final Color? backgroundColor;
 
   final bool useUnit;
+
+  final Widget? complatedWidget;
 
   @override
   State<MXCountDown> createState() => MXCountDownState();
@@ -201,11 +205,17 @@ class MXCountDownState extends State<MXCountDown> {
 
   Widget _buildBody() {
     List<Widget> children = [];
-    if (widget.shape == MXCountDownShapeEnum.plain) {
-      children = _buildPlainCountDown();
+
+    if (widget.complatedWidget != null && widget.controller.isOver) {
+      children.add(widget.complatedWidget!);
     } else {
-      children = _buildFillCountDown();
+      if (widget.shape == MXCountDownShapeEnum.plain) {
+        children = _buildPlainCountDown();
+      } else {
+        children = _buildFillCountDown();
+      }
     }
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -214,7 +224,7 @@ class MXCountDownState extends State<MXCountDown> {
     );
   }
 
-  void onTimeChange() {
+  void onUpdateLayout() {
     setState(() {});
   }
 

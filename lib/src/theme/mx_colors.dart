@@ -8,49 +8,49 @@ extension MXColors on MXThemeConfig {
   /// #F2F3FF
   Color get brandColor1 => colorsMap['brandColor1'] ?? const Color(0xFFF2F3FF);
 
-  /// #DAE1FF
-  Color get brandColor2 => colorsMap['brandColor2'] ?? const Color(0xFFDAE1FF);
+  /// #D9E1FF
+  Color get brandColor2 => colorsMap['brandColor2'] ?? const Color(0xFFD9E1FF);
 
-  /// #B7C7FF
-  Color get brandColor3 => colorsMap['brandColor3'] ?? const Color(0xFFB7C7FF);
+  /// #B5C7FF
+  Color get brandColor3 => colorsMap['brandColor3'] ?? const Color(0xFFB5C7FF);
 
-  /// #8FAAFF
-  Color get brandColor4 => colorsMap['brandColor4'] ?? const Color(0xFF8FAAFF);
+  /// #8EABFF
+  Color get brandColor4 => colorsMap['brandColor4'] ?? const Color(0xFF8EABFF);
 
-  /// #658CFF
-  Color get brandColor5 => colorsMap['brandColor5'] ?? const Color(0xFF658CFF);
+  /// #618DFF
+  Color get brandColor5 => colorsMap['brandColor5'] ?? const Color(0xFF618DFF);
 
-  /// #2C68FF
-  Color get brandColor6 => colorsMap['brandColor6'] ?? const Color(0xFF2C68FF);
+  /// #366EF4
+  Color get brandColor6 => colorsMap['brandColor6'] ?? const Color(0xFF366EF4);
 
-  /// #004EE6
-  Color get brandColor7 => colorsMap['brandColor7'] ?? const Color(0xFF004EE6);
+  /// #0052D9
+  Color get brandColor7 => colorsMap['brandColor7'] ?? const Color(0xFF0052D9);
 
-  /// #003AB1
-  Color get brandColor8 => colorsMap['brandColor8'] ?? const Color(0xFF003AB1);
+  /// #003CAB
+  Color get brandColor8 => colorsMap['brandColor8'] ?? const Color(0xFF003CAB);
 
-  /// #002881
-  Color get brandColor9 => colorsMap['brandColor9'] ?? const Color(0xFF002881);
+  /// #002A7C
+  Color get brandColor9 => colorsMap['brandColor9'] ?? const Color(0xFF002A7C);
 
-  /// #00195A
+  /// #001A57
   Color get brandColor10 =>
-      colorsMap['brandColor10'] ?? const Color(0xFF00195A);
+      colorsMap['brandColor10'] ?? const Color(0xFF001A57);
 
-  /// #2C68FF
+  /// #0052D9
   Color get brandPrimaryColor =>
-      colorsMap['brandPrimaryColor'] ?? const Color(0xFF2C68FF);
+      colorsMap['brandPrimaryColor'] ?? const Color(0xFF0052D9);
 
-  /// #004EE6
+  /// #D9E1FF
   Color get brandFocusColor =>
-      colorsMap['brandFocusColor'] ?? const Color(0xFF004EE6);
+      colorsMap['brandFocusColor'] ?? const Color(0xFFD9E1FF);
 
-  /// #DAE1FF
+  /// #B5C7FF
   Color get brandDisabledColor =>
-      colorsMap['brandDisabledColor'] ?? const Color(0xFFDAE1FF);
+      colorsMap['brandDisabledColor'] ?? const Color(0xFFB5C7FF);
 
-  /// #003AB1
+  /// #003CAB
   Color get brandClickColor =>
-      colorsMap['brandClickColor'] ?? const Color(0xFF003AB1);
+      colorsMap['brandClickColor'] ?? const Color(0xFF003CAB);
 
   // ----------------------------------------------------------------------错误色
   /// #FFF2F5
