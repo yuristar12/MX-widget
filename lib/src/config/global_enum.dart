@@ -1,7 +1,4 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:mx_widget/src/widgets/form/mx_form_item_model.dart';
 
 import '../../mx_widget.dart';
 
@@ -9,7 +6,13 @@ import '../../mx_widget.dart';
 enum MXButtonTypeEnum { fill, text, outline, plain, plainText }
 
 /// 按钮的风格枚举
-enum MXButtonThemeEnum { primary, error, success, warn, info }
+enum MXButtonThemeEnum {
+  primary,
+  error,
+  success,
+  warn,
+  info,
+}
 
 /// 按钮的尺寸大小的枚举
 enum MXButtonSizeEnum {
@@ -528,7 +531,67 @@ typedef MXCalendarOnSelect = void Function(DateTime time);
 typedef MXCalendarOnChange = void Function(dynamic value);
 
 /// indexes组件
-typedef MXIndexesItemClick = Void Function<T>(T params);
+typedef MXIndexesItemClick = void Function<T>(T params);
 
 /// 上传组件
 enum MXUploadImgType { single, multiply }
+
+/// actionSheet组件
+enum MXActionSheetTypeEnum {
+  list,
+  grid,
+}
+
+/// actionsheet options的类型
+enum MXActionSheetListType {
+  error,
+  common,
+  primary,
+  disabled,
+}
+
+/// message的样式类型枚举
+enum MXMessageTypeEnum {
+  info,
+  success,
+  waring,
+  error,
+}
+
+/// link theme类型
+enum MXLinkThemeEnum {
+  info,
+  success,
+  waring,
+  error,
+}
+
+/// link大小枚举
+enum MXLinkSizeEnum {
+  small,
+  medium,
+  large,
+}
+
+enum MXNoticeThemeEnum {
+  info,
+  success,
+  waring,
+  primary,
+  error,
+}
+
+/// noticeBar 跑马灯方向
+enum MXNoticeBarScrollDirectionEnum {
+  vertical,
+  horizontal,
+}
+
+/// drawer 方向
+enum MXDrawerPlacementEnum {
+  left,
+  right,
+}
+
+/// drawer 抽屉菜单的
+enum MXDrawerOptionItemPlacementEnum { left, center, right }

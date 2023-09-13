@@ -7,11 +7,14 @@ class MXIndexesHeader extends SliverPersistentHeaderDelegate {
   MXIndexesHeader({
     required this.modelItem,
     required this.controller,
+    required this.onUpdateFloating,
   });
 
   final MXIndexesController controller;
 
   final MXIndexesModel modelItem;
+
+  final MXIndexesOnUpdateFloating onUpdateFloating;
 
   bool isFloating = false;
 
@@ -22,7 +25,7 @@ class MXIndexesHeader extends SliverPersistentHeaderDelegate {
 
     Widget childe;
 
-    isFloating = shrinkOffset == minExtent;
+    isFloating = shrinkOffset > 0;
 
     childe = Container(
         child: controller.headerBuilder != null

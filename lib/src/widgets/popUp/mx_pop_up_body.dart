@@ -2,20 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:mx_widget/src/export.dart';
 
 class MXPopUpBottomBody extends StatelessWidget {
-  const MXPopUpBottomBody(
-      {super.key,
-      required this.title,
-      this.leftText,
-      this.rightText,
-      this.titleStyle,
-      this.leftWidget,
-      this.rightWidget,
-      this.onRightCallback,
-      this.onLeftCallback,
-      required this.child,
-      this.backgroundColor});
+  const MXPopUpBottomBody({
+    super.key,
+    this.title,
+    this.leftText,
+    this.rightText,
+    this.titleStyle,
+    this.leftWidget,
+    this.rightWidget,
+    this.onRightCallback,
+    this.onLeftCallback,
+    required this.child,
+    this.backgroundColor,
+    this.horizontalSpace,
+    this.titleWidget,
+  });
 
-  final String title;
+  final String? title;
 
   final String? leftText;
 
@@ -27,6 +30,8 @@ class MXPopUpBottomBody extends StatelessWidget {
 
   final Widget? rightWidget;
 
+  final Widget? titleWidget;
+
   final VoidCallback? onRightCallback;
 
   final VoidCallback? onLeftCallback;
@@ -34,6 +39,8 @@ class MXPopUpBottomBody extends StatelessWidget {
   final Color? backgroundColor;
 
   final Widget child;
+
+  final double? horizontalSpace;
 
   Widget _buildTitle(BuildContext context) {
     return Stack(
@@ -87,6 +94,10 @@ class MXPopUpBottomBody extends StatelessWidget {
   }
 
   Widget _buildTitleCenter(BuildContext context) {
+    if (title == null) {
+      return Container();
+    }
+
     return MXText(
       data: title,
       maxLines: 1,
@@ -100,9 +111,26 @@ class MXPopUpBottomBody extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context) {
+    List<Widget> children = [];
+
+    if (title != null ||
+        rightText != null ||
+        rightWidget != null ||
+        leftText != null ||
+        leftWidget != null ||
+        titleWidget != null) {
+      if (titleWidget != null) {
+        children.add(titleWidget!);
+      } else {
+        children.add(_buildTitle(context));
+      }
+    }
+
+    children.add(child);
+
     return Container(
       padding: EdgeInsets.symmetric(
-          horizontal: MXTheme.of(context).space16,
+          horizontal: horizontalSpace ?? MXTheme.of(context).space16,
           vertical: MXTheme.of(context).space8),
       decoration: BoxDecoration(
           color: backgroundColor ?? MXTheme.of(context).whiteColor,
@@ -111,7 +139,7 @@ class MXPopUpBottomBody extends StatelessWidget {
               topRight: Radius.circular(MXTheme.of(context).radiusMedium))),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: [_buildTitle(context), child],
+        children: children,
       ),
     );
   }

@@ -6,26 +6,26 @@ import 'package:mx_widget/src/widgets/popUp/mx_pop_up_route.dart';
 
 class MXPopUp {
   // ignore: non_constant_identifier_names
-  static void MXpopUpByBottom(
-    BuildContext context, {
-    Color? customModelColor,
-    String? modelLabel,
-    bool modelClose = true,
-    required String title,
-    required Widget child,
-    String? leftText,
-    String? rightText,
-    TextStyle? titleStyle,
-    Widget? leftWidget,
-    Widget? rightWidget,
-    VoidCallback? onRightCallback,
-    VoidCallback? onLeftCallback,
-    VoidCallback? onClose,
-    VoidCallback? onFooterCallback,
-    Color? backgroundColor,
-    String? footerText,
-    MXButton? footerWidget,
-  }) {
+  static void MXpopUpByBottom(BuildContext context,
+      {Color? customModelColor,
+      String? modelLabel,
+      bool modelClose = true,
+      String? title,
+      required Widget child,
+      String? leftText,
+      String? rightText,
+      TextStyle? titleStyle,
+      Widget? leftWidget,
+      Widget? rightWidget,
+      Widget? titleWidget,
+      VoidCallback? onRightCallback,
+      VoidCallback? onLeftCallback,
+      VoidCallback? onClose,
+      VoidCallback? onFooterCallback,
+      Color? backgroundColor,
+      String? footerText,
+      MXButton? footerWidget,
+      double? horizontalSpace}) {
     _buildPopUp(
         modelClose: modelClose,
         context: context,
@@ -41,12 +41,14 @@ class MXPopUp {
               title: title,
               leftText: leftText,
               rightText: rightText,
+              titleWidget: titleWidget,
               rightWidget: rightWidget,
               leftWidget: leftWidget,
               onLeftCallback: onLeftCallback,
               onRightCallback: onRightCallback,
               titleStyle: titleStyle,
               backgroundColor: backgroundColor,
+              horizontalSpace: horizontalSpace,
               child: child,
             ),
           );
@@ -88,6 +90,7 @@ class MXPopUp {
     Color? customModelColor,
     String? modelLabel,
     bool modelClose = true,
+    VoidCallback? onClose,
   }) {
     if (mxPopUpShowTypeEnum == MXPopUpShowTypeEnum.toBottom) {
       throw Error();
@@ -96,6 +99,7 @@ class MXPopUp {
         modelClose: modelClose,
         context: context,
         modelLabel: modelLabel,
+        onClose: onClose,
         mxPopUpShowTypeEnum: mxPopUpShowTypeEnum,
         customModelColor: customModelColor,
         builder: builder);

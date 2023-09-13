@@ -218,3 +218,23 @@ export 'widgets/indexes/model/mx_indexes_controller.dart';
 export 'widgets/uploadImg/mx_upload_img.dart';
 export 'widgets/uploadImg/model/mx_upload_abstract_hooks.dart';
 export 'widgets/uploadImg/model/mx_upload_img_controller.dart';
+
+// actionSheet组件
+export 'widgets/actionSheet/mx_action_sheet.dart';
+export 'widgets/actionSheet/model/mx_action_sheet_list_model_by_grid.dart';
+export 'widgets/actionSheet/model/mx_action_sheet_list_model.dart';
+
+// link组件
+export 'widgets/link/mx_link.dart';
+
+// message组件
+export 'widgets/message/mx_message.dart';
+export 'widgets/message/model/mx_message_model.dart';
+
+// noticeBar组件
+export 'widgets/noticeBar/mx_notice_bar.dart';
+
+// drawer组件
+export 'widgets/drawer/mx_drawer.dart';
+export 'widgets/drawer/model/mx_drawer_model.dart';
+export 'widgets/drawer/model/mx_drawer_options_model.dart';

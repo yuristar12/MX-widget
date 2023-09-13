@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mx_widget/mx_widget.dart';
 import 'package:mx_widget/src/util/curve_util.dart';
+import 'package:mx_widget/src/util/string_util.dart';
 
 ///------------------------------------------------------------文字多行自动收起组件
 ///
@@ -78,20 +79,26 @@ class _MXExpendAbleTextState extends State<MXExpendAbleText> {
   }
 
   void _setHasEllipsis(double maxWidth) {
-    final span = TextSpan(text: widget.text, style: _getTextStyle());
-
-    final tp = TextPainter(
-        text: span,
+    hasEllipsis = stringHasEllipsis(
+        maxWidth: maxWidth,
         maxLines: isExpend ? widget.maxLines : widget.ellipseLines,
-        textDirection: TextDirection.ltr,
-        ellipsis: 'EllipseText');
-    tp.layout(maxWidth: maxWidth);
+        text: widget.text,
+        style: _getTextStyle());
 
-    if (tp.didExceedMaxLines) {
-      hasEllipsis = true;
-    } else {
-      hasEllipsis = false;
-    }
+    // final span = TextSpan(text: widget.text, style: _getTextStyle());
+
+    // final tp = TextPainter(
+    //     text: span,
+    //     maxLines: isExpend ? widget.maxLines : widget.ellipseLines,
+    //     textDirection: TextDirection.ltr,
+    //     ellipsis: 'EllipseText');
+    // tp.layout(maxWidth: maxWidth);
+
+    // if (tp.didExceedMaxLines) {
+    //   hasEllipsis = true;
+    // } else {
+    //   hasEllipsis = false;
+    // }
   }
 
   Widget _buildUnExpendText() {

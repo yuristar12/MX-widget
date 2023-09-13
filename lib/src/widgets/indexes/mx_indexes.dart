@@ -38,16 +38,18 @@ class _MXIndexesState extends State<MXIndexes> {
       controller: widget.controller,
       scrollController: scrollController,
       addGlobalKey: _addKeyItem,
-      // Future.delayed(const Duration(milliseconds: 1000), () {
-      //   int index = keysList.indexWhere((element) {
-      //     return element.index == modelItem.index;
-      //   });
+      onUpdateFloating: (modelItem) {
+        Future.delayed(const Duration(milliseconds: 1000), () {
+          int index = keysList.indexWhere((element) {
+            return element.index == modelItem.index;
+          });
 
-      //   if (index > -1) {
-      //     widget.controller.setValue(keysList[index]);
-      //     anchorController.state?.updateLayout();
-      //   }
-      // });
+          if (index > -1) {
+            widget.controller.setValue(keysList[index]);
+            anchorController.state?.updateLayout();
+          }
+        });
+      },
     ));
 
     children.add(MXIndexesAnchor(

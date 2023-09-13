@@ -12,8 +12,9 @@ class MXIndexesContent extends StatelessWidget {
   const MXIndexesContent({
     super.key,
     required this.controller,
-    required this.scrollController,
     required this.addGlobalKey,
+    required this.onUpdateFloating,
+    required this.scrollController,
   });
 
   final MXIndexesController controller;
@@ -22,10 +23,13 @@ class MXIndexesContent extends StatelessWidget {
 
   final MXIndexesAddGlobalKey addGlobalKey;
 
+  final MXIndexesOnUpdateFloating onUpdateFloating;
+
   Widget _buildBody(BuildContext context) {
     return CustomScrollView(
       slivers: _buildSlivers(context),
       controller: scrollController,
+      physics: const BouncingScrollPhysics(),
     );
   }
 
@@ -51,6 +55,9 @@ class MXIndexesContent extends StatelessWidget {
           delegate: MXIndexesHeader(
             modelItem: modelItem,
             controller: controller,
+            onUpdateFloating: (modelItem) {
+              onUpdateFloating(modelItem);
+            },
           )),
       SliverList(
           delegate: SliverChildBuilderDelegate(

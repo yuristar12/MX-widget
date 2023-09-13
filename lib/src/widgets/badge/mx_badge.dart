@@ -120,6 +120,7 @@ class _MXBadgeState extends State<MXBadge> {
       widget.text ?? badgeCount,
       textAlign: TextAlign.center,
       style: TextStyle(
+        decoration: TextDecoration.none,
         color: MXTheme.of(context).whiteColor,
         fontSize: _getFontStyle(context)!.size,
         fontWeight: FontWeight.w500,

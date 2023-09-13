@@ -613,6 +613,335 @@ class _MyHomePageState extends State<MyHomePage>
                     height: 10,
                   ),
 
+                  MXButton(
+                    text: '打开抽屉',
+                    icon: Icons.calendar_month_outlined,
+                    themeEnum: themeEnum,
+                    afterClickButtonCallback: () {
+                      MXDrawer(
+                          model: MXDrawerModel(
+                              optionsClick: (p0) {
+                                print(p0);
+                              },
+                              onClose: () {
+                                print('onClose');
+                              },
+                              footerBuilder: (context) {
+                                return Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    MXButton(
+                                      text: '操作按钮',
+                                      typeEnum: MXButtonTypeEnum.plain,
+                                      themeEnum: MXButtonThemeEnum.info,
+                                    )
+                                  ],
+                                );
+                              },
+                              title: '标题',
+                              options: [
+                            MXDrawerOptionsModel(
+                                title: "菜单一", icon: Icons.airplay_rounded),
+                            MXDrawerOptionsModel(
+                                title: "菜单二",
+                                icon: Icons.airplay_rounded,
+                                placement:
+                                    MXDrawerOptionItemPlacementEnum.left),
+                            MXDrawerOptionsModel(
+                                title: "菜单三",
+                                icon: Icons.airplay_rounded,
+                                disabled: true),
+                            MXDrawerOptionsModel(
+                                title: "菜单四", icon: Icons.airplay_rounded),
+                            MXDrawerOptionsModel(
+                                title: "菜单五",
+                                icon: Icons.airplay_rounded,
+                                placement:
+                                    MXDrawerOptionItemPlacementEnum.right),
+                            MXDrawerOptionsModel(
+                                title: "菜单六", icon: Icons.airplay_rounded),
+                          ])).tovisibility(context);
+                    },
+                  ),
+
+                  const SizedBox(
+                    height: 10,
+                  ),
+
+                  MXNoticeBar(
+                    scrollDirection: MXNoticeBarScrollDirectionEnum.vertical,
+                    theme: MXNoticeThemeEnum.info,
+                    suffixIcon: Icons.close_rounded,
+                    contentList: [
+                      '1。这是一段描述文字,这是一段描述文字,这是一段描述文字,这是一段描述文字。',
+                      '2。这是一段描述文字,这是一段描述文字,这是一段描述文字,这是一段描述文字。',
+                      '3。这是一段描述文字,这是一段描述文字,这是一段描述文字,这是一段描述文字。',
+                      '4。这是一段描述文字,这是一段描述文字,这是一段描述文字,这是一段描述文字。'
+                    ],
+                    prefixIcon: Icons.notifications_none,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  MXNoticeBar(
+                    scrollDirection: MXNoticeBarScrollDirectionEnum.horizontal,
+                    theme: MXNoticeThemeEnum.info,
+                    suffixIcon: Icons.close_rounded,
+                    content: "这是一段描述文字,这是一段描述文字,这是一段描述文字,这是一段描述文字。",
+                    prefixIcon: Icons.notifications_none,
+                  ),
+
+                  const SizedBox(
+                    height: 10,
+                  ),
+
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: MXTheme.of(context).space16),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        MXLink(
+                          useUnderLine: true,
+                          content: "跳转链接",
+                          theme: MXLinkThemeEnum.info,
+                          prefixIcon: Icons.share,
+                          size: MXLinkSizeEnum.small,
+                        ),
+                        MXLink(
+                          useUnderLine: true,
+                          content: "跳转链接",
+                          suffixIcon: Icons.share,
+                          theme: MXLinkThemeEnum.error,
+                          size: MXLinkSizeEnum.medium,
+                        ),
+                        MXLink(
+                          useUnderLine: true,
+                          content: "跳转链接",
+                          suffixIcon: Icons.share,
+                          theme: MXLinkThemeEnum.success,
+                          size: MXLinkSizeEnum.large,
+                        ),
+                        MXLink(
+                          useUnderLine: true,
+                          content: "跳转链接",
+                          suffixIcon: Icons.share,
+                          theme: MXLinkThemeEnum.waring,
+                          size: MXLinkSizeEnum.large,
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: MXTheme.of(context).space16),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        MXLink(
+                          disabled: true,
+                          useUnderLine: true,
+                          content: "跳转链接",
+                          theme: MXLinkThemeEnum.info,
+                          prefixIcon: Icons.share,
+                          size: MXLinkSizeEnum.small,
+                        ),
+                        MXLink(
+                          disabled: true,
+                          useUnderLine: true,
+                          content: "跳转链接",
+                          suffixIcon: Icons.share,
+                          theme: MXLinkThemeEnum.error,
+                          size: MXLinkSizeEnum.medium,
+                        ),
+                        MXLink(
+                          disabled: true,
+                          useUnderLine: true,
+                          content: "跳转链接",
+                          suffixIcon: Icons.share,
+                          theme: MXLinkThemeEnum.success,
+                          size: MXLinkSizeEnum.large,
+                        ),
+                        MXLink(
+                          disabled: true,
+                          useUnderLine: true,
+                          content: "跳转链接",
+                          suffixIcon: Icons.share,
+                          theme: MXLinkThemeEnum.waring,
+                          size: MXLinkSizeEnum.large,
+                        )
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(
+                    height: 10,
+                  ),
+
+                  MXButton(
+                    text: '打开普通消息',
+                    icon: Icons.calendar_month_outlined,
+                    themeEnum: themeEnum,
+                    afterClickButtonCallback: () {
+                      MXMessage.info(
+                          context,
+                          MXMessageModel(
+                              duration: 3000,
+                              title:
+                                  '这一条普通消息,这一条普通消息,这一条普通消息,这一条普通消息,这一条普通消息,结尾。',
+                              link: '链接',
+                              useScroll: true,
+                              useClose: false));
+                    },
+                  ),
+
+                  const SizedBox(
+                    height: 10,
+                  ),
+
+                  MXButton(
+                    text: '打开actionsheetgrid布局面板',
+                    icon: Icons.calendar_month_outlined,
+                    themeEnum: themeEnum,
+                    afterClickButtonCallback: () {
+                      MXActionSheet(
+                          typeEnum: MXActionSheetTypeEnum.grid,
+                          actionSheetTitle: 'ActionSheet描述文字',
+                          actionOptionsByGrid: [
+                            MXActionSheetListModelByGrid(
+                                label: "微信",
+                                value: "wx",
+                                disabled: true,
+                                badge: MXBadge(
+                                  typeEnum: MXBadgeTypeEnum.point,
+                                ),
+                                netImgUrl:
+                                    'https://tdesign.gtimg.com/miniprogram/logo/wechat.png'),
+                            MXActionSheetListModelByGrid(
+                                label: "朋友圈",
+                                value: "sns",
+                                badge: MXBadge(
+                                  typeEnum: MXBadgeTypeEnum.point,
+                                ),
+                                netImgUrl:
+                                    'https://tdesign.gtimg.com/miniprogram/logo/times.png'),
+                            MXActionSheetListModelByGrid(
+                                label: "QQ",
+                                value: "qq",
+                                badge: MXBadge(
+                                  typeEnum: MXBadgeTypeEnum.point,
+                                ),
+                                netImgUrl:
+                                    'https://tdesign.gtimg.com/miniprogram/logo/qq.png'),
+                            MXActionSheetListModelByGrid(
+                                label: "企业微信",
+                                value: "wecom",
+                                badge: MXBadge(
+                                  text: "99",
+                                  typeEnum: MXBadgeTypeEnum.text,
+                                ),
+                                netImgUrl:
+                                    'https://tdesign.gtimg.com/miniprogram/logo/wecom.png'),
+                            MXActionSheetListModelByGrid(
+                                label: "分享", value: "share", icon: Icons.share),
+                            MXActionSheetListModelByGrid(
+                                label: "收藏",
+                                value: "coll",
+                                icon: Icons.star_border_purple500),
+                            MXActionSheetListModelByGrid(
+                                label: "下载",
+                                value: "down",
+                                icon: Icons.download),
+                            MXActionSheetListModelByGrid(
+                                label: "复制", value: "copy", icon: Icons.edit),
+                            MXActionSheetListModelByGrid(
+                                label: "微信2",
+                                value: "wx",
+                                netImgUrl:
+                                    'https://tdesign.gtimg.com/miniprogram/logo/wechat.png'),
+                            MXActionSheetListModelByGrid(
+                                label: "朋友圈2",
+                                value: "sns",
+                                netImgUrl:
+                                    'https://tdesign.gtimg.com/miniprogram/logo/times.png'),
+                            MXActionSheetListModelByGrid(
+                                label: "QQ3",
+                                value: "qq",
+                                netImgUrl:
+                                    'https://tdesign.gtimg.com/miniprogram/logo/qq.png'),
+                            MXActionSheetListModelByGrid(
+                                label: "企业微信4",
+                                value: "wecom",
+                                netImgUrl:
+                                    'https://tdesign.gtimg.com/miniprogram/logo/wecom.png'),
+                            MXActionSheetListModelByGrid(
+                                label: "分享5",
+                                value: "share",
+                                icon: Icons.share),
+                            MXActionSheetListModelByGrid(
+                                label: "收藏6",
+                                value: "coll",
+                                icon: Icons.star_border_purple500),
+                            MXActionSheetListModelByGrid(
+                                label: "下载7",
+                                value: "down",
+                                icon: Icons.download),
+                            MXActionSheetListModelByGrid(
+                                label: "复制8", value: "copy", icon: Icons.edit),
+                          ]).toAction(
+                        context,
+                        onConfirm: (model) {
+                          print(model);
+                        },
+                        onClose: () {
+                          print('onClose');
+                        },
+                      );
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+
+                  MXButton(
+                    text: '打开actionsheet面板',
+                    icon: Icons.calendar_month_outlined,
+                    themeEnum: themeEnum,
+                    afterClickButtonCallback: () {
+                      MXActionSheet(
+                          actionSheetTitle: 'ActionSheet描述文字',
+                          actionOptionsByList: [
+                            MXActionSheetListModel(label: '选项一', value: "1"),
+                            MXActionSheetListModel(label: '选项二', value: "1"),
+                            MXActionSheetListModel(label: '选项三', value: "1"),
+                            MXActionSheetListModel(label: '选项四', value: "1"),
+                            MXActionSheetListModel(label: '选项一', value: "1"),
+                            MXActionSheetListModel(label: '选项二', value: "1"),
+                            MXActionSheetListModel(label: '选项三', value: "1"),
+                            MXActionSheetListModel(label: '选项四', value: "1"),
+                            MXActionSheetListModel(label: '选项一', value: "1"),
+                            MXActionSheetListModel(label: '选项二', value: "1"),
+                            MXActionSheetListModel(label: '选项三', value: "1"),
+                            MXActionSheetListModel(label: '选项四', value: "1"),
+                          ]).toAction(
+                        context,
+                        onConfirm: (model) {
+                          print(model);
+                        },
+                        onClose: () {
+                          print('onClose');
+                        },
+                      );
+                    },
+                  ),
+
+                  const SizedBox(
+                    height: 10,
+                  ),
                   MXUploadImg(controller: mxUploadImgController),
 
                   const SizedBox(
